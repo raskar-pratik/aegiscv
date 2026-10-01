@@ -1,0 +1,7 @@
+{
+  "profile_hash": "17ae5f369206fddcea866dda6f2162874decf6efd2151e2b2f268defe25536a8",
+  "eligible": true,
+  "heldout_image_fpr": 0.0,
+  "injected_scenario_f1": 1.0,
+  "policy": "Validation gates escalation only; thresholds are not retuned"
+}

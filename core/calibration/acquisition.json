@@ -1,0 +1,10 @@
+{
+  "luminance_threshold": 0.03409164598268991,
+  "sharpness_relative_threshold": 0.2,
+  "calibration_luminance_sd": 0.008280398589017137,
+  "reference_hash": "841ee1e341c4495096415504c893f4b6b71fb67115642ef95a6581079286d801",
+  "calibration_hash": "90c1af53853543cbd0653f231be4f216fd107cf6a863a43e5a5d7a1dadd46311",
+  "method": "99th percentile of 500 independent reference/calibration bootstrap control batch differences, with 0.01 luminance and 0.20 sharpness practical floors",
+  "scope": "Generated control domain only; no evaluation images used",
+  "profile_hash": "e0676f7f9fc2994d8de77d17b60f4b9bbd634fc2104755abb3b19fb153da12f1"
+}

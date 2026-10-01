@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+local_state/
+work/
+.env
+.env.*
+*.key
+*.pem
+*.sqlite*
+*.db
+demo/results*/
+experiments/results/*
+!experiments/results/stabilization_final/

@@ -1,0 +1,112 @@
+{
+  "contract_fields": [
+    "composite_risk",
+    "composite_severity",
+    "max_asset_risk",
+    "highest_severity",
+    "highest_risk_asset",
+    "highest_risk_asset_type",
+    "highest_risk_reason",
+    "final_disposition",
+    "disposition_trigger",
+    "confidence",
+    "coverage"
+  ],
+  "clean_control": {
+    "composite_risk": 11.36,
+    "composite_severity": "LOW",
+    "max_asset_risk": 50.0,
+    "highest_severity": "MODERATE",
+    "highest_risk_asset": "class-04/evaluation-0022.png",
+    "highest_risk_asset_type": "IMAGE",
+    "highest_risk_reason": "Image lies outside supplied reference neighborhood",
+    "final_disposition": "REVIEW",
+    "disposition_trigger": {
+      "type": "CALIBRATED_ANOMALY",
+      "asset": "class-04/evaluation-0008.png",
+      "risk": 50.004059076309204,
+      "evidence_families": [
+        "representation"
+      ],
+      "reason": "Moderate calibrated anomaly requires review"
+    },
+    "confidence": 0.634,
+    "coverage": 1.0,
+    "composite_score_type": "Heuristic cross-domain aggregate; not an attack probability.",
+    "policy": "Cryptographic failures and multi-family critical contributor evidence override composite action; experimental backdoor evidence remains REVIEW unless an independent integrity rule applies."
+  },
+  "malicious_contributor": {
+    "composite_risk": 12.5,
+    "composite_severity": "LOW",
+    "max_asset_risk": 100.0,
+    "highest_severity": "CRITICAL",
+    "highest_risk_asset": "malicious-contributor",
+    "highest_risk_asset_type": "CONTRIBUTOR",
+    "highest_risk_reason": "Contributor-level evidence aggregation",
+    "final_disposition": "QUARANTINE",
+    "disposition_trigger": {
+      "type": "CONTRIBUTOR_RISK",
+      "asset": "malicious-contributor",
+      "risk": 100,
+      "evidence_families": [
+        "duplication",
+        "representation",
+        "trigger_pattern"
+      ],
+      "reason": "Critical contributor evidence spans multiple detector families"
+    },
+    "confidence": 0.667,
+    "coverage": 1.0,
+    "composite_score_type": "Heuristic cross-domain aggregate; not an attack probability.",
+    "policy": "Cryptographic failures and multi-family critical contributor evidence override composite action; experimental backdoor evidence remains REVIEW unless an independent integrity rule applies."
+  },
+  "verified_model_substitution": {
+    "composite_risk": 100,
+    "composite_severity": "CRITICAL",
+    "max_asset_risk": 100.0,
+    "highest_severity": "CRITICAL",
+    "highest_risk_asset": "model",
+    "highest_risk_asset_type": "MODEL",
+    "highest_risk_reason": "verified substitution",
+    "final_disposition": "QUARANTINE",
+    "disposition_trigger": {
+      "type": "CRYPTOGRAPHIC_INTEGRITY",
+      "asset": "model",
+      "risk": 100,
+      "evidence_families": [
+        "cryptographic_integrity"
+      ],
+      "reason": "Verified model, signature or ledger integrity failure"
+    },
+    "confidence": 1.0,
+    "coverage": 1.0,
+    "composite_score_type": "Heuristic cross-domain aggregate; not an attack probability.",
+    "policy": "Cryptographic failures and multi-family critical contributor evidence override composite action; experimental backdoor evidence remains REVIEW unless an independent integrity rule applies."
+  },
+  "experimental_backdoor_only": {
+    "composite_risk": 8.11,
+    "composite_severity": "LOW",
+    "max_asset_risk": 85.0,
+    "highest_severity": "CRITICAL",
+    "highest_risk_asset": "model",
+    "highest_risk_asset_type": "MODEL",
+    "highest_risk_reason": "anomaly",
+    "final_disposition": "REVIEW",
+    "disposition_trigger": {
+      "type": "EXPERIMENTAL_BACKDOOR_EVIDENCE",
+      "asset": "model",
+      "risk": 85,
+      "evidence_families": [
+        "reconstruction"
+      ],
+      "reason": "Suspicious experimental backdoor evidence requires analyst review; not cryptographic confirmation"
+    },
+    "confidence": 0.55,
+    "coverage": 1.0,
+    "composite_score_type": "Heuristic cross-domain aggregate; not an attack probability.",
+    "policy": "Cryptographic failures and multi-family critical contributor evidence override composite action; experimental backdoor evidence remains REVIEW unless an independent integrity rule applies."
+  },
+  "policy_reference": "docs/decision_policy.md",
+  "schema_reference": "docs/assurance_schema.md",
+  "experimental_metrics_unchanged": true
+}

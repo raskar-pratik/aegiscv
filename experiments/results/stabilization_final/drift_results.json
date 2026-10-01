@@ -1,0 +1,65 @@
+{
+  "before": false,
+  "after": true,
+  "acquisition": {
+    "detector": "acquisition_shift",
+    "category": "DISTRIBUTION",
+    "attack_class": "OPERATIONAL_SHIFT",
+    "asset_id": "dataset",
+    "risk_score": 50,
+    "confidence": 0.7,
+    "reason": "OPERATIONAL DISTRIBUTION SHIFT DETECTED",
+    "evidence": {
+      "profile_hash": "e0676f7f9fc2994d8de77d17b60f4b9bbd634fc2104755abb3b19fb153da12f1",
+      "mean_luminance_delta": -0.1624565882850797,
+      "luminance_calibration_sd_units": 19.6194164494155,
+      "luminance_shift_direction": "darker",
+      "median_sharpness_relative_change": -0.9345516572757676,
+      "luminance_threshold": 0.03409164598268991,
+      "sharpness_relative_threshold": 0.2,
+      "reference_means": [
+        0.458820864250153,
+        0.04694238804308202,
+        0.014307659094183633,
+        0.4589831495098039,
+        0.45876313572303906,
+        0.4589148475796567
+      ],
+      "current_means": [
+        0.29636427596507325,
+        0.025418499295312254,
+        0.0009393861094435728,
+        0.2963043172998375,
+        0.29637502553104655,
+        0.2964343469158504
+      ],
+      "features": [
+        "luminance",
+        "luminance_std",
+        "laplacian_energy",
+        "red_mean",
+        "green_mean",
+        "blue_mean"
+      ],
+      "intent": "Not determined; acquisition change alone is not attack evidence"
+    },
+    "status": "SUCCESS",
+    "asset_type": "DATASET",
+    "limitations": [
+      "Generated control domain only; no evaluation images used",
+      "Camera exposure, blur and legitimate scene changes may produce these statistics."
+    ],
+    "finding_id": "91135b9f-fc7d-45de-8c43-c76c879e6193",
+    "severity": "MODERATE",
+    "recommended_action": "REVIEW",
+    "quality": {
+      "status": "CALIBRATED",
+      "risk_weight": 1.0,
+      "measured_fpr": null,
+      "reason": "Reference/calibration acquisition controls only",
+      "evidence_family": "acquisition_shift",
+      "weight_type": "Fixed conservative policy, not learned reliability probability"
+    }
+  },
+  "OOD_shift": true
+}

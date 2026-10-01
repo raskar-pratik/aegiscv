@@ -1,0 +1,2086 @@
+{
+  "before_source": "experiments\\results\\final_validation",
+  "after_source": "experiments\\results\\stabilization\\full_suite",
+  "comparison": [
+    {
+      "metric": "Near clean image FPR",
+      "before": 0.67,
+      "after": 0.0
+    },
+    {
+      "metric": "Near precision",
+      "before": 0.42857142857142855,
+      "after": 1.0
+    },
+    {
+      "metric": "Near recall",
+      "before": 1.0,
+      "after": 1.0
+    },
+    {
+      "metric": "Near F1",
+      "before": 0.6,
+      "after": 1.0
+    },
+    {
+      "metric": "Clean contributors falsely flagged",
+      "before": 5,
+      "after": 0
+    },
+    {
+      "metric": "Clean risk",
+      "before": 80.0,
+      "after": 11.36
+    },
+    {
+      "metric": "Malicious contributor case risk",
+      "before": 95.0,
+      "after": 12.5
+    },
+    {
+      "metric": "Backdoor fixture risk",
+      "before": 85.0,
+      "after": 13.09
+    },
+    {
+      "metric": "OOD case risk",
+      "before": 97.5,
+      "after": 34.09
+    }
+  ],
+  "clean": {
+    "assurance": {
+      "risk_score": 11.36,
+      "assurance_score": 88.64,
+      "severity": "LOW",
+      "recommended_action": "REVIEW",
+      "confidence": 0.634,
+      "coverage_fraction": 1.0,
+      "category_risk": {
+        "DATA_INTEGRITY": 50.00494420528412,
+        "MODEL_INTEGRITY": 0,
+        "INFERENCE_INTEGRITY": 0,
+        "DISTRIBUTION": 0.0
+      },
+      "category_weights": {
+        "DATA_INTEGRITY": 1.0,
+        "MODEL_INTEGRITY": 1.2,
+        "INFERENCE_INTEGRITY": 1.2,
+        "DISTRIBUTION": 1.0
+      },
+      "score_type": "heuristic composite; not a calibrated probability",
+      "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+    },
+    "contributors": [
+      {
+        "contributor": "contributor-3",
+        "samples": 60,
+        "affected_samples": 2,
+        "affected_fraction": 0.03333333333333333,
+        "risk_score": 6.88,
+        "evidence_families": {
+          "representation": 6.88
+        },
+        "evidence": [
+          {
+            "finding_id": "c2118830-dd08-493a-a0d6-861d625e05dd",
+            "detector": "ood",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Explicit frozen encoder-bound calibration profile",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "20edde41-3f0c-40f4-ac08-075de5edd0ec",
+            "detector": "ood",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Explicit frozen encoder-bound calibration profile",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-2",
+        "samples": 60,
+        "affected_samples": 1,
+        "affected_fraction": 0.016666666666666666,
+        "risk_score": 3.44,
+        "evidence_families": {
+          "representation": 3.44
+        },
+        "evidence": [
+          {
+            "finding_id": "36469c9d-a423-41f7-9831-3df6ff906dd7",
+            "detector": "ood",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Explicit frozen encoder-bound calibration profile",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-0",
+        "samples": 60,
+        "affected_samples": 0,
+        "affected_fraction": 0.0,
+        "risk_score": 0,
+        "evidence_families": {},
+        "evidence": [],
+        "recommended_action": "ACCEPT",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-1",
+        "samples": 60,
+        "affected_samples": 0,
+        "affected_fraction": 0.0,
+        "risk_score": 0,
+        "evidence_families": {},
+        "evidence": [],
+        "recommended_action": "ACCEPT",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-4",
+        "samples": 60,
+        "affected_samples": 0,
+        "affected_fraction": 0.0,
+        "risk_score": 0,
+        "evidence_families": {},
+        "evidence": [],
+        "recommended_action": "ACCEPT",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      }
+    ],
+    "positive_findings": [
+      {
+        "detector": "ood",
+        "category": "DATA_INTEGRITY",
+        "attack_class": "OOD",
+        "asset_id": "class-04/evaluation-0008.png",
+        "risk_score": 50.004059076309204,
+        "confidence": 0.65,
+        "reason": "Image lies outside supplied reference neighborhood",
+        "evidence": {
+          "nearest_reference_cosine_distance": 8.118152618408203e-05,
+          "threshold": 6.318092346191406e-05
+        },
+        "status": "SUCCESS",
+        "asset_type": "IMAGE",
+        "limitations": [],
+        "finding_id": "c2118830-dd08-493a-a0d6-861d625e05dd",
+        "severity": "MODERATE",
+        "recommended_action": "REVIEW",
+        "quality": {
+          "status": "CALIBRATED",
+          "risk_weight": 1.0,
+          "measured_fpr": null,
+          "reason": "Explicit frozen encoder-bound calibration profile",
+          "evidence_family": "representation",
+          "weight_type": "Fixed conservative policy, not learned reliability probability"
+        },
+        "calibration_profile_hash": "6ae7543b52d7da663c99ff23a3666065cbaa1a33b553683b9f6a651882dad559"
+      },
+      {
+        "detector": "ood",
+        "category": "DATA_INTEGRITY",
+        "attack_class": "OOD",
+        "asset_id": "class-04/evaluation-0018.png",
+        "risk_score": 50.003209710121155,
+        "confidence": 0.65,
+        "reason": "Image lies outside supplied reference neighborhood",
+        "evidence": {
+          "nearest_reference_cosine_distance": 6.41942024230957e-05,
+          "threshold": 6.318092346191406e-05
+        },
+        "status": "SUCCESS",
+        "asset_type": "IMAGE",
+        "limitations": [],
+        "finding_id": "20edde41-3f0c-40f4-ac08-075de5edd0ec",
+        "severity": "MODERATE",
+        "recommended_action": "REVIEW",
+        "quality": {
+          "status": "CALIBRATED",
+          "risk_weight": 1.0,
+          "measured_fpr": null,
+          "reason": "Explicit frozen encoder-bound calibration profile",
+          "evidence_family": "representation",
+          "weight_type": "Fixed conservative policy, not learned reliability probability"
+        },
+        "calibration_profile_hash": "6ae7543b52d7da663c99ff23a3666065cbaa1a33b553683b9f6a651882dad559"
+      },
+      {
+        "detector": "ood",
+        "category": "DATA_INTEGRITY",
+        "attack_class": "OOD",
+        "asset_id": "class-04/evaluation-0022.png",
+        "risk_score": 50.00494420528412,
+        "confidence": 0.65,
+        "reason": "Image lies outside supplied reference neighborhood",
+        "evidence": {
+          "nearest_reference_cosine_distance": 9.888410568237305e-05,
+          "threshold": 6.318092346191406e-05
+        },
+        "status": "SUCCESS",
+        "asset_type": "IMAGE",
+        "limitations": [],
+        "finding_id": "36469c9d-a423-41f7-9831-3df6ff906dd7",
+        "severity": "MODERATE",
+        "recommended_action": "REVIEW",
+        "quality": {
+          "status": "CALIBRATED",
+          "risk_weight": 1.0,
+          "measured_fpr": null,
+          "reason": "Explicit frozen encoder-bound calibration profile",
+          "evidence_family": "representation",
+          "weight_type": "Fixed conservative policy, not learned reliability probability"
+        },
+        "calibration_profile_hash": "6ae7543b52d7da663c99ff23a3666065cbaa1a33b553683b9f6a651882dad559"
+      }
+    ]
+  },
+  "malicious_contributor": {
+    "assurance": {
+      "risk_score": 12.5,
+      "assurance_score": 87.5,
+      "severity": "LOW",
+      "recommended_action": "REVIEW",
+      "confidence": 0.667,
+      "coverage_fraction": 1.0,
+      "category_risk": {
+        "DATA_INTEGRITY": 55.0,
+        "MODEL_INTEGRITY": 0,
+        "INFERENCE_INTEGRITY": 0,
+        "DISTRIBUTION": 0
+      },
+      "category_weights": {
+        "DATA_INTEGRITY": 1.0,
+        "MODEL_INTEGRITY": 1.2,
+        "INFERENCE_INTEGRITY": 1.2,
+        "DISTRIBUTION": 1.0
+      },
+      "score_type": "heuristic composite; not a calibrated probability",
+      "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+    },
+    "contributors": [
+      {
+        "contributor": "malicious-contributor",
+        "samples": 57,
+        "affected_samples": 57,
+        "affected_fraction": 1.0,
+        "risk_score": 100,
+        "evidence_families": {
+          "duplication": 55.0,
+          "representation": 24.8,
+          "trigger_pattern": 32.55
+        },
+        "evidence": [
+          {
+            "finding_id": "396fd441-8f22-408a-9403-c342f477c138",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "99259004-5822-46d3-af79-7bfe0603aa88",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "fa7e655d-32bd-49c3-af10-1af7eb54bd0d",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "418ef8d1-0c36-4f00-b0fb-20540e205929",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "3a10d15f-6ac1-48ae-bfab-26cd4c7901ad",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "45961889-8671-42d5-9737-fcddb06c4064",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "fecb40dc-18f1-4a26-a0aa-7fc6d0ba8add",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "77bfdc53-de69-416f-b34f-8d6852569502",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "6dd02a66-4f1b-4222-81db-f0ed38e15336",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "70c5a380-3e6a-48ff-b150-f95318724e7d",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "f603b7fc-d07b-48e1-9ab4-49250c23252f",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "a049eca9-075d-4dc1-a322-f3da77d6c48d",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "76287474-3151-46da-9e08-7e7901a5711a",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "e6211e9b-1648-468f-9d1f-64a8b0b4ec71",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "30167937-d96d-40a7-9a2d-506803f0560a",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "e2b60b91-9c3e-45b6-8918-4bdb7289630c",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "630b964d-def1-4520-94a1-4cd86e5dea74",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7a94c80d-4986-43d4-a278-4bedbe8147f0",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "708c49ce-4c98-42a4-b412-0d88096fe02b",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b87f9b1b-4885-4ec5-8a3d-6a34078c7691",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "d7f81a88-20e8-46d5-a97c-7aec8a714b89",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b03edf7a-dfb7-42de-b1ce-550fd9b115fe",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c0243f62-8dc1-498f-b9fb-404cc54417be",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "aa1cff8f-4917-4455-a4f2-3c84350b5a89",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b9187da6-a591-48fa-964d-b02389bfd135",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "58d227a8-e2be-492b-a309-e75ee9e2c0d6",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7f6f9aa1-4037-4360-a5e8-d71f48142f1f",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b6999f94-a425-475e-b9f1-0c38e14048bd",
+            "detector": "near_duplicate",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": 0.0,
+              "reason": "Procedural-10 calibration pairs only; not natural-image validation",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 3
+          },
+          {
+            "finding_id": "b9520169-d642-4d1d-8f90-14c5d0a4af32",
+            "detector": "near_duplicate",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": 0.0,
+              "reason": "Procedural-10 calibration pairs only; not natural-image validation",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "a1d5807e-38fd-4f1c-91fa-0074d28421f4",
+            "detector": "near_duplicate",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": 0.0,
+              "reason": "Procedural-10 calibration pairs only; not natural-image validation",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "5ee3bbad-b8e0-4302-863c-336372794616",
+            "detector": "near_duplicate",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": 0.0,
+              "reason": "Procedural-10 calibration pairs only; not natural-image validation",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "c3d6b760-e31a-44b8-870d-42c9e846753e",
+            "detector": "near_duplicate",
+            "quality": {
+              "status": "CALIBRATED",
+              "risk_weight": 1.0,
+              "measured_fpr": 0.0,
+              "reason": "Procedural-10 calibration pairs only; not natural-image validation",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 2
+          },
+          {
+            "finding_id": "4d79a2d2-d811-4aa1-b05a-41f31545f7f6",
+            "detector": "label_anomaly",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "87d5dff9-ec18-4987-8178-e4d922726940",
+            "detector": "label_anomaly",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "d75ffa67-5a1e-4e64-8a31-ca87c65659a4",
+            "detector": "label_anomaly",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "0f90bec9-a379-41e9-9fff-c93601950210",
+            "detector": "label_anomaly",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "67048aa3-5bed-4168-b59e-92601ee87e4d",
+            "detector": "label_anomaly",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "81c3cdbf-6c54-44c4-9b1a-694a29341c23",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "f2b963c8-5533-4399-9180-1e29b79dc8de",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "ddebae53-5a04-44bf-885c-f19d1f35a926",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "0ead9f75-bf98-4e9e-bbd1-5bfe65e82353",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "1d1a7239-c132-4ce8-af49-22c50535df02",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "445d76d4-436a-4201-ab5a-02cff2056e3a",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "49088a56-041e-42c6-b85e-a658c372fc91",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "f0d00f16-638e-43ab-b176-3129ff4a610f",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "18f46c9f-a902-4390-97b0-4b7f87b2ddc0",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "ad669a95-77c8-4b1d-9764-5234598d19d1",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "61c36e2d-800f-45aa-9e9c-b9d80948e05b",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "fdc12a41-41ff-4315-b9e1-6db28651c797",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c1fa86da-131b-400d-b0a5-3bd03b02c7fd",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "2e8ae9ac-bf67-47fa-9d3c-478336665ee4",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "8e19d275-0c53-4938-b341-4a8e4eff35fd",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "4fd9c200-0a1f-49ce-a532-aef8852af424",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "81c65017-6d5e-4530-8da6-0f9d458f8d3c",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "fb839924-1769-445a-b15e-2481e037141b",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c636fb02-104b-4452-af18-2554ac13f4e4",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "33392e9e-9b1c-4b61-91ed-34345ffd7e3a",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c6cd44bd-fcdd-488d-819a-1de4e5e0995b",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "2174257d-f1a6-4237-9e04-da9a6d25901f",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "f7915fab-c61c-4aba-815d-f389b242360c",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "3d369335-7d7c-44cb-9a27-c245d4119dbd",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "4b842625-48d0-4a34-855c-0a36752ec50d",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "a244920f-6f1c-4b7b-807a-496c289ae329",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "8b6638b3-392f-437a-9934-2ce58636a6a7",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "62c9c192-9a1a-4c81-843f-27eabefcb19f",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c4bcaa51-f4b9-43b1-9b0d-64eb8154f014",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "3ccc725d-7f94-4a9f-a2ce-b60ce3736053",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "479214c2-8459-4cc0-a005-ec4809e96aad",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7ad232d9-38ec-4e5a-9306-a4c906624add",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "d5ca8ff7-b720-4447-83b3-1fd5fa928c2e",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "5ab0fe2c-3046-49cb-95e3-68d71c8ebec7",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "a30a22b8-e7fe-40dd-8d40-6e7fdc40b665",
+            "detector": "spectral_signature",
+            "quality": {
+              "status": "EXPERIMENTAL",
+              "risk_weight": 0.2,
+              "measured_fpr": null,
+              "reason": "Limited synthetic sensitivity; no validated deployment operating point",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b78407a9-c015-43a4-8bed-92bf79a19f8a",
+            "detector": "spectral_signature",
+            "quality": {
+              "status": "EXPERIMENTAL",
+              "risk_weight": 0.2,
+              "measured_fpr": null,
+              "reason": "Limited synthetic sensitivity; no validated deployment operating point",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "a6caae27-98e5-49a8-b73a-943a51b3c3a3",
+            "detector": "spectral_signature",
+            "quality": {
+              "status": "EXPERIMENTAL",
+              "risk_weight": 0.2,
+              "measured_fpr": null,
+              "reason": "Limited synthetic sensitivity; no validated deployment operating point",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "0d5b09e8-db47-4e74-9540-10d1796f4d31",
+            "detector": "spectral_signature",
+            "quality": {
+              "status": "EXPERIMENTAL",
+              "risk_weight": 0.2,
+              "measured_fpr": null,
+              "reason": "Limited synthetic sensitivity; no validated deployment operating point",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b2183d60-7f24-4e0c-80d7-a81de185eb3e",
+            "detector": "spectral_signature",
+            "quality": {
+              "status": "EXPERIMENTAL",
+              "risk_weight": 0.2,
+              "measured_fpr": null,
+              "reason": "Limited synthetic sensitivity; no validated deployment operating point",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "67ef26d0-6841-4cc8-885c-b7d860e3b825",
+            "detector": "trigger_pattern",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "trigger_pattern",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 32
+          }
+        ],
+        "recommended_action": "QUARANTINE",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-0",
+        "samples": 46,
+        "affected_samples": 6,
+        "affected_fraction": 0.13043478260869565,
+        "risk_score": 35.87,
+        "evidence_families": {
+          "duplication": 35.87
+        },
+        "evidence": [
+          {
+            "finding_id": "70c5a380-3e6a-48ff-b150-f95318724e7d",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "30167937-d96d-40a7-9a2d-506803f0560a",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "630b964d-def1-4520-94a1-4cd86e5dea74",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "aa1cff8f-4917-4455-a4f2-3c84350b5a89",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b9187da6-a591-48fa-964d-b02389bfd135",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7f6f9aa1-4037-4360-a5e8-d71f48142f1f",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-3",
+        "samples": 53,
+        "affected_samples": 7,
+        "affected_fraction": 0.1320754716981132,
+        "risk_score": 35.8,
+        "evidence_families": {
+          "duplication": 31.13,
+          "representation": 4.67
+        },
+        "evidence": [
+          {
+            "finding_id": "fecb40dc-18f1-4a26-a0aa-7fc6d0ba8add",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "6dd02a66-4f1b-4222-81db-f0ed38e15336",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "a049eca9-075d-4dc1-a322-f3da77d6c48d",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7a94c80d-4986-43d4-a278-4bedbe8147f0",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b87f9b1b-4885-4ec5-8a3d-6a34078c7691",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "b03edf7a-dfb7-42de-b1ce-550fd9b115fe",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "18a597dc-0831-4a3e-910e-9615b417b79f",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7026912e-f489-407f-9dff-d2e50a7e7b95",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-2",
+        "samples": 47,
+        "affected_samples": 5,
+        "affected_fraction": 0.10638297872340426,
+        "risk_score": 31.89,
+        "evidence_families": {
+          "duplication": 29.26,
+          "representation": 2.63
+        },
+        "evidence": [
+          {
+            "finding_id": "396fd441-8f22-408a-9403-c342f477c138",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "3a10d15f-6ac1-48ae-bfab-26cd4c7901ad",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "45961889-8671-42d5-9737-fcddb06c4064",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "f603b7fc-d07b-48e1-9ab4-49250c23252f",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "76287474-3151-46da-9e08-7e7901a5711a",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "7a036016-af87-430d-8e0e-a0d6e24096c7",
+            "detector": "ood",
+            "quality": {
+              "status": "HEURISTIC",
+              "risk_weight": 0.6,
+              "measured_fpr": null,
+              "reason": "Uncalibrated heuristic; requires analyst interpretation",
+              "evidence_family": "representation",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-4",
+        "samples": 49,
+        "affected_samples": 4,
+        "affected_fraction": 0.08163265306122448,
+        "risk_score": 22.45,
+        "evidence_families": {
+          "duplication": 22.45
+        },
+        "evidence": [
+          {
+            "finding_id": "77bfdc53-de69-416f-b34f-8d6852569502",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "e6211e9b-1648-468f-9d1f-64a8b0b4ec71",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "c0243f62-8dc1-498f-b9fb-404cc54417be",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "58d227a8-e2be-492b-a309-e75ee9e2c0d6",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      },
+      {
+        "contributor": "contributor-1",
+        "samples": 47,
+        "affected_samples": 3,
+        "affected_fraction": 0.06382978723404255,
+        "risk_score": 17.55,
+        "evidence_families": {
+          "duplication": 17.55
+        },
+        "evidence": [
+          {
+            "finding_id": "e2b60b91-9c3e-45b6-8918-4bdb7289630c",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "708c49ce-4c98-42a4-b412-0d88096fe02b",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          },
+          {
+            "finding_id": "d7f81a88-20e8-46d5-a97c-7aec8a714b89",
+            "detector": "exact_duplicate",
+            "quality": {
+              "status": "VERIFIED_MECHANICAL",
+              "risk_weight": 1.0,
+              "measured_fpr": null,
+              "reason": "Deterministic byte/signature/chain verification, within its stated trust boundary",
+              "evidence_family": "duplication",
+              "weight_type": "Fixed conservative policy, not learned reliability probability"
+            },
+            "affected_samples": 1
+          }
+        ],
+        "recommended_action": "REVIEW",
+        "score_type": "Sum of distinct-family severity \u00d7 reliability \u00d7 confidence factor \u00d7 concentration (saturates at 20%); representation and duplicate signals each share a family"
+      }
+    ]
+  },
+  "heldout_pairs": {
+    "profile_hash": "17ae5f369206fddcea866dda6f2162874decf6efd2151e2b2f268defe25536a8",
+    "negative_pairs": 44850,
+    "positive_pairs": 1800,
+    "fp": 0,
+    "tn": 44850,
+    "tp": 1800,
+    "fn": 0,
+    "pair_fpr": 0.0,
+    "clean_image_fpr": 0.0,
+    "recall": 1.0,
+    "by_transform": {
+      "resize": {
+        "tp": 300,
+        "fn": 0
+      },
+      "jpeg": {
+        "tp": 300,
+        "fn": 0
+      },
+      "brightness": {
+        "tp": 300,
+        "fn": 0
+      },
+      "crop_pad": {
+        "tp": 300,
+        "fn": 0
+      },
+      "noise": {
+        "tp": 300,
+        "fn": 0
+      },
+      "reencode": {
+        "tp": 300,
+        "fn": 0
+      }
+    },
+    "false_pairs": [],
+    "scope": "Production hash, cosine and pixel confirmation on held-out independent pairs and known transformed copies; cluster membership separately evaluated in full suite"
+  },
+  "drift": {
+    "before": false,
+    "after": true,
+    "acquisition": {
+      "detector": "acquisition_shift",
+      "category": "DISTRIBUTION",
+      "attack_class": "OPERATIONAL_SHIFT",
+      "asset_id": "dataset",
+      "risk_score": 50,
+      "confidence": 0.7,
+      "reason": "OPERATIONAL DISTRIBUTION SHIFT DETECTED",
+      "evidence": {
+        "profile_hash": "e0676f7f9fc2994d8de77d17b60f4b9bbd634fc2104755abb3b19fb153da12f1",
+        "mean_luminance_delta": -0.1624565882850797,
+        "luminance_calibration_sd_units": 19.6194164494155,
+        "luminance_shift_direction": "darker",
+        "median_sharpness_relative_change": -0.9345516572757676,
+        "luminance_threshold": 0.03409164598268991,
+        "sharpness_relative_threshold": 0.2,
+        "reference_means": [
+          0.458820864250153,
+          0.04694238804308202,
+          0.014307659094183633,
+          0.4589831495098039,
+          0.45876313572303906,
+          0.4589148475796567
+        ],
+        "current_means": [
+          0.29636427596507325,
+          0.025418499295312254,
+          0.0009393861094435728,
+          0.2963043172998375,
+          0.29637502553104655,
+          0.2964343469158504
+        ],
+        "features": [
+          "luminance",
+          "luminance_std",
+          "laplacian_energy",
+          "red_mean",
+          "green_mean",
+          "blue_mean"
+        ],
+        "intent": "Not determined; acquisition change alone is not attack evidence"
+      },
+      "status": "SUCCESS",
+      "asset_type": "DATASET",
+      "limitations": [
+        "Generated control domain only; no evaluation images used",
+        "Camera exposure, blur and legitimate scene changes may produce these statistics."
+      ],
+      "finding_id": "91135b9f-fc7d-45de-8c43-c76c879e6193",
+      "severity": "MODERATE",
+      "recommended_action": "REVIEW",
+      "quality": {
+        "status": "CALIBRATED",
+        "risk_weight": 1.0,
+        "measured_fpr": null,
+        "reason": "Reference/calibration acquisition controls only",
+        "evidence_family": "acquisition_shift",
+        "weight_type": "Fixed conservative policy, not learned reliability probability"
+      }
+    },
+    "OOD_shift": true
+  },
+  "backdoor": {
+    "before": {
+      "detector": "neural_cleanse",
+      "attack": "held-out trained models",
+      "unit": "model",
+      "clean_samples": 3,
+      "attack_samples": 6,
+      "tp": 5,
+      "fp": 1,
+      "tn": 2,
+      "fn": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1": 0.8333333333333334,
+      "fpr": 0.3333333333333333,
+      "runtime_seconds": 23.59396169998945,
+      "roc_auc": 0.9444444444444444,
+      "pr_auc": 0.9761904761904762,
+      "auc_reason": "PR AUC is average precision with tied scores grouped"
+    },
+    "after": {
+      "detector": "neural_cleanse",
+      "attack": "held-out trained models",
+      "unit": "model",
+      "clean_samples": 3,
+      "attack_samples": 6,
+      "tp": 5,
+      "fp": 1,
+      "tn": 2,
+      "fn": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1": 0.8333333333333334,
+      "fpr": 0.3333333333333333,
+      "runtime_seconds": 17.081625800004986,
+      "roc_auc": 0.9444444444444444,
+      "pr_auc": 0.9761904761904762,
+      "auc_reason": "PR AUC is average precision with tied scores grouped"
+    },
+    "failure_analysis": [
+      {
+        "model": "evaluation-7-0.1-top_left-4-0",
+        "clean_accuracy": 1.0,
+        "ASR": 1.0,
+        "anomaly_index": 1.2596615953029688,
+        "raw_detected": false,
+        "assessment": {
+          "verdict": "NO_QUALIFYING_EVIDENCE",
+          "reconstruction_anomaly": false,
+          "held_out_recovery": true,
+          "matching_behavioral_confirmation": false,
+          "recommended_action": "ACCEPT",
+          "limitations": "Not a confirmed-backdoor verdict. Negative evidence does not prove absence; patch and reconstruction probes are complementary but not statistically independent."
+        },
+        "diagnosis": "High-ASR backdoor lacks a sufficiently exceptional recovered mask; optimization/MAD comparison is a sensitivity limitation."
+      },
+      {
+        "model": "evaluation-19-0-top_right-3-3",
+        "clean_accuracy": 1.0,
+        "ASR": 0.0,
+        "anomaly_index": 2.363509923091567,
+        "raw_detected": true,
+        "assessment": {
+          "verdict": "SUSPICIOUS_EVIDENCE",
+          "reconstruction_anomaly": true,
+          "held_out_recovery": true,
+          "matching_behavioral_confirmation": false,
+          "recommended_action": "REVIEW",
+          "limitations": "Not a confirmed-backdoor verdict. Negative evidence does not prove absence; patch and reconstruction probes are complementary but not statistically independent."
+        },
+        "diagnosis": "Relative small-mask outlier on a clean classifier does not establish poisoning."
+      }
+    ]
+  },
+  "monotonicity": {
+    "contamination_series": [
+      {
+        "attack": "label_flip",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.01,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.1,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.2,
+            "risk": 20.45
+          }
+        ],
+        "nondecreasing": true,
+        "strictly_increasing": false
+      },
+      {
+        "attack": "trigger",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.01,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.1,
+            "risk": 16.36
+          },
+          {
+            "rate": 0.2,
+            "risk": 24.34
+          }
+        ],
+        "nondecreasing": false,
+        "strictly_increasing": false
+      },
+      {
+        "attack": "ood",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.15,
+            "risk": 27.8
+          },
+          {
+            "rate": 0.3,
+            "risk": 34.09
+          }
+        ],
+        "nondecreasing": true,
+        "strictly_increasing": true
+      }
+    ],
+    "weak_anomalies": {
+      "risk_score": 18.0,
+      "assurance_score": 82.0,
+      "severity": "LOW",
+      "recommended_action": "REVIEW",
+      "confidence": 0.5,
+      "coverage_fraction": 1.0,
+      "category_risk": {
+        "DATA_INTEGRITY": 18.0,
+        "MODEL_INTEGRITY": 18.0,
+        "INFERENCE_INTEGRITY": 18.0,
+        "DISTRIBUTION": 18.0
+      },
+      "category_weights": {
+        "DATA_INTEGRITY": 1.0,
+        "MODEL_INTEGRITY": 1.2,
+        "INFERENCE_INTEGRITY": 1.2,
+        "DISTRIBUTION": 1.0
+      },
+      "score_type": "heuristic composite; not a calibrated probability",
+      "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+    },
+    "weak_anomalies_critical": false,
+    "new_category_counterexample": {
+      "before": {
+        "risk_score": 12.27,
+        "assurance_score": 87.73,
+        "severity": "LOW",
+        "recommended_action": "ACCEPT",
+        "confidence": 0.5,
+        "coverage_fraction": 1.0,
+        "category_risk": {
+          "DATA_INTEGRITY": 54.0,
+          "MODEL_INTEGRITY": 0,
+          "INFERENCE_INTEGRITY": 0,
+          "DISTRIBUTION": 0
+        },
+        "category_weights": {
+          "DATA_INTEGRITY": 1.0,
+          "MODEL_INTEGRITY": 1.2,
+          "INFERENCE_INTEGRITY": 1.2,
+          "DISTRIBUTION": 1.0
+        },
+        "score_type": "heuristic composite; not a calibrated probability",
+        "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+      },
+      "after": {
+        "risk_score": 16.36,
+        "assurance_score": 83.64,
+        "severity": "LOW",
+        "recommended_action": "REVIEW",
+        "confidence": 0.5,
+        "coverage_fraction": 1.0,
+        "category_risk": {
+          "DATA_INTEGRITY": 54.0,
+          "MODEL_INTEGRITY": 0,
+          "INFERENCE_INTEGRITY": 0,
+          "DISTRIBUTION": 18.0
+        },
+        "category_weights": {
+          "DATA_INTEGRITY": 1.0,
+          "MODEL_INTEGRITY": 1.2,
+          "INFERENCE_INTEGRITY": 1.2,
+          "DISTRIBUTION": 1.0
+        },
+        "score_type": "heuristic composite; not a calibrated probability",
+        "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+      },
+      "monotonic": true
+    },
+    "interpretation": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW. Contamination rates can change the underlying evidence; coordinate-wise monotonicity is tested separately from contamination-series ordering."
+  },
+  "quality_weights": {
+    "VERIFIED_MECHANICAL": 1.0,
+    "CALIBRATED": 1.0,
+    "HEURISTIC": 0.6,
+    "VALIDATED_EXPERIMENTAL": 0.35,
+    "EXPERIMENTAL": 0.2,
+    "UNAVAILABLE": 0.0
+  },
+  "network": {
+    "attempted_python_socket_requests": [],
+    "external_attempt_count": 0
+  },
+  "cryptographic_checks": {
+    "D": true,
+    "E": true,
+    "F": true,
+    "G": true
+  },
+  "demo_freeze": "YES",
+  "limitations": [
+    "Generated-domain calibration is not a natural-image operating guarantee.",
+    "The same held-out benchmark was used across phases; report this as regression validation, not a fresh external generalization estimate.",
+    "Raw backdoor false positives and false negatives remain; strong evidence is still an analyst REVIEW.",
+    "Fixed-denominator risk intentionally changes score scale; no attack-probability interpretation.",
+    "Pair recall does not imply that all transitive cluster pairs were confirmed."
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "comparison": [
+    {
+      "metric": "Clean risk",
+      "before": 80.0,
+      "after": 11.36
+    },
+    {
+      "metric": "Malicious contributor case risk",
+      "before": 95.0,
+      "after": 12.5
+    },
+    {
+      "metric": "Backdoor fixture risk",
+      "before": 85.0,
+      "after": 13.09
+    },
+    {
+      "metric": "OOD case risk",
+      "before": 97.5,
+      "after": 34.09
+    }
+  ],
+  "monotonicity": {
+    "contamination_series": [
+      {
+        "attack": "label_flip",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.01,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.1,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.2,
+            "risk": 20.45
+          }
+        ],
+        "nondecreasing": true,
+        "strictly_increasing": false
+      },
+      {
+        "attack": "trigger",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.01,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.1,
+            "risk": 16.36
+          },
+          {
+            "rate": 0.2,
+            "risk": 24.34
+          }
+        ],
+        "nondecreasing": false,
+        "strictly_increasing": false
+      },
+      {
+        "attack": "ood",
+        "points": [
+          {
+            "rate": 0,
+            "risk": 11.36
+          },
+          {
+            "rate": 0.05,
+            "risk": 20.45
+          },
+          {
+            "rate": 0.15,
+            "risk": 27.8
+          },
+          {
+            "rate": 0.3,
+            "risk": 34.09
+          }
+        ],
+        "nondecreasing": true,
+        "strictly_increasing": true
+      }
+    ],
+    "weak_anomalies": {
+      "risk_score": 18.0,
+      "assurance_score": 82.0,
+      "severity": "LOW",
+      "recommended_action": "REVIEW",
+      "confidence": 0.5,
+      "coverage_fraction": 1.0,
+      "category_risk": {
+        "DATA_INTEGRITY": 18.0,
+        "MODEL_INTEGRITY": 18.0,
+        "INFERENCE_INTEGRITY": 18.0,
+        "DISTRIBUTION": 18.0
+      },
+      "category_weights": {
+        "DATA_INTEGRITY": 1.0,
+        "MODEL_INTEGRITY": 1.2,
+        "INFERENCE_INTEGRITY": 1.2,
+        "DISTRIBUTION": 1.0
+      },
+      "score_type": "heuristic composite; not a calibrated probability",
+      "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+    },
+    "weak_anomalies_critical": false,
+    "new_category_counterexample": {
+      "before": {
+        "risk_score": 12.27,
+        "assurance_score": 87.73,
+        "severity": "LOW",
+        "recommended_action": "ACCEPT",
+        "confidence": 0.5,
+        "coverage_fraction": 1.0,
+        "category_risk": {
+          "DATA_INTEGRITY": 54.0,
+          "MODEL_INTEGRITY": 0,
+          "INFERENCE_INTEGRITY": 0,
+          "DISTRIBUTION": 0
+        },
+        "category_weights": {
+          "DATA_INTEGRITY": 1.0,
+          "MODEL_INTEGRITY": 1.2,
+          "INFERENCE_INTEGRITY": 1.2,
+          "DISTRIBUTION": 1.0
+        },
+        "score_type": "heuristic composite; not a calibrated probability",
+        "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+      },
+      "after": {
+        "risk_score": 16.36,
+        "assurance_score": 83.64,
+        "severity": "LOW",
+        "recommended_action": "REVIEW",
+        "confidence": 0.5,
+        "coverage_fraction": 1.0,
+        "category_risk": {
+          "DATA_INTEGRITY": 54.0,
+          "MODEL_INTEGRITY": 0,
+          "INFERENCE_INTEGRITY": 0,
+          "DISTRIBUTION": 18.0
+        },
+        "category_weights": {
+          "DATA_INTEGRITY": 1.0,
+          "MODEL_INTEGRITY": 1.2,
+          "INFERENCE_INTEGRITY": 1.2,
+          "DISTRIBUTION": 1.0
+        },
+        "score_type": "heuristic composite; not a calibrated probability",
+        "method": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW."
+      },
+      "monotonic": true
+    },
+    "interpretation": "Fixed-denominator weighted sum of reliability-adjusted category maxima (weights 1,1.2,1.2,1 by default; denominator 4.4). Verified model/ledger violations force risk 100. Unavailable checks only change confidence/coverage. Experimental evidence remains visible and may require REVIEW. Contamination rates can change the underlying evidence; coordinate-wise monotonicity is tested separately from contamination-series ordering."
+  },
+  "quality_weights": {
+    "VERIFIED_MECHANICAL": 1.0,
+    "CALIBRATED": 1.0,
+    "HEURISTIC": 0.6,
+    "VALIDATED_EXPERIMENTAL": 0.35,
+    "EXPERIMENTAL": 0.2,
+    "UNAVAILABLE": 0.0
+  },
+  "policy": "Fixed denominator weighted sum with unavailable affecting confidence/coverage only; risk is not attack probability."
+}

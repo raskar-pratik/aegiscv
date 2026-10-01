@@ -1,0 +1,22 @@
+{
+  "ui_freeze": "YES",
+  "python_tests": {"command": "python -m unittest discover -s tests -p 'test_*.py'", "passed": 50, "failed": 0, "exit_code": 0},
+  "browser_regression": {"exit_code": 0, "browser_errors": [], "external_requests": [], "demo": "complete", "ledger": "VALID"},
+  "screenshots": [
+    "docs/screenshots/overview.png",
+    "docs/screenshots/malicious_contributor.png",
+    "docs/screenshots/dataset_integrity.png",
+    "docs/screenshots/model_integrity.png",
+    "docs/screenshots/inference_verified.png",
+    "docs/screenshots/inference_tampered.png",
+    "docs/screenshots/ledger_valid.png",
+    "docs/screenshots/ledger_tampered.png",
+    "docs/screenshots/distribution_shift.png",
+    "docs/screenshots/coverage.png",
+    "docs/screenshots/demo_mode.png",
+    "docs/screenshots/overview_1366x768.png",
+    "docs/screenshots/overview_1920x1080.png"
+  ],
+  "metric_regression": {"detector_code_changed": false, "risk_math_changed": false, "frozen_validation_artifacts_overwritten": false},
+  "offline": {"external_asset_urls": false, "browser_external_requests": 0}
+}

@@ -1,0 +1,14 @@
+{
+  "browser": {
+    "browser_errors": [],
+    "external_requests": [],
+    "demo": "complete",
+    "ledger": "VALID",
+    "screenshots": "docs\\screenshots"
+  },
+  "benchmark_network": {
+    "attempted_python_socket_requests": [],
+    "external_attempt_count": 0
+  },
+  "observation_scope": "Python socket/DNS guard during full experiment and application-page browser request interception; not OS-wide packet capture"
+}

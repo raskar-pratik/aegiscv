@@ -1,0 +1,75 @@
+{
+  "seed": 26228,
+  "scenario": "combined",
+  "attacks": [
+    {
+      "asset_id": "blue/flipped-0.png",
+      "attack": "label_anomaly"
+    },
+    {
+      "asset_id": "blue/flipped-1.png",
+      "attack": "label_anomaly"
+    },
+    {
+      "asset_id": "blue/flipped-2.png",
+      "attack": "label_anomaly"
+    },
+    {
+      "asset_id": "green/duplicate-0.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "green/duplicate-1.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "green/duplicate-2.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "green/duplicate-3.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "green/duplicate-4.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "green/duplicate-5.png",
+      "attack": "exact_duplicate"
+    },
+    {
+      "asset_id": "red/ood-0.png",
+      "attack": "ood"
+    },
+    {
+      "asset_id": "red/ood-1.png",
+      "attack": "ood"
+    },
+    {
+      "asset_id": "red/ood-2.png",
+      "attack": "ood"
+    },
+    {
+      "asset_id": "red/ood-3.png",
+      "attack": "ood"
+    },
+    {
+      "asset_id": "blue/trigger-0.png",
+      "attack": "trigger"
+    },
+    {
+      "asset_id": "blue/trigger-1.png",
+      "attack": "trigger"
+    },
+    {
+      "asset_id": "blue/trigger-2.png",
+      "attack": "trigger"
+    },
+    {
+      "asset_id": "blue/trigger-3.png",
+      "attack": "trigger"
+    }
+  ],
+  "synthetic": true
+}

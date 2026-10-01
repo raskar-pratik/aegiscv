@@ -1,0 +1,1403 @@
+{
+  "image_shape": [
+    32,
+    32,
+    3
+  ],
+  "negative_pairs": 19900,
+  "legacy_false_edges": 82,
+  "legacy_affected_images": 108,
+  "transitive_connected_pairs": 116,
+  "unsupported_transitive_pairs": 34,
+  "feature_quantiles_0_1_50_99_100": {
+    "hamming": {
+      "negative": [
+        0.0,
+        8.0,
+        32.0,
+        56.0,
+        63.0
+      ],
+      "positive": [
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        8.0
+      ]
+    },
+    "cosine_distance": {
+      "negative": [
+        9.655952453613281e-06,
+        2.6283860206604006e-05,
+        0.21152493357658386,
+        0.4613485997915268,
+        0.46607375144958496
+      ],
+      "positive": [
+        -3.5762786865234375e-07,
+        -2.384185791015625e-07,
+        1.7285346984863281e-06,
+        7.093548774719238e-06,
+        8.881092071533203e-06
+      ]
+    },
+    "pixel_rmse": {
+      "negative": [
+        0.04855869915754405,
+        0.0515859938892582,
+        0.3503267271241588,
+        0.5236912991283893,
+        0.5270587431749982
+      ],
+      "positive": [
+        0.0,
+        0.0,
+        0.016401266175382248,
+        0.03416925985822942,
+        0.03454672585268889
+      ]
+    },
+    "histogram_intersection": {
+      "negative": [
+        0.0,
+        0.0,
+        0.32682291666666663,
+        0.9794954427083329,
+        0.9889322916666669
+      ],
+      "positive": [
+        0.8990885416666667,
+        0.9049479166666666,
+        0.9456380208333333,
+        1.0,
+        1.0000000000000002
+      ]
+    },
+    "ssim_approx": {
+      "negative": [
+        -0.9260989024551609,
+        -0.9227184808490153,
+        -0.254401095687103,
+        0.9743033800285165,
+        0.9811943242479338
+      ],
+      "positive": [
+        0.9877579855785285,
+        0.9881279498115728,
+        0.9984448316208143,
+        1.0,
+        1.0
+      ]
+    },
+    "residual_correlation": {
+      "negative": [
+        -0.16427018126781093,
+        -0.06638434241680029,
+        -4.777528757766243e-05,
+        0.0689594510814506,
+        0.14915018005325348
+      ],
+      "positive": [
+        0.35788544792128085,
+        0.3922982558306629,
+        0.9649416828151581,
+        1.0000000000000002,
+        1.0000000000000002
+      ]
+    }
+  },
+  "root_causes": [
+    "8x8 dHash loses image-specific high-frequency noise; same-class procedural textures collide.",
+    "198-dimensional normalized color features primarily gate class/color, not copy identity.",
+    "Connected components imply unverified transitive pair relationships. Image membership and pair truth must be evaluated separately."
+  ],
+  "selected": {
+    "thresholds": {
+      "hamming": 8,
+      "rmse": 0.05,
+      "correlation": 0.2
+    },
+    "pair_fpr": 0.0,
+    "image_fpr": 0.0,
+    "recall": 1.0,
+    "qualified": true,
+    "scope": "Procedural-10 calibration pairs only; not natural-image validation",
+    "calibration_manifest_hash": "90c1af53853543cbd0653f231be4f216fd107cf6a863a43e5a5d7a1dadd46311",
+    "calibration_ids": [
+      "class-00/calibration-0000.png",
+      "class-00/calibration-0001.png",
+      "class-00/calibration-0002.png",
+      "class-00/calibration-0003.png",
+      "class-00/calibration-0004.png",
+      "class-00/calibration-0005.png",
+      "class-00/calibration-0006.png",
+      "class-00/calibration-0007.png",
+      "class-00/calibration-0008.png",
+      "class-00/calibration-0009.png",
+      "class-00/calibration-0010.png",
+      "class-00/calibration-0011.png",
+      "class-00/calibration-0012.png",
+      "class-00/calibration-0013.png",
+      "class-00/calibration-0014.png",
+      "class-00/calibration-0015.png",
+      "class-00/calibration-0016.png",
+      "class-00/calibration-0017.png",
+      "class-00/calibration-0018.png",
+      "class-00/calibration-0019.png",
+      "class-01/calibration-0000.png",
+      "class-01/calibration-0001.png",
+      "class-01/calibration-0002.png",
+      "class-01/calibration-0003.png",
+      "class-01/calibration-0004.png",
+      "class-01/calibration-0005.png",
+      "class-01/calibration-0006.png",
+      "class-01/calibration-0007.png",
+      "class-01/calibration-0008.png",
+      "class-01/calibration-0009.png",
+      "class-01/calibration-0010.png",
+      "class-01/calibration-0011.png",
+      "class-01/calibration-0012.png",
+      "class-01/calibration-0013.png",
+      "class-01/calibration-0014.png",
+      "class-01/calibration-0015.png",
+      "class-01/calibration-0016.png",
+      "class-01/calibration-0017.png",
+      "class-01/calibration-0018.png",
+      "class-01/calibration-0019.png",
+      "class-02/calibration-0000.png",
+      "class-02/calibration-0001.png",
+      "class-02/calibration-0002.png",
+      "class-02/calibration-0003.png",
+      "class-02/calibration-0004.png",
+      "class-02/calibration-0005.png",
+      "class-02/calibration-0006.png",
+      "class-02/calibration-0007.png",
+      "class-02/calibration-0008.png",
+      "class-02/calibration-0009.png",
+      "class-02/calibration-0010.png",
+      "class-02/calibration-0011.png",
+      "class-02/calibration-0012.png",
+      "class-02/calibration-0013.png",
+      "class-02/calibration-0014.png",
+      "class-02/calibration-0015.png",
+      "class-02/calibration-0016.png",
+      "class-02/calibration-0017.png",
+      "class-02/calibration-0018.png",
+      "class-02/calibration-0019.png",
+      "class-03/calibration-0000.png",
+      "class-03/calibration-0001.png",
+      "class-03/calibration-0002.png",
+      "class-03/calibration-0003.png",
+      "class-03/calibration-0004.png",
+      "class-03/calibration-0005.png",
+      "class-03/calibration-0006.png",
+      "class-03/calibration-0007.png",
+      "class-03/calibration-0008.png",
+      "class-03/calibration-0009.png",
+      "class-03/calibration-0010.png",
+      "class-03/calibration-0011.png",
+      "class-03/calibration-0012.png",
+      "class-03/calibration-0013.png",
+      "class-03/calibration-0014.png",
+      "class-03/calibration-0015.png",
+      "class-03/calibration-0016.png",
+      "class-03/calibration-0017.png",
+      "class-03/calibration-0018.png",
+      "class-03/calibration-0019.png",
+      "class-04/calibration-0000.png",
+      "class-04/calibration-0001.png",
+      "class-04/calibration-0002.png",
+      "class-04/calibration-0003.png",
+      "class-04/calibration-0004.png",
+      "class-04/calibration-0005.png",
+      "class-04/calibration-0006.png",
+      "class-04/calibration-0007.png",
+      "class-04/calibration-0008.png",
+      "class-04/calibration-0009.png",
+      "class-04/calibration-0010.png",
+      "class-04/calibration-0011.png",
+      "class-04/calibration-0012.png",
+      "class-04/calibration-0013.png",
+      "class-04/calibration-0014.png",
+      "class-04/calibration-0015.png",
+      "class-04/calibration-0016.png",
+      "class-04/calibration-0017.png",
+      "class-04/calibration-0018.png",
+      "class-04/calibration-0019.png",
+      "class-05/calibration-0000.png",
+      "class-05/calibration-0001.png",
+      "class-05/calibration-0002.png",
+      "class-05/calibration-0003.png",
+      "class-05/calibration-0004.png",
+      "class-05/calibration-0005.png",
+      "class-05/calibration-0006.png",
+      "class-05/calibration-0007.png",
+      "class-05/calibration-0008.png",
+      "class-05/calibration-0009.png",
+      "class-05/calibration-0010.png",
+      "class-05/calibration-0011.png",
+      "class-05/calibration-0012.png",
+      "class-05/calibration-0013.png",
+      "class-05/calibration-0014.png",
+      "class-05/calibration-0015.png",
+      "class-05/calibration-0016.png",
+      "class-05/calibration-0017.png",
+      "class-05/calibration-0018.png",
+      "class-05/calibration-0019.png",
+      "class-06/calibration-0000.png",
+      "class-06/calibration-0001.png",
+      "class-06/calibration-0002.png",
+      "class-06/calibration-0003.png",
+      "class-06/calibration-0004.png",
+      "class-06/calibration-0005.png",
+      "class-06/calibration-0006.png",
+      "class-06/calibration-0007.png",
+      "class-06/calibration-0008.png",
+      "class-06/calibration-0009.png",
+      "class-06/calibration-0010.png",
+      "class-06/calibration-0011.png",
+      "class-06/calibration-0012.png",
+      "class-06/calibration-0013.png",
+      "class-06/calibration-0014.png",
+      "class-06/calibration-0015.png",
+      "class-06/calibration-0016.png",
+      "class-06/calibration-0017.png",
+      "class-06/calibration-0018.png",
+      "class-06/calibration-0019.png",
+      "class-07/calibration-0000.png",
+      "class-07/calibration-0001.png",
+      "class-07/calibration-0002.png",
+      "class-07/calibration-0003.png",
+      "class-07/calibration-0004.png",
+      "class-07/calibration-0005.png",
+      "class-07/calibration-0006.png",
+      "class-07/calibration-0007.png",
+      "class-07/calibration-0008.png",
+      "class-07/calibration-0009.png",
+      "class-07/calibration-0010.png",
+      "class-07/calibration-0011.png",
+      "class-07/calibration-0012.png",
+      "class-07/calibration-0013.png",
+      "class-07/calibration-0014.png",
+      "class-07/calibration-0015.png",
+      "class-07/calibration-0016.png",
+      "class-07/calibration-0017.png",
+      "class-07/calibration-0018.png",
+      "class-07/calibration-0019.png",
+      "class-08/calibration-0000.png",
+      "class-08/calibration-0001.png",
+      "class-08/calibration-0002.png",
+      "class-08/calibration-0003.png",
+      "class-08/calibration-0004.png",
+      "class-08/calibration-0005.png",
+      "class-08/calibration-0006.png",
+      "class-08/calibration-0007.png",
+      "class-08/calibration-0008.png",
+      "class-08/calibration-0009.png",
+      "class-08/calibration-0010.png",
+      "class-08/calibration-0011.png",
+      "class-08/calibration-0012.png",
+      "class-08/calibration-0013.png",
+      "class-08/calibration-0014.png",
+      "class-08/calibration-0015.png",
+      "class-08/calibration-0016.png",
+      "class-08/calibration-0017.png",
+      "class-08/calibration-0018.png",
+      "class-08/calibration-0019.png",
+      "class-09/calibration-0000.png",
+      "class-09/calibration-0001.png",
+      "class-09/calibration-0002.png",
+      "class-09/calibration-0003.png",
+      "class-09/calibration-0004.png",
+      "class-09/calibration-0005.png",
+      "class-09/calibration-0006.png",
+      "class-09/calibration-0007.png",
+      "class-09/calibration-0008.png",
+      "class-09/calibration-0009.png",
+      "class-09/calibration-0010.png",
+      "class-09/calibration-0011.png",
+      "class-09/calibration-0012.png",
+      "class-09/calibration-0013.png",
+      "class-09/calibration-0014.png",
+      "class-09/calibration-0015.png",
+      "class-09/calibration-0016.png",
+      "class-09/calibration-0017.png",
+      "class-09/calibration-0018.png",
+      "class-09/calibration-0019.png"
+    ],
+    "negative_pairs": 19900,
+    "positive_pairs": 1200,
+    "selection": "Max recall subject to pair and image FPR <= .02; no evaluation features used",
+    "seed": 26228,
+    "transformations": [
+      "resize",
+      "jpeg",
+      "brightness",
+      "crop_pad",
+      "noise",
+      "reencode"
+    ],
+    "profile_hash": "17ae5f369206fddcea866dda6f2162874decf6efd2151e2b2f268defe25536a8"
+  },
+  "candidate_grid": [
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.01,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.32916666666666666
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.01,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.32916666666666666
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.01,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.32916666666666666
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.01,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.32916666666666666
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.01,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.32916666666666666
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.02,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.02,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.02,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.02,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.02,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.49416666666666664
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.03,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.03,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.03,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.03,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.03,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.49416666666666664
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.05,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.985
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.05,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9683333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.05,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.05,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.05,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.49416666666666664
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.08,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.985
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.08,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9683333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.08,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.08,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8183333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 4,
+        "rmse": 0.08,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.49416666666666664
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.01,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.01,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.01,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.01,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.01,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.02,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.02,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.02,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.02,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.02,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.03,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.03,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.03,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.03,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.03,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.05,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.05,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.05,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.05,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.05,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.08,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.08,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.08,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.08,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 8,
+        "rmse": 0.08,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.01,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.01,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.01,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.01,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.01,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.02,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.02,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.02,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.02,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.02,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.03,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.03,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.03,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.03,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.03,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.05,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.05,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.05,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.05,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.05,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.08,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.08,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.08,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.08,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 16,
+        "rmse": 0.08,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.01,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.01,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.01,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.01,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.01,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.3333333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.02,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.02,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.02,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.02,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.02,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.03,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.03,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.03,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.03,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.03,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.05,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.05,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.05,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.05,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.05,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.08,
+        "correlation": 0.2
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.08,
+        "correlation": 0.4
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.9833333333333333
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.08,
+        "correlation": 0.6
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.08,
+        "correlation": 0.8
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "thresholds": {
+        "hamming": 32,
+        "rmse": 0.08,
+        "correlation": 0.95
+      },
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0,
+      "recall": 0.5
+    }
+  ],
+  "individual_feature_operating_points": [
+    {
+      "feature": "hamming",
+      "threshold": 4,
+      "comparison": "<=",
+      "recall": 0.985,
+      "pair_fpr": 0.004120603015075377,
+      "image_fpr": 0.54
+    },
+    {
+      "feature": "hamming",
+      "threshold": 8,
+      "comparison": "<=",
+      "recall": 1.0,
+      "pair_fpr": 0.010703517587939698,
+      "image_fpr": 0.89
+    },
+    {
+      "feature": "cosine_distance",
+      "threshold": 0.08,
+      "comparison": "<=",
+      "recall": 1.0,
+      "pair_fpr": 0.2964824120603015,
+      "image_fpr": 1.0
+    },
+    {
+      "feature": "pixel_rmse",
+      "threshold": 0.05,
+      "comparison": "<=",
+      "recall": 1.0,
+      "pair_fpr": 0.002763819095477387,
+      "image_fpr": 0.425
+    },
+    {
+      "feature": "histogram_intersection",
+      "threshold": 0.95,
+      "comparison": ">=",
+      "recall": 0.4375,
+      "pair_fpr": 0.09482412060301508,
+      "image_fpr": 1.0
+    },
+    {
+      "feature": "ssim_approx",
+      "threshold": 0.95,
+      "comparison": ">=",
+      "recall": 1.0,
+      "pair_fpr": 0.04693467336683417,
+      "image_fpr": 1.0
+    },
+    {
+      "feature": "residual_correlation",
+      "threshold": 0.2,
+      "comparison": ">=",
+      "recall": 1.0,
+      "pair_fpr": 0.0,
+      "image_fpr": 0.0
+    }
+  ]
+}

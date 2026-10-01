@@ -1,0 +1,15 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+  "logical_cpus": 12,
+  "python": "3.14.6",
+  "numpy": "2.4.6",
+  "torch": "2.14.0+cpu",
+  "cuda_available": false,
+  "torch_threads": 1,
+  "gpu": null,
+  "seed": 26228,
+  "project_root": "C:\\Users\\prati\\Documents\\Codex\\2026-09-09\\files-mentioned-by-the-user-sih\\outputs\\aegiscv",
+  "finalization_utc": "2026-09-10T06:31:01.456383+00:00",
+  "network_policy": "No downloads; browser loopback interception and benchmark socket/DNS guard"
+}

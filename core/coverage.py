@@ -1,0 +1,22 @@
+"""Capability declarations; per-scan execution states are reported separately."""
+COVERAGE=[{'attack':a,'support':s,'access':r,'detector':d} for a,s,r,d in [
+ ('Exact duplicates','YES','Dataset','SHA-256'),
+ ('Near duplicates','PARTIAL','Dataset','dHash + embedding gate'),
+ ('Label anomalies','PARTIAL','Singly labeled images','Embedding neighbors'),
+ ('OOD injection','PARTIAL','Trusted reference images','Nearest reference embedding'),
+ ('Contributor attribution','YES','contributors.json','Per-asset risk aggregation'),
+ ('Model substitution','YES','Trusted digest / probes','SHA-256 + behavior'),
+ ('Backdoor-like behavior','RESEARCH','Classification gradients','Bounded inversion / MAD'),
+ ('Local semantic features','CONDITIONAL','Operator-supplied ResNet18 weights','Offline ResNet18 + SHA/config cache; visual fallback'),
+ ('Spectral poison anomalies','PARTIAL','Populated singly labeled classes','Dominant projections + robust ranking'),
+ ('Repeated trigger-like pattern','PARTIAL','Labeled images','Corner pattern / label association'),
+ ('Patch-driven model behavior','PARTIAL','Local classification inference','Corner/color/size perturbation battery'),
+ ('Activation clusters','PARTIAL','Penultimate white-box access','PCA + deterministic two-means'),
+ ('Object annotation integrity','PARTIAL','COCO / YOLO annotations','Geometry, duplicate/class conflict, frequency/source checks'),
+ ('Cross-layer evidence','PARTIAL','Linked findings and explicit target mapping','Source/target/hash/behavior rules'),
+ ('Inference tampering','YES','Record + trusted key','Ed25519 + bound hashes'),
+ ('Replay','YES','Persistent acceptance database','Nonce + sequence + freshness'),
+ ('Historical alteration','YES','Ledger + trusted key','Signed hash chain'),
+ ('Ledger truncation','CONDITIONAL','Independent checkpoint','Count + head comparison'),
+ ('Distribution shift','PARTIAL','Reference/current data and optional model','Centroid / covariance / MMD / class and confidence shift'),
+ ('General backdoor detection guarantee','UNAVAILABLE','Unseen domains/attack families','Controlled fixture success is not a guarantee')]]

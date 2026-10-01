@@ -1,0 +1,10 @@
+metric,before,after
+Near clean image FPR,0.67,0.0
+Near precision,0.42857142857142855,1.0
+Near recall,1.0,1.0
+Near F1,0.6,1.0
+Clean contributors falsely flagged,5,0
+Clean risk,80.0,11.36
+Malicious contributor case risk,95.0,12.5
+Backdoor fixture risk,85.0,13.09
+OOD case risk,97.5,34.09

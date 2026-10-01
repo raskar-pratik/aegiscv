@@ -1,0 +1,25 @@
+{
+  "gates": {
+    "clean_not_high_critical": true,
+    "near_false_positives_reduced": true,
+    "benign_sources_not_universally_flagged": true,
+    "monotonic_properties": true,
+    "interpretable_operational_drift": true,
+    "cryptographic_checks": true,
+    "full_suite": true,
+    "browser_regression": true,
+    "zero_observed_external_requests": true
+  },
+  "demo_freeze": "YES",
+  "test_exit_code": 0,
+  "browser_exit_code": 0,
+  "browser": {
+    "browser_errors": [],
+    "external_requests": [],
+    "demo": "complete",
+    "ledger": "VALID",
+    "screenshots": "docs\\screenshots"
+  },
+  "runtime_seconds": 32.52442280000105,
+  "observation_scope": "Python socket/DNS guard during full experiment and application-page browser request interception; not OS-wide packet capture"
+}

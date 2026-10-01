@@ -1,0 +1,22 @@
+{
+  "cases": {
+    "D": true,
+    "E": true,
+    "F": true,
+    "G": true
+  },
+  "details": {
+    "browser_errors": [],
+    "external_requests": [],
+    "demo": "complete",
+    "ledger": "VALID",
+    "screenshots": "docs\\screenshots"
+  },
+  "controls": [
+    "signed inference",
+    "prediction tamper",
+    "replay",
+    "ledger historical alteration",
+    "model substitution"
+  ]
+}

@@ -1,0 +1,4 @@
+# Transfer matching wheels into the air gap before installation.
+torch>=2.6
+torchvision>=0.21
+onnxruntime>=1.18

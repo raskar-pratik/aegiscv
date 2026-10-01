@@ -1,0 +1,40 @@
+{
+  "profile_hash": "17ae5f369206fddcea866dda6f2162874decf6efd2151e2b2f268defe25536a8",
+  "negative_pairs": 44850,
+  "positive_pairs": 1800,
+  "fp": 0,
+  "tn": 44850,
+  "tp": 1800,
+  "fn": 0,
+  "pair_fpr": 0.0,
+  "clean_image_fpr": 0.0,
+  "recall": 1.0,
+  "by_transform": {
+    "resize": {
+      "tp": 300,
+      "fn": 0
+    },
+    "jpeg": {
+      "tp": 300,
+      "fn": 0
+    },
+    "brightness": {
+      "tp": 300,
+      "fn": 0
+    },
+    "crop_pad": {
+      "tp": 300,
+      "fn": 0
+    },
+    "noise": {
+      "tp": 300,
+      "fn": 0
+    },
+    "reencode": {
+      "tp": 300,
+      "fn": 0
+    }
+  },
+  "false_pairs": [],
+  "scope": "Production hash, cosine and pixel confirmation on held-out independent pairs and known transformed copies; cluster membership separately evaluated in full suite"
+}

@@ -12,9 +12,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 BASELINE = 'e86a86c0968db1afe9de33eb9ad4844d3fdac2af'
-APPROVED_OVERVIEW = '20ee6ad'
-APPROVED_INVESTIGATIONS = 'e51c88d'
-APPROVED_MODEL = '78aaf96'
+APPROVED_OVERVIEW = '32941a00cb4568d22f5854f0f10f4ccb23b0a108'  # Approved content tree; independent of commit transport metadata
+APPROVED_INVESTIGATIONS = '4dda0243fb10e3522da0372b60222e66f78d6edb'  # Approved content tree; independent of commit transport metadata
+APPROVED_MODEL = 'b7e50bfbd7143684a93a633195261bca148d245d'  # Approved content tree; independent of commit transport metadata
 
 
 class Assets(HTMLParser):

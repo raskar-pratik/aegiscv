@@ -4,7 +4,7 @@ Integration date: 2026-10-07. Scope: local dependencies and application shell on
 
 Final source validation resumed on 2026-10-08 after restoring the temporary Python environment.
 
-Current stage: phases 3.5 / 4 are implemented and stopped for review. The former duplicate coverage ID is fixed. See the final stage record below; earlier sections preserve historical phase results.
+Current status (2026-10-11): Phase 5 Model Integrity is implemented and stopped for review. Phases 3.5 / 4 were approved and checkpointed at e51c88d. The former duplicate coverage ID is fixed. Visual validation remains PENDING; browser regression NOT RUN. Earlier phase sections below are historical records, not current unresolved work.
 
 ## Dependency pin and sources
 
@@ -245,3 +245,49 @@ SCREENSHOTS: **NOT AVAILABLE**.
 RUNTIME EXTERNAL REQUESTS: **NOT MEASURED**.
 
 TABLER UI FREEZE: **NO**.
+
+
+## Current stage — Phase 5 Model Integrity (2026-10-11)
+
+Implementation complete; STOP for review. Tabler Core remains locally pinned at 1.6.1. No backend, API, detector, threshold, calibration, risk fusion, policy, cryptography, model loading, dependency or experiment change.
+
+### Audit and ownership
+
+See `phase_5_audit.md` for the audit completed before presentation edits. `app.js` remains byte-identical to approved Phase 4: model registration, form serialization, scan submission and report selection keep their existing ownership. `workstation.js` owns renderModel and canvas presentation. show, display, refresh and delegated navigation/copy handlers are unchanged. Model form names, validation, IDs and event bindings are unchanged.
+
+### Model Integrity design
+
+The identity summary gives the actual architecture, format, SHA-256, access and returned-check execution counts. A registry model ID is not included in scan reports; the UI says so rather than guessing from an inventory match. Registration remains below the investigation, in a compact native disclosure; existing opening behavior is preserved.
+
+Six numbered sections distinguish cryptographic identity, behavioral fingerprint, backdoor investigation, activation/parameter evidence, coverage/limitations and technical records. Tabler card/header/body and table structures provide layout; Aegis text-bearing semantic tags remain independent. The main evidence column occupies two thirds and the secondary coverage/technical column one third at desktop widths. The layout stacks below 1100px. Responsive intent includes 1366×768, 1440×1000 and 1920×1080; no viewport has been visually verified.
+
+Cryptographic MATCH/MISMATCH requires a successful check and both expected/actual hashes. Missing expected identity is NO TRUSTED REFERENCE; absent check NOT CHECKED; incomplete or unsuccessful comparison UNAVAILABLE with actual execution status/reason displayed separately. A trusted mismatch uses the red integrity-violation treatment. Full values remain in native disclosures and shortened hashes have context-specific copy names.
+
+Behavior uses actual observed fingerprint, probe hash, predictions and optional probe-output table. The backend returns maximum absolute difference, but not reference outputs/fingerprint; the comparison explains that limit. Backend severity/action remain the assessment outcome; no frontend threshold or invented confidence. Raw outputs are not labeled as calibrated probabilities.
+
+Backdoor execution and evidence verdict are separate. SUCCESS + NO_QUALIFYING_EVIDENCE remains a successful negative result; it does not become UNAVAILABLE. The backend recommended action remains visible, including ACCEPT for a qualifying negative execution. Experimental evidence handling is labeled REVIEW and the exact warning is visible: “Reconstruction anomalies may indicate suspicious model behavior but do not cryptographically confirm a backdoor.” The frozen historical TP=5, FP=1, TN=2, FN=1 is checked and untouched, never injected into live scan metrics.
+
+Recovered target, norm, median, MAD, anomaly index and held-out recovery come only from reported values. The existing preview reader assumed channel-first patterns; backend patterns are height × width × RGB. The presentation reader now maps that actual layout; masks remain height × width. No synthetic images are generated. Missing, malformed or nonfinite arrays show PREVIEW UNAVAILABLE while retaining hidden canvas IDs. Accessible descriptions distinguish reconstruction imagery from observed attack images. Held-out recovery is explicitly not detector accuracy.
+
+Activation measurements show actual available class/count/separation/cluster data, with members in a disclosure. Parameter count is explicitly not a parameter-integrity verdict. Access requirements and execution outcomes are separate; black-box access never establishes completed gradient or activation checks. Missing results stay NOT CHECKED and runtime/feature limitations remain visible.
+
+### Presentation classes and accessibility
+
+New stylesheet `model-integrity.css`, scoped exclusively to #models. Classes include model-assessment-summary, model-investigation-layout, model-primary, model-secondary, model-panel, model-comparison, model-status-pair, model-facts, model-reliability, model-reconstruction, model-check and preview-unavailable. Existing global/shared styles remain frozen.
+
+Preserved native disclosures, keyboard navigation, visible focus, form labels, live regions and reduced-motion behavior. Copy controls name the specific fingerprint. Canvas role/description/fallback text and a keyboard-focusable output table region provide text context. All dynamic backend strings are escaped. No added animation, chart library or external asset.
+
+### Earlier phase status and Data Integrity boundary
+
+Phase 3.5 renamed only the Overview metric to overview-coverage; coverage navigation/page/output remain intact and duplicate IDs remain zero. Phase 4 Data Integrity and Contributors are approved. Their renderers/styles remain frozen except authorized selection microcopy: “shown / eligible / returned,” calculated from existing report findings. Selection is still risk >20, first12, report order; no sorting or selection changes. It is explicitly a subset.
+
+### Regression and known limits
+
+- Full baseline: **50 / 50 PASS**, 10.946 seconds (`phase_5_tests.txt`).
+- `check_ui_shell.py`: PASS, including frozen backend/experiment bytes, prior-screen markup/renderer boundaries, selectors/forms, template and generated-fragment duplicate IDs, vendored integrity, Flask/CSP/local routes and static offline checks.
+- Existing `check_investigation_ui.js`: PASS; dataset cap/order and Contributors preserved.
+- New `check_model_ui.js`: PASS; trusted/missing/failed identity, negative vs unavailable backdoor evidence, black-box limits, missing model, actual values, escaping, immutability, malformed arrays and exact RGB/mask pixel mapping. Also executes against frozen reconstruction records and checks TP5/FP1/TN2/FN1.
+- app.js/workstation.js Node syntax and git diff --check: PASS.
+- 21 local assets served; no new runtime external asset references. Existing vendor URL text is license/documentation/SVG namespace content.
+
+**VISUAL VALIDATION: PENDING — NO BROWSER AVAILABLE.** Responsive visual validation PENDING. Browser regression NOT RUN. Screenshots NOT AVAILABLE. Runtime external request count NOT MEASURED. Canvas checks use stubs and do not establish actual browser rendering; clipboard permission behavior and viewport layout remain unverified. No changes to Inference, Ledger, Distribution, Coverage, Reports or Demo. TABLER UI FREEZE: NO.

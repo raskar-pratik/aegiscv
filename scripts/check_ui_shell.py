@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 BASELINE = 'e86a86c0968db1afe9de33eb9ad4844d3fdac2af'
 APPROVED_OVERVIEW = '20ee6ad'
+APPROVED_INVESTIGATIONS = 'e51c88d'
 
 
 class Assets(HTMLParser):
@@ -55,14 +56,14 @@ def markup_without_presentation(source):
 
 
 def protected_workstation(source):
-    """Exclude only the two approved renderers and their private evidence helpers."""
+    """Exclude the approved investigation and model renderers and their private helpers."""
     start = source.index('function investigationEvidence(') if 'function investigationEvidence(' in source else source.index('function linkedFindings(')
     source = source[:start] + source[source.index('function comparisonRow(', start):]
     start = source.index('renderInvestigation=function(')
     end = source.index(" const fs=(report.findings||[]).filter(f=>f.category==='DISTRIBUTION')", start)
     source = source[:start] + source[end:]
     start = source.index('function renderDataset(')
-    source = source[:start] + source[source.index('function renderModel(', start):]
+    source = source[:start] + source[source.index('renderProvenance=function', start):]
     return source
 
 
@@ -102,7 +103,7 @@ class FragmentStructure(HTMLParser):
 def main():
     from app.main import create_app
 
-    result = {'implementation_scope': 'Phases 3.5 and 4: coverage metric ID, Data Integrity and Contributors', 'checks': {}}
+    result = {'implementation_scope': 'Phase 5: Model Integrity only; approved earlier phases preserved', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
     before, after = old(str(template.relative_to(ROOT))), template.read_text()
@@ -127,7 +128,7 @@ def main():
     old_sections, new_sections = sections(before), sections(after)
     assert old_sections.keys() == new_sections.keys()
     for name, content in old_sections.items():
-        if name not in {'overview', 'datasets', 'contributors-page'}:
+        if name not in {'overview', 'datasets', 'contributors-page', 'models'}:
             assert markup_without_presentation(content) == markup_without_presentation(new_sections[name]), name
     approved_html = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':dashboard/templates/index.html'], cwd=ROOT).decode()
     approved_sections = sections(approved_html)
@@ -149,6 +150,20 @@ def main():
     for path in ['dashboard/static/overview.css', 'dashboard/static/primitives.css', 'dashboard/static/shell.css']:
         approved = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':' + path], cwd=ROOT)
         assert (ROOT / path).read_bytes() == approved, path
+    approved_workstation = subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':dashboard/static/workstation.js'], cwd=ROOT).decode()
+    def outside_model(source):
+        return source[:source.index('function renderModel(')] + source[source.index('renderProvenance=function'):]
+    normalized = workstation.replace('${priority.length} shown / ${fs.filter(f=>Number(f.risk_score)>20).length} eligible / ${fs.length} returned', '${priority.length} shown')
+    assert outside_model(normalized) == outside_model(approved_workstation), 'Non-model renderer changed'
+    approved_template = subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':dashboard/templates/index.html'], cwd=ROOT).decode()
+    for name, content in sections(approved_template).items():
+        if name != 'models':
+            assert new_sections[name] == content, name
+    for path in ['dashboard/static/investigations.css', 'dashboard/static/app.js']:
+        assert (ROOT / path).read_bytes() == subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':' + path], cwd=ROOT)
+    for selector in ['trigger-preview', 'mask-preview']:
+        assert 'id="' + selector + '"' in workstation
+    checks['phase_4_frozen_and_model_selectors_preserved'] = 'PASS'
     checks['approved_overview_generic_styles_and_protected_renderers_unchanged'] = 'PASS'
     shell = (ROOT / 'dashboard/static/shell.css').read_text()
     assert not re.search(r'#workspace\s+\.(row|card|badge)\b', shell)
@@ -202,6 +217,9 @@ def main():
     checks['external_asset_static_check'] = 'PASS'
     checks['plot_svg_scoped'] = 'PASS'
     executed = json.loads(subprocess.check_output(['node', 'scripts/check_investigation_ui.js'], cwd=ROOT))
+    model_executed = json.loads(subprocess.check_output(['node', 'scripts/check_model_ui.js'], cwd=ROOT))
+    checks['model_renderer_semantics_and_preview_pixels'] = model_executed['status']
+    executed['fragments'].update(model_executed['fragments'])
     for name, fragment in executed['fragments'].items():
         parsed = FragmentStructure()
         parsed.feed(fragment)

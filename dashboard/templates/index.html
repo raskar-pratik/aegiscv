@@ -3,23 +3,38 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="aegis-token" content="{{ token }}"><title>AegisCV · Integrity Assurance</title>
-  <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/workstation.css"><script defer src="/static/app.js"></script><script defer src="/static/workstation.js"></script>
+  <link rel="stylesheet" href="/static/vendor/tabler/css/tabler.min.css">
+  <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/workstation.css"><link rel="stylesheet" href="/static/shell.css"><script defer src="/static/vendor/tabler/js/tabler.min.js"></script><script defer src="/static/app.js"></script><script defer src="/static/workstation.js"></script>
 </head>
-<body>
-  <aside class="rail">
-    <div class="brand">AegisCV<span class="brand-sub">INTEGRITY ASSURANCE</span></div>
-    <nav aria-label="Primary navigation">
-      <span class="nav-group">ASSURANCE</span>
-      <button data-page="overview" class="active">Overview</button>
-      <button data-page="datasets">Data integrity</button><button data-page="contributors-page">Contributors</button><button data-page="models" aria-label="Models">Model Integrity</button>
-      <span class="nav-group">VERIFY</span><button data-page="inference" aria-label="Inference records">Inference</button><button data-page="ledger" aria-label="Audit ledger">Audit ledger</button><button data-page="distribution">Distribution</button>
-      <span class="nav-group">INTELLIGENCE</span><button data-page="reports" aria-label="Assurance reports">Reports</button><button data-page="coverage" aria-label="Coverage matrix">Coverage</button>
-      <span class="nav-group">DEMO</span><button data-page="demo-page" aria-label="Demonstration Console">Demonstration Console</button>
-    </nav>
-    <div class="offline"><span class="status-dot"></span> AIR-GAPPED READY<br><small><span id="system-health">Checking system health…</span></small></div>
+<body class="aegis-shell">
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <aside class="rail navbar navbar-vertical navbar-expand-md aegis-sidebar" aria-label="Workspace sidebar">
+    <div class="shell-brand-row">
+      <div class="brand navbar-brand">AEGISCV<span class="brand-sub">Integrity Assurance</span></div>
+      <button class="navbar-toggler shell-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#shell-navigation" aria-controls="shell-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    </div>
+    <div id="shell-navigation" class="collapse navbar-collapse">
+      <nav class="navbar-nav" aria-label="Primary navigation">
+        <span class="nav-group nav-section-title">ASSURANCE</span>
+        <button type="button" data-page="overview" class="nav-link active" aria-current="page"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/layout-dashboard.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Overview</span></button>
+        <button type="button" data-page="datasets" class="nav-link" aria-label="Data integrity"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/database.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Data Integrity</span></button>
+        <button type="button" data-page="contributors-page" class="nav-link"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/users.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Contributors</span></button>
+        <button type="button" data-page="models" class="nav-link" aria-label="Models"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/brain.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Model Integrity</span></button>
+        <span class="nav-group nav-section-title">VERIFY</span>
+        <button type="button" data-page="inference" class="nav-link" aria-label="Inference records"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/fingerprint.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Inference</span></button>
+        <button type="button" data-page="ledger" class="nav-link" aria-label="Audit ledger"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/history.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Audit Ledger</span></button>
+        <button type="button" data-page="distribution" class="nav-link"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/chart-line.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Distribution</span></button>
+        <span class="nav-group nav-section-title">INTELLIGENCE</span>
+        <button type="button" data-page="reports" class="nav-link" aria-label="Assurance reports"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/file-report.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Reports</span></button>
+        <button type="button" data-page="coverage" class="nav-link" aria-label="Coverage matrix"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/shield-check.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Coverage</span></button>
+        <span class="nav-group nav-section-title">DEMO</span>
+        <button type="button" data-page="demo-page" class="nav-link" aria-label="Demonstration Console"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/player-play.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Demonstration Console</span></button>
+      </nav>
+    </div>
+    <div class="offline"><span class="status-dot" aria-hidden="true"></span> AIR-GAPPED READY<br><small><span id="system-health">Checking system health…</span></small></div>
   </aside>
-  <a class="skip-link" href="#workspace">Skip to workspace</a><main id="workspace" tabindex="-1">
-    <header class="topbar"><span>ANALYST WORKSPACE</span><span class="pill pill-green">AIR-GAPPED READY</span></header>
+  <main id="workspace" class="page-wrapper container-fluid" tabindex="-1">
+    <header class="topbar page-header"><span class="page-pretitle">ANALYST WORKSPACE</span><span class="pill pill-green">AIR-GAPPED READY</span></header>
     <div id="notice" role="status" aria-live="polite"></div>
 
     <section id="overview" class="page">

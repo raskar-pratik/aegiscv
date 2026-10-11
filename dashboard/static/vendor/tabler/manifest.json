@@ -1,0 +1,91 @@
+{
+  "tabler_version": "1.6.1",
+  "icons_version": "3.49.0",
+  "integrated": "2026-10-07",
+  "packages": {
+    "core": {
+      "url": "https://registry.npmjs.org/@tabler/core/-/core-1.6.1.tgz",
+      "integrity": "sha512-lgmR9gcxRp5JlLxcmRi9Rz85JrEvH6Bz71KnlcPVSa97wtwQNjgSs3g3fxwbAlulHyRMghhIV04QUuW3pqDsIg=="
+    },
+    "icons": {
+      "url": "https://registry.npmjs.org/@tabler/icons/-/icons-3.49.0.tgz",
+      "integrity": "sha512-l+GnSkFETx0U26icxv1VUFnxxiTqXfCcVRiRAnyMwibupM2S2L/hSaZ9gmSgz01rkrsH/93NvLsxykqdanc6lw=="
+    }
+  },
+  "files": {
+    "css/tabler.min.css": {
+      "source_member": "package/dist/css/tabler.min.css",
+      "upstream_sha256": "370a2d4e608ae518351d10528fc7dbe19b354ae5062c51b2a9cb294850d65403",
+      "sha256": "09c0ad77d135f90fd8cbc583824b2fdbd247adbc001234d27a36f284bfecab5e"
+    },
+    "js/tabler.min.js": {
+      "source_member": "package/dist/js/tabler.min.js",
+      "upstream_sha256": "9d26ca1aa061a0c647305654e32efc2c8838e348b2423e9d1f4593869868e09b",
+      "sha256": "adc326ddd698ecd8005dfb53d8aa5cefccad7aa1f4184b1c2b8fb9e378fc482c"
+    },
+    "icons/layout-dashboard.svg": {
+      "source_member": "package/icons/outline/layout-dashboard.svg",
+      "upstream_sha256": "8be5a8c5feb592d921b87a1bd17024e65f57b6de78fe83c5a1af93eaeafa403d",
+      "sha256": "8be5a8c5feb592d921b87a1bd17024e65f57b6de78fe83c5a1af93eaeafa403d"
+    },
+    "icons/database.svg": {
+      "source_member": "package/icons/outline/database.svg",
+      "upstream_sha256": "9e551f1fcd0ce935e07076576acb50b8197697525f23d5e354ed64402f054d1c",
+      "sha256": "9e551f1fcd0ce935e07076576acb50b8197697525f23d5e354ed64402f054d1c"
+    },
+    "icons/users.svg": {
+      "source_member": "package/icons/outline/users.svg",
+      "upstream_sha256": "d101892f8e25d628d32a9011f75a7582878d917892c0a055ea1c80ffbf4b4340",
+      "sha256": "d101892f8e25d628d32a9011f75a7582878d917892c0a055ea1c80ffbf4b4340"
+    },
+    "icons/brain.svg": {
+      "source_member": "package/icons/outline/brain.svg",
+      "upstream_sha256": "865a8acb8e424a7724e42dedd48c73398d197d9b9742cd982227f1c2a40bb7b5",
+      "sha256": "865a8acb8e424a7724e42dedd48c73398d197d9b9742cd982227f1c2a40bb7b5"
+    },
+    "icons/fingerprint.svg": {
+      "source_member": "package/icons/outline/fingerprint.svg",
+      "upstream_sha256": "bd49966e4cabcdf5b421f170527e3792a02fa0d51cd3c683dda0e66030951397",
+      "sha256": "bd49966e4cabcdf5b421f170527e3792a02fa0d51cd3c683dda0e66030951397"
+    },
+    "icons/history.svg": {
+      "source_member": "package/icons/outline/history.svg",
+      "upstream_sha256": "a0ade047b62f42441fdf3c157b751452cf7ee7ce92b336329eff20d8c44de8f8",
+      "sha256": "a0ade047b62f42441fdf3c157b751452cf7ee7ce92b336329eff20d8c44de8f8"
+    },
+    "icons/chart-line.svg": {
+      "source_member": "package/icons/outline/chart-line.svg",
+      "upstream_sha256": "55d02e68e62f3fc5e2346fc7aef8a61da37e4022c2066e0f48dce028b3b8df7e",
+      "sha256": "55d02e68e62f3fc5e2346fc7aef8a61da37e4022c2066e0f48dce028b3b8df7e"
+    },
+    "icons/file-report.svg": {
+      "source_member": "package/icons/outline/file-report.svg",
+      "upstream_sha256": "58d0e39fe46a9c90ba0ee9ad75b7302a9e08b12be2c49bfd7e085708a494881c",
+      "sha256": "58d0e39fe46a9c90ba0ee9ad75b7302a9e08b12be2c49bfd7e085708a494881c"
+    },
+    "icons/shield-check.svg": {
+      "source_member": "package/icons/outline/shield-check.svg",
+      "upstream_sha256": "d689cd6c01d72a1bd0ebb2cf90dd34fce868aa6d49d397aee598f5106a344b27",
+      "sha256": "d689cd6c01d72a1bd0ebb2cf90dd34fce868aa6d49d397aee598f5106a344b27"
+    },
+    "icons/player-play.svg": {
+      "source_member": "package/icons/outline/player-play.svg",
+      "upstream_sha256": "9726d5358929fbfe4a4cbd08131a5f1b4246ca01125f5108e7221b9c73e101ff",
+      "sha256": "9726d5358929fbfe4a4cbd08131a5f1b4246ca01125f5108e7221b9c73e101ff"
+    },
+    "LICENSE-icons.txt": {
+      "source_member": "package/LICENSE",
+      "upstream_sha256": "b740a1d46122672da62833e97f7e7c8a13fa85cbc7445b584b297cc00dde93db",
+      "sha256": "b740a1d46122672da62833e97f7e7c8a13fa85cbc7445b584b297cc00dde93db"
+    },
+    "LICENSE-tabler.txt": {
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5"
+    },
+    "LICENSE-bootstrap.txt": {
+      "sha256": "4620c84ad5ce8602ff65640ed6b7c8b78ebb9e036584f0ebc1ccc88206a4bb51"
+    },
+    "LICENSE-popper.txt": {
+      "sha256": "bf67e2c9b7974543bb18ced3a0b37f53729aaff953b442dd89a3adaf90fd93e8"
+    }
+  }
+}

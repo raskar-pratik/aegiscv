@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 BASELINE = 'e86a86c0968db1afe9de33eb9ad4844d3fdac2af'
+APPROVED_OVERVIEW = '20ee6ad'
 
 
 class Assets(HTMLParser):
@@ -43,7 +44,7 @@ def old(path):
 def restore_legacy_classes(source):
     for current, previous in [('aegis-row', 'row'), ('aegis-metric-card', 'card'), ('severity-badge', 'badge')]:
         source = source.replace(current, previous)
-    return source
+    return source.replace("$('overview-coverage').textContent", "$('coverage').textContent")
 
 
 def markup_without_presentation(source):
@@ -53,10 +54,55 @@ def markup_without_presentation(source):
     return re.sub(r'>\s+<', '><', source).strip()
 
 
+def protected_workstation(source):
+    """Exclude only the two approved renderers and their private evidence helpers."""
+    start = source.index('function investigationEvidence(') if 'function investigationEvidence(' in source else source.index('function linkedFindings(')
+    source = source[:start] + source[source.index('function comparisonRow(', start):]
+    start = source.index('renderInvestigation=function(')
+    end = source.index(" const fs=(report.findings||[]).filter(f=>f.category==='DISTRIBUTION')", start)
+    source = source[:start] + source[end:]
+    start = source.index('function renderDataset(')
+    source = source[:start] + source[source.index('function renderModel(', start):]
+    return source
+
+
+class FragmentStructure(HTMLParser):
+    """Validate generated disclosure/table fragments without claiming layout validation."""
+    def __init__(self):
+        super().__init__()
+        self.stack = []
+        self.ids = []
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        assert tag not in {'script', 'iframe', 'img'}, tag
+        assert 'style' not in a and not any(k.startswith('on') for k in a), a
+        if 'id' in a:
+            self.ids.append(a['id'])
+        parent = self.stack[-1] if self.stack else None
+        permitted = {'table': {'caption', 'colgroup', 'thead', 'tbody', 'tfoot'},
+                     'thead': {'tr'}, 'tbody': {'tr'}, 'tfoot': {'tr'}, 'tr': {'td', 'th'}}
+        if parent in permitted:
+            assert tag in permitted[parent], (parent, tag)
+        if tag == 'th':
+            assert a.get('scope') in {'col', 'row'}, a
+        if tag == 'meter':
+            assert a.get('aria-label'), a
+        if tag == 'summary':
+            assert parent == 'details'
+        if 'href' in a:
+            assert a['href'].startswith('#'), a
+        if tag not in {'br', 'hr', 'input', 'wbr'}:
+            self.stack.append(tag)
+
+    def handle_endtag(self, tag):
+        assert self.stack and self.stack.pop() == tag, tag
+
+
 def main():
     from app.main import create_app
 
-    result = {'implementation_scope': 'Phases 2.5 and 3: generic presentation and Overview only', 'checks': {}}
+    result = {'implementation_scope': 'Phases 3.5 and 4: coverage metric ID, Data Integrity and Contributors', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
     before, after = old(str(template.relative_to(ROOT))), template.read_text()
@@ -65,9 +111,11 @@ def main():
     new_dom.feed(after)
     assert set(old_dom.ids) <= set(new_dom.ids)
     old_counts, new_counts = Counter(old_dom.ids), Counter(new_dom.ids)
-    assert all(new_counts[name] == count for name, count in old_counts.items())
+    assert all(new_counts[name] == (1 if name == 'coverage' else count) for name, count in old_counts.items())
     assert all(count == 1 for name, count in new_counts.items() if name not in old_counts)
-    result['preexisting_duplicate_ids'] = {name: count for name, count in old_counts.items() if count > 1}
+    assert len(new_dom.ids) == len(set(new_dom.ids))
+    assert new_counts['overview-coverage'] == 1
+    result['duplicate_ids'] = []
     assert old_dom.forms == new_dom.forms
     # Existing accessible aliases remain stable. Data integrity receives an
     # explicit alias preserving the prior case-sensitive browser-test name.
@@ -79,8 +127,11 @@ def main():
     old_sections, new_sections = sections(before), sections(after)
     assert old_sections.keys() == new_sections.keys()
     for name, content in old_sections.items():
-        if name != 'overview':
+        if name not in {'overview', 'datasets', 'contributors-page'}:
             assert markup_without_presentation(content) == markup_without_presentation(new_sections[name]), name
+    approved_html = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':dashboard/templates/index.html'], cwd=ROOT).decode()
+    approved_sections = sections(approved_html)
+    assert new_sections['overview'] == approved_sections['overview'].replace('id="coverage"', 'id="overview-coverage"')
     # Visibility remains application-owned, including the pre-existing .page name.
     for name, classes in re.findall(r'<section id="([^"]+)" class="([^"]+)"', before):
         assert '<section id="' + name + '" class="' + classes + '"' in after
@@ -91,16 +142,21 @@ def main():
     checks['existing_ids_forms_navigation_and_protected_screen_internals'] = 'PASS'
     checks['overview_filters_warning_and_record_label'] = 'PASS'
 
-    for path in ['dashboard/static/app.js', 'dashboard/static/workstation.js', 'dashboard/static/workstation.css']:
+    for path in ['dashboard/static/app.js', 'dashboard/static/workstation.css']:
         assert restore_legacy_classes((ROOT / path).read_text()) == old(path), path
-    checks['application_javascript_and_workstation_css_only_approved_class_renames'] = 'PASS'
+    workstation = (ROOT / 'dashboard/static/workstation.js').read_text()
+    assert protected_workstation(workstation) == protected_workstation(old('dashboard/static/workstation.js'))
+    for path in ['dashboard/static/overview.css', 'dashboard/static/primitives.css', 'dashboard/static/shell.css']:
+        approved = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':' + path], cwd=ROOT)
+        assert (ROOT / path).read_bytes() == approved, path
+    checks['approved_overview_generic_styles_and_protected_renderers_unchanged'] = 'PASS'
     shell = (ROOT / 'dashboard/static/shell.css').read_text()
     assert not re.search(r'#workspace\s+\.(row|card|badge)\b', shell)
     for path in ['dashboard/static/style.css', 'dashboard/static/workstation.css']:
         assert not re.search(r'\.(row|card|badge)(?![\w-])', (ROOT / path).read_text()), path
     checks['legacy_generic_class_collisions_removed'] = 'PASS'
     # All baseline files outside the two approved frontend edits must match.
-    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css'}
+    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css', 'dashboard/static/workstation.js', 'tests/test_ui_contract.py'}
     tracked = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE], cwd=ROOT).decode().splitlines()
     for path in tracked:
         if path not in allowed:
@@ -123,6 +179,7 @@ def main():
         rendered = response.get_data(as_text=True)
         dom = Assets()
         dom.feed(rendered)
+        assert len(dom.ids) == len(set(dom.ids)), 'Rendered duplicate IDs'
         assert 'aegis-token' in rendered
         for path in dom.assets:
             assert path.startswith('/static/'), path
@@ -144,6 +201,14 @@ def main():
         assert api not in vendor_js, api
     checks['external_asset_static_check'] = 'PASS'
     checks['plot_svg_scoped'] = 'PASS'
+    executed = json.loads(subprocess.check_output(['node', 'scripts/check_investigation_ui.js'], cwd=ROOT))
+    for name, fragment in executed['fragments'].items():
+        parsed = FragmentStructure()
+        parsed.feed(fragment)
+        assert not parsed.stack, (name, parsed.stack)
+        assert len(parsed.ids) == len(set(parsed.ids)), name
+    checks['executed_renderer_selection_order_values_missing_data_and_escaping'] = executed['status']
+    checks['generated_html_structure_meter_labels_no_inline_styles_or_duplicate_ids'] = 'PASS'
     # Report all requested search terms, including harmless license/namespace
     # occurrences, instead of incorrectly treating a raw URL match as a load.
     terms = ['http://', 'https://', 'cdn', 'jsdelivr', 'unpkg', 'fonts.googleapis', 'fonts.gstatic']

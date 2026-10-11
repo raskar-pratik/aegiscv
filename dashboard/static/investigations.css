@@ -1,0 +1,86 @@
+/* Phase 4: Data Integrity and Contributors only; all evidence comes from reports. */
+:is(#datasets, #contributors-page) .page-heading { padding-bottom: 12px; }
+:is(#datasets, #contributors-page) .page-heading > p { max-width: 850px; font-size: 15px; line-height: 23px; }
+:is(#datasets, #contributors-page) .investigation-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 22px 0 8px; }
+:is(#datasets, #contributors-page) .investigation-heading h2 { margin: 3px 0 0; font-size: 20px; line-height: 28px; }
+:is(#datasets, #contributors-page) .investigation-note { margin: 6px 0 12px; color: #526575; font-size: 13px; line-height: 21px; }
+#datasets .dataset-summary { padding: 0; margin: 0 0 20px; border-radius: 4px; border-color: #d4dce1; box-shadow: none; }
+#datasets .dataset-summary .card-header { min-height: 0; padding: 15px 20px; border-bottom: 1px solid #d4dce1; background: #fff; }
+#datasets .dataset-summary h2 { margin: 3px 0 0; font-size: 20px; line-height: 28px; }
+#datasets .dataset-summary .card-body { padding: 16px 20px; }
+#datasets .dataset-summary .measure-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; gap: 0; }
+#datasets .dataset-summary .measure { padding: 0 18px; border: 0; border-left: 1px solid #d4dce1; background: transparent; min-width: 0; }
+#datasets .dataset-summary .measure:first-child { border-left: 0; padding-left: 0; }
+#datasets .dataset-summary .measure > span { color: #526575; font-size: 12px; line-height: 18px; letter-spacing: .5px; }
+#datasets .dataset-summary .measure > strong { font-size: 26px; line-height: 34px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+#datasets .manifest-identity { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-top: 18px; padding-top: 14px; border-top: 1px solid #d4dce1; color: #526575; font-size: 13px; }
+#datasets .manifest-identity > div { min-width: 0; }
+#datasets .dataset-summary details { margin-top: 10px; }
+#datasets .dataset-summary details > summary { font-size: 13px; color: #365f7e; }
+#datasets .detector-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 12px 0 24px; gap: 0; border: 1px solid #d4dce1; border-radius: 4px; background: #fff; }
+#datasets .detector-entry { padding: 12px 16px; border-bottom: 1px solid #d4dce1; display: grid; align-content: start; gap: 3px; min-width: 0; }
+#datasets .detector-entry strong { font-size: 14px; line-height: 21px; color: #192f42; }
+#datasets .detector-entry span { font-size: 12px; line-height: 19px; color: #526575; overflow-wrap: anywhere; }
+#datasets .detector-count { font-variant-numeric: tabular-nums; }
+#datasets .detector-state { font-weight: 600; }
+#datasets .detector-strip > p { padding: 12px 16px; margin: 0; }
+#datasets .priority-evidence { margin-bottom: 24px; }
+#datasets .setup-disclosure { margin-top: 24px; background: #f5f7f8; }
+
+/* Shared forensic row: native disclosure; text accompanies every numeric signal. */
+:is(#datasets, #contributors-page) .investigation-evidence-list { border: 1px solid #d4dce1; border-radius: 4px; background: #fff; }
+:is(#datasets, #contributors-page) .investigation-evidence { margin: 0; padding: 0; border: 0; border-top: 1px solid #d4dce1; }
+:is(#datasets, #contributors-page) .investigation-evidence:first-child { border-top: 0; }
+:is(#datasets, #contributors-page) .investigation-evidence > summary { padding: 14px 18px; color: #192f42; overflow-wrap: anywhere; }
+:is(#datasets, #contributors-page) .investigation-evidence > summary:hover { background: #f5f7f8; }
+:is(#datasets, #contributors-page) .investigation-evidence > summary:focus-visible { outline-offset: -3px; }
+:is(#datasets, #contributors-page) .evidence-heading { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; line-height: 22px; }
+:is(#datasets, #contributors-page) .evidence-asset { display: block; margin: 5px 0 3px; color: #192f42; font-size: 14px; font-weight: 600; }
+:is(#datasets, #contributors-page) .evidence-reason { display: block; color: #526575; font-size: 14px; line-height: 22px; }
+:is(#datasets, #contributors-page) .evidence-facts { display: flex; flex-wrap: wrap; column-gap: 24px; row-gap: 4px; margin-top: 8px; color: #526575; font-size: 12px; line-height: 20px; }
+:is(#datasets, #contributors-page) .evidence-facts b { margin-left: 5px; color: #192f42; font-weight: 600; font-variant-numeric: tabular-nums; }
+:is(#datasets, #contributors-page) .evidence-disclosure-label { display: block; margin-top: 8px; color: #365f7e; font-size: 13px; font-weight: 600; }
+:is(#datasets, #contributors-page) .evidence-detail { padding: 0 18px 16px; }
+:is(#datasets, #contributors-page) .evidence-detail p { margin: 8px 0; font-size: 13px; line-height: 21px; }
+:is(#datasets, #contributors-page) .evidence-detail pre { margin: 10px 0 0; font-size: 13px; }
+:is(#datasets, #contributors-page) .evidence-empty { padding: 16px 18px; margin: 0; color: #526575; font-size: 14px; }
+
+#contributors-page #contributors-detail { display: block; }
+#contributors-page .contributor-table-wrap { margin: 0 0 24px; border-radius: 4px; background: #fff; }
+#contributors-page .contributor-table-wrap:focus-visible { outline: 3px solid #365f7e; outline-offset: 3px; }
+#contributors-page .table { margin: 0; min-width: 760px; }
+#contributors-page thead th { white-space: nowrap; }
+#contributors-page tbody th { background: transparent; font-size: 14px; line-height: 22px; letter-spacing: 0; vertical-align: top; }
+#contributors-page tbody th a { display: inline-block; color: #365f7e; font-weight: 600; text-decoration: underline; text-decoration-color: #bac8d1; text-underline-offset: 3px; overflow-wrap: anywhere; }
+#contributors-page tbody th a:hover { text-decoration-color: #365f7e; }
+#contributors-page .risk-number { color: #192f42; font-weight: 700; font-size: 18px; white-space: nowrap; }
+#contributors-page .risk-number small { color: #526575; font-size: 12px; font-weight: 400; }
+#contributors-page .family-names { max-width: 260px; min-width: 150px; font-size: 13px; line-height: 21px; }
+#contributors-page .source-investigation { margin: 0 0 16px; padding: 0; border: 1px solid #d4dce1; border-radius: 4px; background: #fff; }
+#contributors-page .source-investigation > summary { padding: 15px 18px; color: #192f42; overflow-wrap: anywhere; }
+#contributors-page .source-investigation > summary .kicker { margin-right: 12px; font-size: 12px; }
+#contributors-page .source-investigation > summary b { font-size: 16px; }
+#contributors-page .source-investigation[open] > summary { border-bottom: 1px solid #d4dce1; }
+#contributors-page .source-investigation > summary:hover { background: #f5f7f8; }
+#contributors-page .source-investigation > summary:focus-visible { outline-offset: -3px; }
+#contributors-page .investigation-split { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.4fr); gap: 24px; padding: 20px; }
+#contributors-page .source-composition, #contributors-page .source-findings { min-width: 0; }
+#contributors-page .investigation-split h2 { margin: 0 0 16px; font-size: 18px; line-height: 26px; }
+#contributors-page .evidence-bar { display: grid; grid-template-columns: minmax(95px, 1fr) minmax(55px, 1fr) 38px; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #edf1f3; }
+#contributors-page .evidence-bar > span { font-size: 12px; line-height: 19px; color: #526575; overflow-wrap: anywhere; }
+#contributors-page .evidence-bar meter { width: 100%; min-width: 0; height: 12px; accent-color: #365f7e; }
+#contributors-page .evidence-bar b { text-align: right; font-size: 13px; font-variant-numeric: tabular-nums; }
+#contributors-page .attribution-boundary { margin: 20px 0 0; padding-top: 14px; border-top: 1px solid #d4dce1; font-size: 13px; line-height: 21px; color: #526575; }
+#contributors-page .source-findings .investigation-evidence-list > p { padding: 14px; margin: 0; font-size: 14px; }
+
+@media (max-width: 899px) {
+  #contributors-page .investigation-split { grid-template-columns: minmax(0, 1fr); }
+  #datasets .detector-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #datasets .dataset-summary .measure-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 0; }
+  #datasets .dataset-summary .measure:nth-child(3) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 599px) {
+  #datasets .detector-strip { grid-template-columns: minmax(0, 1fr); }
+  #datasets .dataset-summary .card-body { padding: 16px; }
+  :is(#datasets, #contributors-page) .evidence-facts { gap: 4px 16px; }
+}

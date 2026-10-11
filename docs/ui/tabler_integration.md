@@ -4,6 +4,8 @@ Integration date: 2026-10-07. Scope: local dependencies and application shell on
 
 Final source validation resumed on 2026-10-08 after restoring the temporary Python environment.
 
+Current stage: phases 3.5 / 4 are implemented and stopped for review. The former duplicate coverage ID is fixed. See the final stage record below; earlier sections preserve historical phase results.
+
 ## Dependency pin and sources
 
 Tabler Core **1.6.1**, MIT, from https://github.com/tabler/tabler, release tag `@tabler/core@1.6.1`, published 2026-09-28. GitHub's latest-release API and official release page identified this as the stable release on the integration date (not a prerelease).
@@ -172,4 +174,74 @@ RESPONSIVE VALIDATION: **PENDING — NO BROWSER AVAILABLE**.
 BROWSER REGRESSION: **NOT RUN**.
 SCREENSHOTS: **NOT AVAILABLE**.
 RUNTIME EXTERNAL REQUESTS: **NOT MEASURED**.
+TABLER UI FREEZE: **NO**.
+
+
+## Phase 3.5 — coordinated coverage ID correction (2026-10-08)
+
+Approved Phase 3 was checkpointed as commit `20ee6ad` before this work. Repository search found one metric writer in app.js and the two template IDs. Only the Overview metric changed to `overview-coverage`, with its corresponding textContent writer updated. The Coverage section remains `id="coverage"`; its `data-page="coverage"` navigation and `coverage-list` output remain unchanged. No backend or JSON field was renamed.
+
+The existing UI-contract test now renders Flask HTML and rejects every duplicate ID, confirms both intended coverage IDs and the navigation target, and checks that the metric writer uses the new ID. The source checker now requires zero duplicates in rendered/template HTML instead of tolerating the former collision. The 50-test count is preserved by strengthening the existing test.
+
+Phase 3.5: 50/50 tests passed; selector/duplicate-ID checks, JS syntax and diff checks passed. Logs: `phase_3_5_tests.txt`, `phase_3_5_validation.json`.
+
+## Phase 4 — Data Integrity
+
+The existing `renderDataset()` owner now presents one compact dataset summary followed by reported detector findings and a high-priority evidence list. Format, image count, classes, contributor count and manifest identity come from the selected report. The manifest uses the existing shortened hash/copy control plus a collapsed full-identity disclosure.
+
+The detector strip shows counts and only actual returned execution/reliability states. It never treats an absent or zero finding count as verified safety. A note makes that distinction explicit.
+
+The exact evidence selection remains `fs.filter(f => Number(f.risk_score) > 20).slice(0, 12)`, in report order. No severity sort or alternative filtering was introduced. Severity tags convey review priority; the display limit is now explicit. Compact native disclosures expose detector, asset, reason, source, risk, confidence, reported reliability and recommended action, with actual evidence and limitations below. Missing values are identified as unavailable/not supplied rather than fabricated. No image thumbnails or chart library are introduced.
+
+The existing registration disclosure remains after investigation evidence and uses a quieter surface. Its open/close behavior is unchanged; navigation still owns that behavior.
+
+## Phase 4 — Contributors
+
+The table remains the investigation index, using Tabler `.table`, `.table-vcenter` and `.table-responsive` patterns. Columns remain Source, Samples, Affected, Evidence families, Risk /100 and Action. Numeric fields remain right-aligned with tabular figures; names and labels are left-aligned. Risk is displayed out of 100, never as a percentage. Actions come from the existing report; absent actions retain an unknown label rather than an invented recommendation. ACCEPT receives verified-green treatment only when the backend actually returns ACCEPT; QUARANTINE and REVIEW keep red/amber labels.
+
+Descending risk sorting, source-link targets, linked-finding selection/order and the first-open disclosure behavior are preserved. Source links open the existing native source investigation. Evidence composition uses the existing meters and actual values, now with accessible names. Associated findings use the same compact evidence component as Data Integrity. The exact attribution warning remains: “Assets associated with duplicate clusters do not establish who created the duplicate.” A short version is also visible above the table.
+
+## Shared component, scope and accessibility
+
+`investigationEvidence()` is a presentation helper within workstation.js, called only by the existing dataset/source renderers. It does not become a new rendering/navigation owner. `findingCard()` remains unchanged for the protected Model and Distribution views. No API, risk, decision, evidence-content or report-data mutation occurs.
+
+New stylesheet: `dashboard/static/investigations.css`, loaded last after vendor, base, workstation, shell, primitives and Overview styles. Its rules are scoped to `#datasets` and `#contributors-page`. The approved generic/Overview styles are byte-identical to their approved checkpoint.
+
+New component classes include `dataset-summary`, `manifest-identity`, `detector-entry`, `investigation-heading`, `investigation-evidence-list`, `investigation-evidence`, `evidence-heading`, `evidence-asset`, `evidence-reason`, `evidence-facts`, `evidence-detail`, `contributor-table-wrap`, `source-composition` and `source-findings`. Existing `.source-investigation`, `.evidence-bar`, `.numeric`, severity/status classes and navigation IDs remain in use.
+
+Tabler supplies the dataset summary panel, table structure and responsive overflow pattern. Aegis retains its severity/action semantics, score meaning, attribution warning, detector evidence and native progressive disclosure. No new library or vendored asset is added.
+
+Accessibility additions: column and row-header scope, a descriptive table caption, a keyboard-focusable labelled scroll region, named meters with visible values, and explicit evidence text. Existing form labels, copy names, focus outlines and native summary markers remain. Dynamic text and attribute values remain escaped. No inline style or event handler attributes are introduced in generated fragments.
+
+Legacy CSS removed: none in this phase. Existing base/fallback presentation definitions are retained; the new screen-specific stylesheet provides scoped treatment. No unrelated CSS cleanup was performed.
+
+## Phase 4 source review and validation
+
+- After Data Integrity: **50/50 PASS**, 12.891 seconds.
+- After Contributors: **50/50 PASS**, 10.441 seconds.
+- Final full suite: **50/50 PASS**, 11.644 seconds.
+- Final selector/source contract: **PASS**. Overview is unchanged except the authorized metric ID. Protected Model, Inference, Ledger, Distribution, Coverage, Reports, Demo and navigation/rendering code remain unchanged.
+- Flask HTML and all **20** local asset paths: **PASS**; CSP unchanged.
+- Rendered template duplicate IDs: **0**. Generated fixture fragments also contain no duplicate IDs.
+- Static offline scan, app.js/workstation.js syntax and `git diff --check`: **PASS**.
+- `scripts/check_investigation_ui.js` executes the existing renderers with element stubs, checking unchanged risk selection/cap/order, contributor sorting, actual fixture values, linked findings, missing data, escaping and absence of report mutation. This is not browser execution.
+- The Python source checker parses those generated fragments to reject unbalanced/invalid table markup, missing header scope/meter labels, inline styles/event attributes, injected active markup and duplicate IDs.
+- Frozen backend files modified: **NONE**.
+
+Records: `phase_4_data_tests.txt`, `phase_4_contributors_tests.txt`, `phase_4_final_tests.txt` and `phase_4_validation.json`.
+
+Known limitations: the existing Data Integrity view still displays at most 12 findings above risk 20 and is not a complete findings list; missing reliability/source fields are explicitly labelled; actual narrow-screen overflow, density, focus behavior and meter rendering require a browser. The previous duplicate coverage ID is resolved.
+
+IMPLEMENTATION: **PHASES 3.5 / 4 COMPLETE — STOPPED FOR REVIEW**.
+
+VISUAL VALIDATION: **PENDING — NO BROWSER AVAILABLE**.
+
+RESPONSIVE VALIDATION: **PENDING — NO BROWSER AVAILABLE**.
+
+BROWSER REGRESSION: **NOT RUN**.
+
+SCREENSHOTS: **NOT AVAILABLE**.
+
+RUNTIME EXTERNAL REQUESTS: **NOT MEASURED**.
+
 TABLER UI FREEZE: **NO**.

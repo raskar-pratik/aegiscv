@@ -39,33 +39,6 @@ body.aegis-shell {
   border: 0;
   border-radius: 0;
 }
-#workspace .row {
-  --tblr-gutter-x: 0;
-  --tblr-gutter-y: 0;
-  margin-inline: 0;
-}
-#workspace .row > * {
-  flex-shrink: 1;
-  width: auto;
-  max-width: none;
-  padding-inline: 0;
-}
-#workspace .row > button { padding-inline: 14px; }
-#workspace .card {
-  display: block;
-  height: auto;
-  box-shadow: none;
-}
-#workspace .badge {
-  position: static;
-  height: auto;
-  min-width: 0;
-  line-height: inherit;
-  white-space: normal;
-  text-transform: none;
-  letter-spacing: normal;
-  box-shadow: none;
-}
 
 .aegis-shell .rail.aegis-sidebar {
   --tblr-navbar-color: #c6d3dc;

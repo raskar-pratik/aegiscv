@@ -1,4 +1,4 @@
-# Tabler integration — phases 1 and 2
+# Tabler integration — controlled presentation refinement
 
 Integration date: 2026-10-07. Scope: local dependencies and application shell only.
 
@@ -109,3 +109,67 @@ node --check dashboard/static/vendor/tabler/js/tabler.min.js
 ```
 
 The shell check compares against the recorded baseline Git commit, so it requires that commit to remain available locally. It intentionally reports the pre-existing duplicate `coverage` ID rather than silently changing a frozen selector.
+
+
+## Phase 2.5 — legacy class compatibility cleanup (2026-10-08)
+
+The approved phases 1/2 state was checkpointed as Git commit `cc7bada` before this work. No vendor asset changed.
+
+All existing unqualified `row`, `card` and `badge` uses in the six audited frontend files were AegisCV legacy presentation, not intentional Tabler components. The JavaScript-generated occurrences included temporary base-renderer output that is subsequently replaced by workstation rendering; these were retained and renamed, not deleted.
+
+| Legacy class | Replacement | Locations and intent |
+| --- | --- | --- |
+| `.row` | `.aegis-row` | Template action groups, source summaries and base report rows in app.js; matching base/workstation CSS selectors. Existing `.action-row` is preserved. |
+| `.card` | `.aegis-metric-card` | Base app.js domain metrics and their base/print CSS. Effective workstation `.domain` investigation entries remain custom. |
+| `.badge` | `.severity-badge` | app.js finding severity tags and their CSS. Status text/severity values are unchanged. |
+
+Removed all broad `#workspace .row`, `.row > *`, `.card` and `.badge` compatibility overrides from shell.css. Tabler's actual grid, card and badge classes are now available without those overrides. The `.page` compatibility rule remains because it belongs to the application's frozen navigation visibility contract. `.hidden`, IDs, handlers and all business logic are unchanged.
+
+Phase 2.5 gate: 50/50 unit/integration tests passed in 10.776 seconds; shell source contract, vendor JS syntax and diff whitespace checks passed. Records: `phase_2_5_tests.txt` and `phase_2_5_validation.json`.
+
+## Phase 3 — generic presentation primitives
+
+New local stylesheet `dashboard/static/primitives.css` follows shell.css. Static workspace buttons adopt Tabler `.btn`, `.btn-primary`, `.btn-outline-secondary` and `.btn-sm` classes with Aegis steel/navy and white-outline treatment. The main Overview investigation path is primary; secondary actions and findings filters remain restrained. No destructive action is invented.
+
+The four existing forms use `.form-control`, `.form-select`, `.form-check-input` and compact `.aegis-form` spacing. Every existing input name, label, required attribute, submit handler and payload remains intact. The record JSON textarea now has an explicit visible associated label, `Signed inference record JSON`, using `for="record-json"`; no existing ID changed.
+
+Native details/summary elements remain native. Registration disclosures, technical disclosures, copy buttons and notices receive shared presentation rules only. Tables receive consistent header contrast, cell spacing and hover/focus treatment; existing numeric cells keep explicit `.numeric` alignment and tabular figures. No table data, filtering, sorting, or reliability logic changes.
+
+Semantic tags remain Aegis-specific `.status-tag` and `.severity-badge`, with visible text. Severity LOW/MODERATE/HIGH/CRITICAL/UNAVAILABLE/FAILED labels are retained. FAILED severity tags use the red failure palette; UNAVAILABLE uses neutral slate. Existing verification labels and status interpretation are not renamed or reclassified. Tabler `.badge` is left available, not used to replace forensic semantics.
+
+## Phase 3B — Overview only
+
+New local stylesheet `dashboard/static/overview.css` scopes its rules to `#overview`.
+
+- Custom decision hero retains the actual report disposition, triggering asset, decision reason and metrics. The triggering asset now precedes the reason; maximum asset risk is emphasized over composite risk and confidence/coverage. No values are hardcoded.
+- Rationale panel keeps the existing dynamically rendered asset, affected count, evidence-family count and policy reason. The actual evidence-family path remains below it. `View evidence` is the primary investigation action.
+- Domain entries remain custom `.domain` buttons showing the existing domain, risk, findings, completed checks and investigation route, with compact typography.
+- Contributor and PCA summary surroundings use actual Tabler `.card`, `.card-header` and `.card-body` primitives. Their underlying rendering and data remain unchanged; there is no new chart library, axis or legend.
+- Findings retain their existing order, filtering and disclosure behavior. Buttons, count chips and severity tags receive consistent spacing and readability.
+- The complete interpretation boundary warning is preserved verbatim.
+- Desktop proportions target the requested 1366×768 above-fold decision content. Media rules stack the hero and rationale at narrower widths. This is responsive intent, not visual confirmation.
+
+No Contributors, Data Integrity, Model Integrity, Inference, Ledger, Distribution, Coverage or Demonstration investigation internals were redesigned. Outside Overview, changes are limited to approved shared primitive classes/treatment, legacy class renames and the explicit record label. `workstation.js` is byte-identical to the original baseline. `app.js` differs only in the approved class names, so display, navigation, verification, polling and data behavior are unchanged.
+
+## Current validation and stop point
+
+Phases 2.5 / 3 Overview: **IMPLEMENTATION COMPLETE — STOPPED FOR REVIEW**.
+
+- Full suite: **50/50 PASS**, 11.130 seconds.
+- Source contract: **PASS** for IDs and their original counts, form names/attributes, navigation targets, page visibility classes, non-Overview structure/text, unchanged JavaScript behavior, frozen files, vendor integrity and static asset locality.
+- Flask render, unchanged CSP and all **19** referenced local assets: **PASS**.
+- `node --check` for app.js and workstation.js: **PASS**. Vendored JS syntax passed the Phase 2.5 gate and was not changed.
+- `git diff --check`: **PASS**.
+- No new remote fonts, icons, CSS, JS, CDNs or chart libraries. Raw HTTP(S) matches remain license/documentation strings and SVG namespaces only.
+- Validation records: `phase_3_tests.txt` and `phase_3_validation.json`.
+
+The source checker was updated to permit only authorized presentation changes: normalized legacy class names in JavaScript; class-only changes and the explicit record label in protected sections; and Overview markup refinement. It still verifies original IDs, input names, navigation, visibility classes, warning text and filters, and checks every original non-frontend file against the frozen commit. It does not substitute these checks for a browser.
+
+Known issues remain: the pre-existing duplicate `coverage` ID is intentionally untouched; generic vendor resets and responsive layouts require browser review; keyboard/mobile-menu operation, contrast, overflow and above-fold composition have not been visually validated.
+
+VISUAL VALIDATION: **PENDING — NO BROWSER AVAILABLE**.
+RESPONSIVE VALIDATION: **PENDING — NO BROWSER AVAILABLE**.
+BROWSER REGRESSION: **NOT RUN**.
+SCREENSHOTS: **NOT AVAILABLE**.
+RUNTIME EXTERNAL REQUESTS: **NOT MEASURED**.
+TABLER UI FREEZE: **NO**.

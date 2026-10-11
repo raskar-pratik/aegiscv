@@ -1,4 +1,4 @@
-"""Non-browser phase 1/2 gate. Does not establish visual or network runtime behavior."""
+"""Non-browser UI gate. Does not establish visual or network runtime behavior."""
 import hashlib
 import json
 import re
@@ -40,10 +40,23 @@ def old(path):
     return subprocess.check_output(['git', 'show', BASELINE + ':' + path], cwd=ROOT).decode()
 
 
+def restore_legacy_classes(source):
+    for current, previous in [('aegis-row', 'row'), ('aegis-metric-card', 'card'), ('severity-badge', 'badge')]:
+        source = source.replace(current, previous)
+    return source
+
+
+def markup_without_presentation(source):
+    """Ignore class-only changes and the one explicitly authorized record label."""
+    source = re.sub(r'<label for="record-json" class="form-label">Signed inference record JSON</label>', '', source)
+    source = re.sub(r' class="[^"]*"', '', source)
+    return re.sub(r'>\s+<', '><', source).strip()
+
+
 def main():
     from app.main import create_app
 
-    result = {'implementation_scope': 'Tabler dependencies and shell only', 'checks': {}}
+    result = {'implementation_scope': 'Phases 2.5 and 3: generic presentation and Overview only', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
     before, after = old(str(template.relative_to(ROOT))), template.read_text()
@@ -62,15 +75,32 @@ def main():
         if alias:
             assert new_dom.navigation[page] == alias
     assert set(old_dom.navigation) == set(new_dom.navigation)
-    marker = '    <div id="notice"'
-    assert before[before.index(marker):] == after[after.index(marker):]
-    checks['existing_ids_forms_navigation_and_screen_internals'] = 'PASS'
+    sections = lambda text: dict(re.findall(r'<section id="([^"]+)"[^>]*>(.*?)</section>', text, re.S))
+    old_sections, new_sections = sections(before), sections(after)
+    assert old_sections.keys() == new_sections.keys()
+    for name, content in old_sections.items():
+        if name != 'overview':
+            assert markup_without_presentation(content) == markup_without_presentation(new_sections[name]), name
+    # Visibility remains application-owned, including the pre-existing .page name.
+    for name, classes in re.findall(r'<section id="([^"]+)" class="([^"]+)"', before):
+        assert '<section id="' + name + '" class="' + classes + '"' in after
+    assert '<label for="record-json" class="form-label">Signed inference record JSON</label>' in after
+    warning = 'Composite scores and confidence are heuristic, not calibrated probabilities. Cryptographic failures establish integrity violations; heuristic anomalies require analyst review.'
+    assert warning in new_sections['overview']
+    assert re.findall(r'data-filter="([^"]+)"', before) == re.findall(r'data-filter="([^"]+)"', after)
+    checks['existing_ids_forms_navigation_and_protected_screen_internals'] = 'PASS'
+    checks['overview_filters_warning_and_record_label'] = 'PASS'
 
     for path in ['dashboard/static/app.js', 'dashboard/static/workstation.js', 'dashboard/static/workstation.css']:
-        assert (ROOT / path).read_text() == old(path), path
-    checks['application_javascript_and_workstation_css_unchanged'] = 'PASS'
+        assert restore_legacy_classes((ROOT / path).read_text()) == old(path), path
+    checks['application_javascript_and_workstation_css_only_approved_class_renames'] = 'PASS'
+    shell = (ROOT / 'dashboard/static/shell.css').read_text()
+    assert not re.search(r'#workspace\s+\.(row|card|badge)\b', shell)
+    for path in ['dashboard/static/style.css', 'dashboard/static/workstation.css']:
+        assert not re.search(r'\.(row|card|badge)(?![\w-])', (ROOT / path).read_text()), path
+    checks['legacy_generic_class_collisions_removed'] = 'PASS'
     # All baseline files outside the two approved frontend edits must match.
-    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css'}
+    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css'}
     tracked = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE], cwd=ROOT).decode().splitlines()
     for path in tracked:
         if path not in allowed:

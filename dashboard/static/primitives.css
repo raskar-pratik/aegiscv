@@ -1,0 +1,129 @@
+/* Shared presentation only: no data, status interpretation or event ownership. */
+#workspace .btn {
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  box-shadow: none;
+  white-space: normal;
+}
+#workspace .btn-primary {
+  --tblr-btn-bg: #365f7e;
+  --tblr-btn-border-color: #365f7e;
+  --tblr-btn-hover-bg: #284a64;
+  --tblr-btn-hover-border-color: #284a64;
+  color: #fff;
+  background: #365f7e;
+  border-color: #365f7e;
+}
+#workspace .btn-primary:hover { background: #284a64; border-color: #284a64; }
+#workspace .btn-outline-secondary {
+  color: #365f7e;
+  background: #fff;
+  border-color: #bac8d1;
+}
+#workspace .btn-outline-secondary:hover { color: #192f42; background: #edf3f6; border-color: #365f7e; }
+#workspace .btn:disabled { opacity: .6; cursor: wait; }
+#workspace .btn:focus-visible,
+#workspace .form-control:focus-visible,
+#workspace .form-select:focus-visible,
+#workspace .form-check-input:focus-visible {
+  outline: 3px solid #365f7e;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+#workspace .btn-sm { min-height: 34px; padding: 6px 10px; font-size: 13px; }
+
+#workspace .aegis-form {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 720px;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid #d4dce1;
+  border-radius: 4px;
+  background: #fff;
+}
+#workspace .aegis-form > label {
+  margin: 0;
+  gap: 6px;
+  color: #192f42;
+  font-size: 14px;
+  font-weight: 500;
+}
+#workspace .aegis-form > button { justify-self: start; }
+#workspace .form-control,
+#workspace .form-select {
+  min-width: 0;
+  min-height: 42px;
+  border-color: #bac8d1;
+  border-radius: 4px;
+  color: #192f42;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 22px;
+  box-shadow: none;
+}
+#workspace .form-select { padding-right: 36px; }
+#workspace .form-check-input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border-color: #8ca2b2;
+}
+#workspace .form-check-input:checked { background-color: #365f7e; border-color: #365f7e; }
+#workspace .form-label { color: #192f42; font-size: 14px; }
+#workspace #record-json { font-family: Consolas, monospace; font-size: 13px; }
+
+/* Native disclosures keep their keyboard behavior and disclosure markers. */
+#workspace .setup-disclosure {
+  margin: 16px 0;
+  padding: 8px 16px;
+  border: 1px solid #d4dce1;
+  border-radius: 4px;
+  background: #fff;
+}
+#workspace .setup-disclosure > summary { font-weight: 600; color: #192f42; }
+#workspace .setup-disclosure[open] > summary { border-bottom: 1px solid #d4dce1; padding-bottom: 12px; }
+#workspace .setup-disclosure > .aegis-form { margin-bottom: 8px; }
+#workspace .technical-record > summary { color: #365f7e; }
+#workspace summary:focus-visible { outline: 3px solid #365f7e; outline-offset: 3px; }
+
+/* Table presentation only. Numeric cells retain explicit .numeric alignment. */
+#workspace table { color: #192f42; font-size: 14px; line-height: 22px; }
+#workspace th { padding: 12px 14px; background: #f5f7f8; color: #526575; font-size: 12px; font-weight: 600; letter-spacing: .4px; }
+#workspace td { padding: 13px 14px; vertical-align: top; }
+#workspace th, #workspace td { border-bottom-color: #d4dce1; }
+#workspace th.numeric, #workspace td.numeric { text-align: right; font-variant-numeric: tabular-nums; }
+#workspace tbody tr:hover, #workspace tbody tr:focus-within { background: #f5f7f8; }
+
+/* Aegis meanings are text-bearing custom tags, independent of Tabler .badge. */
+.severity-badge { font-size: 12px; font-weight: 600; line-height: 20px; border: 1px solid transparent; }
+.severity-badge.LOW { color: #246449; background: #e8f1eb; }
+.severity-badge.MODERATE { color: #875714; background: #f8efdc; }
+.severity-badge.HIGH, .severity-badge.CRITICAL, .severity-badge.FAILED { color: #a33232; background: #f9ebe8; }
+.severity-badge.UNAVAILABLE { color: #526575; background: #edf1f3; }
+.status-tag { font-weight: 600; line-height: 20px; }
+#workspace .copy-hash {
+  min-height: 34px;
+  margin-inline-start: 6px;
+  padding: 5px 9px;
+  border: 1px solid #bac8d1;
+  border-radius: 4px;
+  background: #fff;
+  color: #365f7e;
+  font-size: 13px;
+}
+#workspace .copy-hash:hover { background: #edf3f6; border-color: #365f7e; }
+#notice.notice { color: #192f42; background: #e7eef3; border-color: #c2d1dc; font-size: 14px; }
+#notice.notice.error { color: #a33232; background: #f9ebe8; border-color: #d7aaa4; }
+
+@media (max-width: 719px) {
+  #workspace .aegis-form { padding: 16px; }
+  #workspace .btn { min-height: 44px; }
+  #workspace .aegis-row.action-row { flex-wrap: wrap; }
+}

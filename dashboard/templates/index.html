@@ -3,45 +3,121 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="aegis-token" content="{{ token }}"><title>AegisCV · Integrity Assurance</title>
-  <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/workstation.css"><script defer src="/static/app.js"></script><script defer src="/static/workstation.js"></script>
+  <link rel="stylesheet" href="/static/vendor/tabler/css/tabler.min.css">
+  <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/workstation.css"><link rel="stylesheet" href="/static/shell.css"><link rel="stylesheet" href="/static/primitives.css"><link rel="stylesheet" href="/static/overview.css"><link rel="stylesheet" href="/static/investigations.css"><link rel="stylesheet" href="/static/model-integrity.css"><link rel="stylesheet" href="/static/inference-ledger.css"><script defer src="/static/vendor/tabler/js/tabler.min.js"></script><script defer src="/static/app.js"></script><script defer src="/static/workstation.js"></script>
 </head>
-<body>
-  <aside class="rail">
-    <div class="brand">AegisCV<span class="brand-sub">INTEGRITY ASSURANCE</span></div>
-    <nav aria-label="Primary navigation">
-      <span class="nav-group">ASSURANCE</span>
-      <button data-page="overview" class="active">Overview</button>
-      <button data-page="datasets">Data integrity</button><button data-page="contributors-page">Contributors</button><button data-page="models" aria-label="Models">Model Integrity</button>
-      <span class="nav-group">VERIFY</span><button data-page="inference" aria-label="Inference records">Inference</button><button data-page="ledger" aria-label="Audit ledger">Audit ledger</button><button data-page="distribution">Distribution</button>
-      <span class="nav-group">INTELLIGENCE</span><button data-page="reports" aria-label="Assurance reports">Reports</button><button data-page="coverage" aria-label="Coverage matrix">Coverage</button>
-      <span class="nav-group">DEMO</span><button data-page="demo-page" aria-label="Demonstration Console">Demonstration Console</button>
-    </nav>
-    <div class="offline"><span class="status-dot"></span> AIR-GAPPED READY<br><small><span id="system-health">Checking system health…</span></small></div>
+<body class="aegis-shell">
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <aside class="rail navbar navbar-vertical navbar-expand-md aegis-sidebar" aria-label="Workspace sidebar">
+    <div class="shell-brand-row">
+      <div class="brand navbar-brand">AEGISCV<span class="brand-sub">Integrity Assurance</span></div>
+      <button class="navbar-toggler shell-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#shell-navigation" aria-controls="shell-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    </div>
+    <div id="shell-navigation" class="collapse navbar-collapse">
+      <nav class="navbar-nav" aria-label="Primary navigation">
+        <span class="nav-group nav-section-title">ASSURANCE</span>
+        <button type="button" data-page="overview" class="nav-link active" aria-current="page"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/layout-dashboard.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Overview</span></button>
+        <button type="button" data-page="datasets" class="nav-link" aria-label="Data integrity"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/database.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Data Integrity</span></button>
+        <button type="button" data-page="contributors-page" class="nav-link"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/users.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Contributors</span></button>
+        <button type="button" data-page="models" class="nav-link" aria-label="Models"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/brain.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Model Integrity</span></button>
+        <span class="nav-group nav-section-title">VERIFY</span>
+        <button type="button" data-page="inference" class="nav-link" aria-label="Inference records"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/fingerprint.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Inference</span></button>
+        <button type="button" data-page="ledger" class="nav-link" aria-label="Audit ledger"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/history.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Audit Ledger</span></button>
+        <button type="button" data-page="distribution" class="nav-link"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/chart-line.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Distribution</span></button>
+        <span class="nav-group nav-section-title">INTELLIGENCE</span>
+        <button type="button" data-page="reports" class="nav-link" aria-label="Assurance reports"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/file-report.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Reports</span></button>
+        <button type="button" data-page="coverage" class="nav-link" aria-label="Coverage matrix"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/shield-check.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Coverage</span></button>
+        <span class="nav-group nav-section-title">DEMO</span>
+        <button type="button" data-page="demo-page" class="nav-link" aria-label="Demonstration Console"><span class="nav-link-icon"><img class="shell-icon" src="/static/vendor/tabler/icons/player-play.svg" width="18" height="18" alt="" aria-hidden="true"></span><span class="nav-link-title">Demonstration Console</span></button>
+      </nav>
+    </div>
+    <div class="offline"><span class="status-dot" aria-hidden="true"></span> AIR-GAPPED READY<br><small><span id="system-health">Checking system health…</span></small></div>
   </aside>
-  <a class="skip-link" href="#workspace">Skip to workspace</a><main id="workspace" tabindex="-1">
-    <header class="topbar"><span>ANALYST WORKSPACE</span><span class="pill pill-green">AIR-GAPPED READY</span></header>
+  <main id="workspace" class="page-wrapper container-fluid" tabindex="-1">
+    <header class="topbar page-header"><span class="page-pretitle">ANALYST WORKSPACE</span><span class="pill pill-green">AIR-GAPPED READY</span></header>
     <div id="notice" role="status" aria-live="polite"></div>
 
     <section id="overview" class="page">
-      <div class="overview-intro"><div><h1>Assurance overview</h1><p id="scan-context">No assessment selected</p></div><div class="row"><button data-go="scan" class="button-secondary">New scan</button><button id="demo">Run reproducible demonstration</button></div></div>
-      <article class="decision-hero"><div><span class="kicker">FINAL DISPOSITION</span><strong id="score">—</strong><p id="disposition">Run a scan to begin.</p><div id="decision-trigger" class="trigger">No decisive evidence loaded.</div></div><div class="metric-grid"><div class="asset-metric"><span>MAXIMUM ASSET RISK</span><b id="asset-emphasis">—</b></div><div><span>COMPOSITE RISK</span><b id="composite-risk">—</b></div><div><span>HIGHEST SEVERITY</span><b id="highest-severity">—</b><span id="max-asset-risk" hidden></span></div><div><span>CONFIDENCE</span><b id="confidence">—</b></div><div><span>COVERAGE</span><b id="coverage">—</b></div></div></article>
-      <article class="why-panel"><div><span class="kicker">DECISION RATIONALE</span><h2 id="why-title">WHY REVIEW?</h2></div><p id="why-body">The selected assessment will explain which evidence family drove the disposition.</p><button data-go="contributors-page" class="button-secondary">View evidence</button></article>
-      <div id="evidence-path"></div><div id="cards" class="cards"></div>
-      <div class="split"><article><div class="section-head"><div><span class="kicker">ACCOUNTABILITY</span><h2>Contributor risk</h2></div><span class="muted">Evidence families</span></div><div id="contributors" class="empty">No scan selected.</div></article><article><div class="section-head"><div><span class="kicker">REPRESENTATION</span><h2>Visual feature distribution</h2></div><span class="muted">PCA projection</span></div><svg id="scatter" viewBox="0 0 440 220" role="img" aria-label="PCA projection of scanned visual embeddings"></svg><small>Appearance features · directional context, not proof of poisoning</small></article></div>
-      <article><div class="section-head"><div><span class="kicker">EVIDENCE REVIEW</span><h2>Findings &amp; evidence</h2></div><div class="filter-bar"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="risk">Risk &gt; 20</button><button class="filter-btn" data-filter="unavailable">Coverage gaps</button><select id="filter" aria-label="Filter findings"><option value="all">All findings</option><option value="risk">Risk above 20</option><option value="unavailable">Coverage gaps</option></select></div></div><div id="finding-summary" class="finding-summary"></div><div id="findings" class="empty">Actual scan findings will appear here.</div></article>
+      <div class="overview-intro">
+        <div><h1>Assurance overview</h1><p id="scan-context">No assessment selected</p></div>
+        <div class="aegis-row"><button data-go="scan" class="button-secondary btn btn-outline-secondary">New scan</button><button id="demo" class="button-secondary btn btn-outline-secondary">Run reproducible demonstration</button></div>
+      </div>
+      <article class="decision-hero">
+        <div class="decision-statement">
+          <span class="kicker">FINAL DISPOSITION</span>
+          <strong id="score">—</strong>
+          <div id="decision-trigger" class="trigger">No decisive evidence loaded.</div>
+          <div class="decision-reason"><span class="kicker">DECISION REASON</span><p id="disposition">Run a scan to begin.</p></div>
+        </div>
+        <div class="metric-grid">
+          <div class="asset-metric"><span>MAXIMUM ASSET RISK</span><b id="asset-emphasis">—</b></div>
+          <div class="pipeline-metric"><span>COMPOSITE PIPELINE RISK</span><b id="composite-risk">—</b></div>
+          <div><span>HIGHEST SEVERITY</span><b id="highest-severity">—</b><span id="max-asset-risk" hidden></span></div>
+          <div><span>CONFIDENCE</span><b id="confidence">—</b></div>
+          <div><span>COVERAGE</span><b id="overview-coverage">—</b></div>
+        </div>
+      </article>
+      <article class="why-panel">
+        <div><span class="kicker">WHY THIS DECISION?</span><h2 id="why-title">WHY REVIEW?</h2></div>
+        <p id="why-body">The selected assessment will explain which evidence family drove the disposition.</p>
+        <button data-go="contributors-page" class="btn btn-primary">View evidence</button>
+      </article>
+      <div id="evidence-path"></div>
+      <div id="cards" class="cards" role="group" aria-label="Integrity domains"></div>
+      <div class="split overview-summaries">
+        <article class="card overview-panel">
+          <div class="section-head card-header"><div><span class="kicker">ACCOUNTABILITY</span><h2>Contributor risk</h2></div><span class="muted">Evidence families</span></div>
+          <div class="card-body"><div id="contributors" class="empty">No scan selected.</div></div>
+        </article>
+        <article class="card overview-panel">
+          <div class="section-head card-header"><div><span class="kicker">REPRESENTATION</span><h2>Visual feature distribution</h2></div><span class="muted">PCA projection</span></div>
+          <div class="card-body"><svg id="scatter" viewBox="0 0 440 220" role="img" aria-label="PCA projection of scanned visual embeddings"></svg><small class="scatter-note">Appearance features · directional context, not proof of poisoning</small></div>
+        </article>
+      </div>
+      <article class="card overview-panel overview-findings">
+        <div class="section-head card-header">
+          <div><span class="kicker">EVIDENCE REVIEW</span><h2>Findings &amp; evidence</h2></div>
+          <div class="filter-bar"><button class="filter-btn active btn btn-outline-secondary btn-sm" data-filter="all">All</button><button class="filter-btn btn btn-outline-secondary btn-sm" data-filter="risk">Risk &gt; 20</button><button class="filter-btn btn btn-outline-secondary btn-sm" data-filter="unavailable">Coverage gaps</button><select id="filter" aria-label="Filter findings" class="form-select"><option value="all">All findings</option><option value="risk">Risk above 20</option><option value="unavailable">Coverage gaps</option></select></div>
+        </div>
+        <div class="card-body"><div id="finding-summary" class="finding-summary"></div><div id="findings" class="empty">Actual scan findings will appear here.</div></div>
+      </article>
       <div class="limitations"><b>Interpretation boundary</b><span>Composite scores and confidence are heuristic, not calibrated probabilities. Cryptographic failures establish integrity violations; heuristic anomalies require analyst review.</span></div>
     </section>
 
-    <section id="scan" class="page hidden"><div class="page-heading"><span class="kicker">WORKFLOW / 01</span><h1>New assurance scan</h1><p>Run the frozen detector pipeline against local imports.</p></div><div class="import-callout">Import root <code>{{ imports }}</code></div><form id="scan-form"><label>Dataset path relative to imports<input name="path" required placeholder="my-dataset"></label><label>Dataset format<select name="format"><option value="folder">Folder / classification</option><option value="coco">COCO (annotations.json)</option><option value="yolo">YOLO</option></select></label><label>Trusted reference path<input name="reference" placeholder="clean-reference"></label><label>Registered model ID (optional)<input name="model_id"></label><label>Expected model SHA-256 (optional)<input name="expected_hash"></label><label class="check"><input type="checkbox" name="reconstruct"> Run bounded research trigger reconstruction</label><button>Start scan</button></form></section>
-    <section id="datasets" class="page hidden"><div class="page-heading"><span class="kicker">INVENTORY / 02</span><h1>Data integrity</h1><p>Register immutable local inputs and inspect their format.</p></div><div id="dataset-workspace"></div><details class="setup-disclosure"><summary>Register dataset</summary><form id="dataset-form"><label>Import path<input name="path" required></label><label>Format<select name="format"><option>folder</option><option>coco</option><option>yolo</option></select></label><button>Register dataset</button></form></details><div id="dataset-list"></div></section>
-    <section id="contributors-page" class="page hidden"><div class="page-heading"><span class="kicker">INVESTIGATION / 03</span><h1>Contributor intelligence</h1><p>Rank sources by independent evidence families while preserving attribution limits.</p></div><div id="contributors-detail" class="detail-grid empty">Run a scan to populate contributor intelligence.</div></section>
-    <section id="models" class="page hidden"><div class="page-heading"><span class="kicker">INVENTORY / 03</span><h1>Model integrity assessment</h1><p>Register local PyTorch, TorchScript, or ONNX artifacts with explicit access status.</p></div><div id="model-workspace"></div><details class="setup-disclosure"><summary>Register model</summary><form id="model-form"><label>Import path<input name="path" required></label><label>Format<select name="format"><option value="torchscript">torchscript</option><option value="pytorch">pytorch</option><option value="onnx">onnx</option></select></label><label class="check"><input type="checkbox" name="trusted"> I trust this local model artifact for execution</label><button>Register model</button></form></details><div id="model-list"></div></section>
-    <section id="inference" class="page hidden"><div class="page-heading"><span class="kicker">PROVENANCE / 04</span><h1>Inference provenance</h1><p>Trace one prediction from input hash to signed ledger entry.</p></div><div id="inference-workspace"></div><details class="setup-disclosure"><summary>Create signed inference</summary><form id="inference-form"><label>Registered model ID<input name="model_id" required></label><label>Image path relative to imports<input name="image" required></label><button>Run &amp; sign inference</button></form></details><div id="provenance-chain" class="chain empty">Run an inference to render the evidence chain.</div><details class="technical-record"><summary>Technical record JSON</summary><textarea id="record-json" rows="12" placeholder="Paste or generate a signed record"></textarea></details><div class="row action-row"><button id="verify-record">Verify record</button><button id="accept-record">Accept with replay protection</button></div><div id="inference-assessment" aria-live="polite"></div><details><summary>Verification response</summary><pre id="inference-result"></pre></details><div id="inference-list"></div></section>
+    <section id="scan" class="page hidden"><div class="page-heading"><span class="kicker">WORKFLOW / 01</span><h1>New assurance scan</h1><p>Run the frozen detector pipeline against local imports.</p></div><div class="import-callout">Import root <code>{{ imports }}</code></div><form id="scan-form" class="aegis-form"><label>Dataset path relative to imports<input name="path" required placeholder="my-dataset" class="form-control"></label><label>Dataset format<select name="format" class="form-select"><option value="folder">Folder / classification</option><option value="coco">COCO (annotations.json)</option><option value="yolo">YOLO</option></select></label><label>Trusted reference path<input name="reference" placeholder="clean-reference" class="form-control"></label><label>Registered model ID (optional)<input name="model_id" class="form-control"></label><label>Expected model SHA-256 (optional)<input name="expected_hash" class="form-control"></label><label class="check"><input type="checkbox" name="reconstruct" class="form-check-input"> Run bounded research trigger reconstruction</label><button class="btn btn-primary">Start scan</button></form></section>
+    <section id="datasets" class="page hidden"><div class="page-heading"><span class="kicker">INVENTORY / 02</span><h1>Data integrity</h1><p>Inspect dataset identity, reported detector coverage and supporting evidence.</p></div><div id="dataset-workspace"></div><details class="setup-disclosure"><summary>Register dataset</summary><form id="dataset-form" class="aegis-form"><label>Import path<input name="path" required class="form-control"></label><label>Format<select name="format" class="form-select"><option>folder</option><option>coco</option><option>yolo</option></select></label><button class="btn btn-primary">Register dataset</button></form></details><div id="dataset-list"></div></section>
+    <section id="contributors-page" class="page hidden"><div class="page-heading"><span class="kicker">INVESTIGATION / 03</span><h1>Contributor intelligence</h1><p>Inspect source-associated evidence. Association does not prove authorship or creation; risk scores are not probabilities.</p></div><div id="contributors-detail" class="detail-grid empty">Run a scan to populate contributor intelligence.</div></section>
+    <section id="models" class="page hidden"><div class="page-heading"><span class="kicker">INVENTORY / 03</span><h1>Model integrity assessment</h1><p>Compare trusted identity, inspect behavioral evidence, and review model access limitations.</p></div><div id="model-workspace"></div><details class="setup-disclosure"><summary>Register model</summary><form id="model-form" class="aegis-form"><label>Import path<input name="path" required class="form-control"></label><label>Format<select name="format" class="form-select"><option value="torchscript">torchscript</option><option value="pytorch">pytorch</option><option value="onnx">onnx</option></select></label><label class="check"><input type="checkbox" name="trusted" class="form-check-input"> I trust this local model artifact for execution</label><button class="btn btn-primary">Register model</button></form></details><div id="model-list"></div></section>
+    <section id="inference" class="page hidden">
+      <div class="page-heading"><span class="kicker">PROVENANCE / 04</span><h1>Inference provenance</h1><p>Inspect the signed prediction record, verify its bindings, then separately check replay policy.</p></div>
+      <div id="inference-assessment" aria-live="polite" aria-atomic="true"></div>
+      <div id="inference-workspace"></div>
+      <div class="forensic-section-heading"><h2>Provenance verification chain</h2><p>Stages describe fields bound by the complete signed record, not independent cryptographic attestations. External input/model trust and ledger membership require separate evidence.</p></div>
+      <div id="provenance-chain" class="chain empty">Run an inference to render the evidence chain.</div>
+      <p id="inference-boundary" class="forensic-boundary"></p>
+      <details class="technical-record"><summary>Technical record JSON · paste or inspect</summary><label for="record-json" class="form-label">Signed inference record JSON</label><textarea id="record-json" rows="12" placeholder="Paste or generate a signed record" class="form-control"></textarea><button id="copy-record-json" type="button" class="btn btn-outline-secondary btn-sm" data-copy="" disabled>Copy record JSON</button></details>
+      <div class="aegis-row action-row"><button id="verify-record" class="btn btn-primary">Verify record</button><button id="accept-record" class="btn btn-outline-secondary">Accept with replay protection</button></div>
+      <p class="forensic-action-note">Verification does not accept the record. Acceptance checks freshness and persists replay state.</p>
+      <details><summary>Verification response</summary><pre id="inference-result"></pre></details>
+      <details class="setup-disclosure"><summary>Create signed inference</summary><form id="inference-form" class="aegis-form"><label>Registered model ID<input name="model_id" required class="form-control"></label><label>Image path relative to imports<input name="image" required class="form-control"></label><button class="btn btn-primary">Run &amp; sign inference</button></form></details><div id="inference-list"></div>
+    </section>
     <section id="distribution" class="page hidden"><div class="page-heading"><span class="kicker">INTELLIGENCE / 06</span><h1>Distribution intelligence</h1><p>Reference-versus-current signals are shown with their interpretation boundary.</p></div><div id="distribution-detail" class="distribution-board empty">Run a scan to inspect operational drift and OOD evidence.</div></section>
-    <section id="ledger" class="page hidden"><div class="page-heading"><span class="kicker">PROVENANCE / 05</span><h1>Audit ledger</h1><p>Verify signed history and inspect the first broken link. Freshness is enforced separately on acceptance.</p></div><div class="ledger-toolbar"><button id="verify-ledger">Verify entire chain</button><button id="tamper-ledger" class="button-secondary">Verify altered copy</button><span id="ledger-state" class="status-tag status-neutral">NOT VERIFIED</span><span id="ledger-count" class="muted"></span></div><div id="ledger-chain" class="chain"></div><details class="technical-record"><summary>Ledger records</summary><pre id="ledger-list"></pre></details><div id="ledger-assessment" aria-live="polite"></div><details><summary>Verification response</summary><pre id="ledger-result"></pre></details><details><summary>Reproducible attack results</summary><pre id="demo-results">Run the demonstration from Overview.</pre></details></section>
+    <section id="ledger" class="page hidden">
+      <div class="page-heading"><span class="kicker">PROVENANCE / 05</span><h1>Audit ledger</h1><p>Inspect the first reported verification failure and its effect on trust in later links.</p></div>
+      <div id="ledger-assessment" aria-live="polite" aria-atomic="true"></div>
+      <div class="ledger-summary"><span id="ledger-state" class="status-tag status-neutral">NOT CHECKED</span><span id="ledger-count" class="muted"></span></div>
+      <div class="forensic-section-heading"><h2>Signed history chain</h2><p>The verifier checks records in traversal order. Stored sequence values are displayed separately from that position.</p></div>
+      <div id="ledger-chain" class="chain"></div>
+      <div class="ledger-toolbar"><button id="verify-ledger" class="btn btn-primary">Verify entire chain</button><button id="tamper-ledger" class="button-secondary btn btn-outline-secondary">Verify altered copy</button></div>
+      <p class="forensic-action-note">Verify altered copy submits the existing demonstration copy for verification. It does not change stored ledger entries.</p>
+      <p id="ledger-boundary" class="forensic-boundary">Suffix deletion requires an independently preserved trusted checkpoint.</p>
+      <details><summary>Verification response</summary><pre id="ledger-result"></pre></details>
+      <details class="technical-record"><summary>Ledger records</summary><pre id="ledger-list"></pre></details>
+      <details><summary>Reproducible attack results</summary><pre id="demo-results">Run the demonstration from Overview.</pre></details>
+    </section>
     <section id="reports" class="page hidden"><div class="page-heading"><span class="kicker">OUTPUT / 06</span><h1>Assurance reports</h1><p>Open a decision-contract report or print the evidence packet.</p></div><div id="report-list"></div></section>
     <section id="coverage" class="page hidden"><div class="page-heading"><span class="kicker">BOUNDARIES / 07</span><h1>Coverage &amp; limitations</h1><p>Coverage is explicit so unavailable white-box checks never look like passes.</p></div><div class="offline-card"><span class="status-dot"></span><div><b>Offline processing active</b><p>No cloud services, telemetry, or external assets are required.</p></div></div><div id="coverage-list"></div></section>
-    <section id="demo-page" class="page hidden"><div class="page-heading"><span class="kicker">DEMONSTRATION MODE</span><h1>Assurance Demonstration Console</h1><p>Execute the reproducible local assurance suite and inspect the evidence produced across each integrity scenario.</p></div><div class="demo-console-head"><div><h2>Eight investigation paths. One local test suite.</h2><p>Run the existing seeded suite, then inspect each observed result. Scientific validation fixtures are reported separately from live demo results.</p></div><button id="demo-secondary">Run reproducible demonstration</button></div><div id="scenario-console" class="demo-scenarios"></div><details><summary>Technical demonstration results</summary><pre id="demo-page-results">No run yet.</pre></details></section>
+    <section id="demo-page" class="page hidden"><div class="page-heading"><span class="kicker">DEMONSTRATION MODE</span><h1>Assurance Demonstration Console</h1><p>Execute the reproducible local assurance suite and inspect the evidence produced across each integrity scenario.</p></div><div class="demo-console-head"><div><h2>Eight investigation paths. One local test suite.</h2><p>Run the existing seeded suite, then inspect each observed result. Scientific validation fixtures are reported separately from live demo results.</p></div><button id="demo-secondary" class="btn btn-primary">Run reproducible demonstration</button></div><div id="scenario-console" class="demo-scenarios"></div><details><summary>Technical demonstration results</summary><pre id="demo-page-results">No run yet.</pre></details></section>
     <footer>AegisCV v0.1 · Local-only integrity assurance · Composite scores are not calibrated probabilities</footer>
   </main>
 </body>

@@ -1,0 +1,233 @@
+/* Phase 2: shell only. Existing investigation components retain their owners. */
+:root {
+  --tblr-font-sans-serif: "Segoe UI", Arial, sans-serif;
+  --tblr-font-monospace: Consolas, monospace;
+  --tblr-body-font-family: var(--tblr-font-sans-serif);
+  --tblr-body-color: #192f42;
+  --tblr-body-bg: #f5f7f8;
+  --tblr-bg-surface: #fff;
+  --tblr-border-color: #d4dce1;
+  --tblr-primary: #365f7e;
+  --tblr-primary-rgb: 54, 95, 126;
+  --tblr-secondary: #526575;
+  --tblr-success: #246449;
+  --tblr-warning: #875714;
+  --tblr-danger: #a33232;
+  --tblr-link-color: #365f7e;
+  --tblr-sidebar-width: 236px;
+  --tblr-body-font-size: 16px;
+}
+
+body.aegis-shell {
+  display: block;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #192f42;
+  background: #f5f7f8;
+}
+
+/* Shared legacy names are not Bootstrap grid/card/page opt-ins. */
+#workspace > .page {
+  display: block;
+  flex: none;
+  min-height: 0;
+  max-width: none;
+  margin-inline: 0;
+  contain: none;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.aegis-shell .rail.aegis-sidebar {
+  --tblr-navbar-color: #c6d3dc;
+  --tblr-navbar-hover-color: #fff;
+  --tblr-navbar-active-color: #fff;
+  --tblr-navbar-bg: #132536;
+  --tblr-navbar-border-color: #294050;
+  position: fixed;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: var(--tblr-sidebar-width);
+  height: 100dvh;
+  padding: 22px 14px 18px;
+  overflow-y: auto;
+  background: #132536;
+  border: 0;
+  border-right: 1px solid #294050;
+  box-shadow: none;
+  z-index: 10;
+}
+.shell-brand-row { display: flex; align-items: center; justify-content: space-between; }
+.aegis-sidebar .brand {
+  display: block;
+  margin: 0;
+  padding: 0 12px 16px;
+  color: #fff;
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: .5px;
+  font-weight: 700;
+}
+.aegis-sidebar .brand-sub {
+  display: block;
+  margin: 5px 0 0;
+  color: #b6c6d2;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .2px;
+  text-transform: none;
+}
+.aegis-sidebar #shell-navigation { flex-grow: 0; width: 100%; }
+.aegis-sidebar nav.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 2px;
+}
+.aegis-sidebar .nav-group.nav-section-title {
+  display: block;
+  margin: 16px 12px 4px;
+  padding: 0;
+  color: #9eb3c3;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 1.3px;
+}
+.aegis-sidebar nav button.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  margin: 0;
+  padding: 9px 12px;
+  color: #c6d3dc;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  letter-spacing: 0;
+}
+.aegis-sidebar .nav-link-icon {
+  display: inline-flex;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+.aegis-sidebar .shell-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  /* SVGs are local monochrome outlines, tinted to the light navigation ink. */
+  filter: brightness(0) invert(1);
+  opacity: .72;
+}
+.aegis-sidebar nav.navbar-nav .nav-link .nav-link-title {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+.aegis-sidebar nav button.nav-link:hover { background: #203748; color: #fff; }
+.aegis-sidebar nav button.nav-link.active {
+  background: #293f53;
+  color: #fff;
+  box-shadow: inset 3px 0 #a7c0d2;
+}
+.aegis-sidebar nav button.nav-link.active .shell-icon { opacity: 1; }
+.aegis-sidebar button:focus-visible { outline: 3px solid #b9d4e7; outline-offset: 2px; }
+.aegis-sidebar .offline {
+  display: block;
+  position: static;
+  margin-top: auto;
+  padding: 20px 12px 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.aegis-sidebar .offline small { font-size: 12px; color: #b6c6d2; }
+.aegis-sidebar .shell-toggle { display: none; }
+
+.aegis-shell #workspace {
+  display: block;
+  width: auto;
+  min-width: 0;
+  min-height: 100dvh;
+  max-width: 1920px;
+  margin: 0 0 0 var(--tblr-sidebar-width);
+  padding: 0 28px;
+}
+#workspace > .topbar.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  margin: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid #d4dce1;
+  background: transparent;
+}
+.topbar .page-pretitle { color: #526575; font-size: 12px; font-weight: 600; letter-spacing: 1.3px; }
+.aegis-shell .skip-link { left: 252px; z-index: 20; }
+
+@media (min-width: 720px) {
+  .aegis-sidebar #shell-navigation { display: block; height: auto; overflow: visible; }
+}
+@media (min-width: 1700px) {
+  .aegis-shell #workspace { padding-inline: 40px; }
+}
+@media (max-width: 899px) and (min-width: 720px) {
+  :root { --tblr-sidebar-width: 216px; }
+  .aegis-shell #workspace { padding-inline: 20px; }
+  .aegis-sidebar nav button.nav-link { padding-inline: 10px; gap: 8px; }
+  .aegis-shell .skip-link { left: 232px; }
+}
+@media (max-width: 719px) {
+  .aegis-shell .rail.aegis-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    overflow: visible;
+    border: 0;
+  }
+  .aegis-sidebar .brand { padding: 0; font-size: 25px; }
+  .aegis-sidebar .shell-toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    color: #fff;
+    background: #203748;
+    border: 1px solid #688093;
+    font-size: 14px;
+  }
+  .aegis-sidebar #shell-navigation:not(.show):not(.collapsing) { display: none; }
+  .aegis-sidebar nav.navbar-nav { flex-direction: column; overflow: visible; padding-top: 8px; }
+  .aegis-sidebar nav button.nav-link { min-height: 44px; }
+  .aegis-sidebar .offline { margin-top: 12px; padding: 10px 0 0; border-top: 1px solid #294050; }
+  .aegis-shell #workspace { margin: 0; padding: 0 16px; }
+  #workspace > .topbar.page-header { min-height: 56px; flex-wrap: wrap; gap: 8px; }
+  .aegis-shell .skip-link { left: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aegis-sidebar .collapsing { transition: none; }
+}
+@media print {
+  .aegis-shell #workspace { margin: 0; padding: 0; }
+}

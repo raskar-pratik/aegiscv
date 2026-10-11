@@ -1,0 +1,163 @@
+test_activation_clusters_and_access (test_annotations_activation_shift.AnnotationActivationShiftTests.test_activation_clusters_and_access) ... ok
+test_annotation_population_statistics (test_annotations_activation_shift.AnnotationActivationShiftTests.test_annotation_population_statistics) ... ok
+test_coco_geometry_and_sources (test_annotations_activation_shift.AnnotationActivationShiftTests.test_coco_geometry_and_sources) ... ok
+test_shift_metrics_and_missing_signals (test_annotations_activation_shift.AnnotationActivationShiftTests.test_shift_metrics_and_missing_signals) ... ok
+test_yolo_boundary_and_malformed_retention (test_annotations_activation_shift.AnnotationActivationShiftTests.test_yolo_boundary_and_malformed_retention) ... ok
+test_scan_persistence_security_and_report (test_api.ApiTests.test_scan_persistence_security_and_report) ... ok
+test_measured_backdoor_and_reconstruction (test_backdoor_hardening.BackdoorHardeningTests.test_measured_backdoor_and_reconstruction) ... ok
+test_no_non_target_sources_not_invented (test_backdoor_hardening.BackdoorHardeningTests.test_no_non_target_sources_not_invented) ... ok
+test_explicit_rules_and_links (test_correlation.CorrelationTests.test_explicit_rules_and_links) ... ok
+test_seeded_attacks (test_data.DataTests.test_seeded_attacks) ... ok
+test_clean_remains_low_review (test_decision_contract.DecisionContractTests.test_clean_remains_low_review) ... ok
+test_contributor_override_preserves_composite (test_decision_contract.DecisionContractTests.test_contributor_override_preserves_composite) ... ok
+test_crypto_model_and_ledger_override (test_decision_contract.DecisionContractTests.test_crypto_model_and_ledger_override) ... ok
+test_experimental_backdoor_is_review_not_confirmed (test_decision_contract.DecisionContractTests.test_experimental_backdoor_is_review_not_confirmed) ... ok
+test_html_report_exposes_contract_fields (test_decision_contract.DecisionContractTests.test_html_report_exposes_contract_fields) ... ok
+test_positive_evidence_preserves_composite_and_decisive_disposition (test_decision_contract.DecisionContractTests.test_positive_evidence_preserves_composite_and_decisive_disposition) ... ok
+test_end_to_end (test_demo.DemoTests.test_end_to_end) ... /workspace/scratch/21612b4fb575/aegiscv-venv/lib/python3.12/site-packages/torch/jit/_trace.py:1006: FutureWarning: `torch.jit.trace` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/workspace/scratch/21612b4fb575/aegiscv-venv/lib/python3.12/site-packages/torch/jit/_trace.py:1145: FutureWarning: `torch.jit.trace_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/workspace/scratch/21612b4fb575/aegiscv-venv/lib/python3.12/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+ok
+test_fallback_and_cache_invalidation (test_encoders_spectral.EncoderSpectralTests.test_fallback_and_cache_invalidation) ... ok
+test_local_resnet_determinism_without_network (test_encoders_spectral.EncoderSpectralTests.test_local_resnet_determinism_without_network) ... ok
+test_spectral_seeded_subpopulation (test_encoders_spectral.EncoderSpectralTests.test_spectral_seeded_subpopulation) ... ok
+test_calibration_excludes_evaluation_features (test_final_validation.FinalValidationTests.test_calibration_excludes_evaluation_features) ... ok
+test_checkpoint_hash_and_offline_failure (test_final_validation.FinalValidationTests.test_checkpoint_hash_and_offline_failure) ... ok
+test_metrics_and_tied_ranking (test_final_validation.FinalValidationTests.test_metrics_and_tied_ranking) ... ok
+test_pinned_local_checkpoint_loads_with_socket_blocked (test_final_validation.FinalValidationTests.test_pinned_local_checkpoint_loads_with_socket_blocked) ... ok
+test_result_schema_rejects_inconsistent_counts (test_final_validation.FinalValidationTests.test_result_schema_rejects_inconsistent_counts) ... ok
+test_split_and_attack_reproducibility (test_final_validation.FinalValidationTests.test_split_and_attack_reproducibility) ... ok
+test_threshold_partition_and_identity_enforcement (test_final_validation.FinalValidationTests.test_threshold_partition_and_identity_enforcement) ... ok
+test_annotation_adapters (test_foundation.FoundationTests.test_annotation_adapters) ... ok
+test_folder_and_manifest (test_foundation.FoundationTests.test_folder_and_manifest) ... ok
+test_validation_and_coverage (test_foundation.FoundationTests.test_validation_and_coverage) ... ok
+test_fallback_report_and_repeat_cache (test_hardening_integration.HardeningIntegrationTests.test_fallback_report_and_repeat_cache) ... ok
+test_identity_behavior_and_inference (test_models.ModelTests.test_identity_behavior_and_inference) ... ok
+test_concurrent_append (test_provenance.ProvenanceTests.test_concurrent_append) ... ok
+test_tamper_replay_checkpoint_and_restart (test_provenance.ProvenanceTests.test_tamper_replay_checkpoint_and_restart) ... ok
+test_invalid_ledger_still_produces_report (test_regressions.RegressionTests.test_invalid_ledger_still_produces_report) ... ok
+test_near_duplicate_different_bytes (test_regressions.RegressionTests.test_near_duplicate_different_bytes) ... ok
+test_safe_pytorch_and_missing_onnx (test_regressions.RegressionTests.test_safe_pytorch_and_missing_onnx) ... ok
+test_verified_violation_cannot_be_diluted (test_regressions.RegressionTests.test_verified_violation_cannot_be_diluted) ... ok
+test_acquisition_drift_and_clean_controls (test_stabilization.StabilizationTests.test_acquisition_drift_and_clean_controls) ... ok
+test_backdoor_single_evidence_is_review (test_stabilization.StabilizationTests.test_backdoor_single_evidence_is_review) ... ok
+test_calibrated_pairs_and_clean_sources (test_stabilization.StabilizationTests.test_calibrated_pairs_and_clean_sources) ... ok
+test_clusters_preserve_only_confirmed_edges (test_stabilization.StabilizationTests.test_clusters_preserve_only_confirmed_edges) ... ok
+test_detector_exceptions_remain_visible (test_stabilization.StabilizationTests.test_detector_exceptions_remain_visible) ... Detector duplicates failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+Detector label_anomaly failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+Detector ood failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+Detector spectral_signature failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                                                                                                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+Detector trigger_pattern failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                                                                                                                                                                                                                                                                                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+Detector annotation_integrity failed
+Traceback (most recent call last):
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 70, in scan_dataset
+    try: findings.extend(fn())
+                         ^^^^
+  File "/workspace/scratch/21612b4fb575/aegiscv/app/services/scanner.py", line 68, in <lambda>
+    for name,fn in [('duplicates',lambda:duplicates(assets,root,features,config)),('label_anomaly',lambda:labels(assets,features,config)),('ood',lambda:ood(assets,features,config,ref_features)),('spectral_signature',lambda:spectral_signatures(assets,features,config.spectral_min_samples,config.spectral_directions,config.spectral_threshold,config.spectral_percentile,config.spectral_min_energy)),('trigger_pattern',lambda:detect_patterns(assets,root)),('annotation_integrity',lambda:annotation_integrity(manifest,config.annotation_min_area,config.annotation_max_area,config.annotation_max_boxes))]:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: injected module failure
+ok
+test_encoder_failure_falls_back_visibly (test_stabilization.StabilizationTests.test_encoder_failure_falls_back_visibly) ... ok
+test_ledger_failure_is_not_fabricated_tampering (test_stabilization.StabilizationTests.test_ledger_failure_is_not_fabricated_tampering) ... ok
+test_monotonic_properties_and_unavailable_separation (test_stabilization.StabilizationTests.test_monotonic_properties_and_unavailable_separation) ... ok
+test_reliability_does_not_mix_unrelated_severity_and_weight (test_stabilization.StabilizationTests.test_reliability_does_not_mix_unrelated_severity_and_weight) ... ok
+test_dashboard_has_no_external_assets (test_ui_contract.DashboardContractTests.test_dashboard_has_no_external_assets) ... ok
+test_judge_facing_ids_and_labels_exist (test_ui_contract.DashboardContractTests.test_judge_facing_ids_and_labels_exist) ... ok
+test_report_contract_fields_are_rendered (test_ui_contract.DashboardContractTests.test_report_contract_fields_are_rendered) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 10.441s
+
+OK

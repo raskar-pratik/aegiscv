@@ -1,0 +1,72 @@
+/* Phase 6 only: custom forensic semantics, local Tabler structure. */
+:is(#inference, #ledger) .page-heading { padding-bottom: 8px; }
+:is(#inference, #ledger) .page-heading p { font-size: 15px; line-height: 23px; }
+:is(#inference, #ledger) .assessment-banner { margin: 0 0 18px; padding: 18px 22px; border-left-width: 4px; }
+:is(#inference, #ledger) .assessment-banner h2 { font-size: 27px; line-height: 35px; overflow-wrap: anywhere; }
+:is(#inference, #ledger) .assessment-banner p { font-size: 14px; line-height: 22px; margin: 7px 0; }
+:is(#inference, #ledger) .forensic-panel { padding: 0; margin: 0 0 20px; background: #fff; border: 1px solid #d4dce1; box-shadow: none; border-radius: 4px; min-width: 0; }
+:is(#inference, #ledger) .forensic-panel .card-header { padding: 14px 20px; min-height: 0; background: #fff; border-bottom: 1px solid #d4dce1; }
+:is(#inference, #ledger) .forensic-panel .card-header h2 { font-size: 19px; line-height: 27px; margin: 0; }
+:is(#inference, #ledger) .forensic-panel .card-body { padding: 16px 20px; min-width: 0; }
+:is(#inference, #ledger) .record-identity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; margin: 0; }
+:is(#inference, #ledger) .forensic-value { min-width: 0; }
+:is(#inference, #ledger) dt { margin: 0; font-size: 13px; line-height: 21px; color: #526575; }
+:is(#inference, #ledger) dd { margin: 4px 0 0; font-size: 14px; line-height: 23px; color: #192f42; overflow-wrap: anywhere; }
+:is(#inference, #ledger) p { font-size: 14px; line-height: 22px; overflow-wrap: anywhere; }
+:is(#inference, #ledger) .forensic-section-heading { margin: 22px 0 12px; }
+:is(#inference, #ledger) .forensic-section-heading h2 { font-size: 20px; line-height: 28px; margin: 0 0 5px; }
+:is(#inference, #ledger) .forensic-section-heading p { color: #526575; margin: 0; max-width: 100ch; }
+:is(#inference, #ledger) .forensic-boundary { padding: 14px 18px; margin: 16px 0 20px; border-left: 3px solid #365f7e; background: #e7eef3; color: #192f42; max-width: none; }
+:is(#inference, #ledger) .forensic-action-note { color: #526575; margin: 8px 0 16px; }
+:is(#inference, #ledger) pre { max-height: 360px; white-space: pre-wrap; overflow-wrap: anywhere; }
+:is(#inference, #ledger) details > summary { font-size: 14px; line-height: 22px; }
+#inference #provenance-chain { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0; color: #192f42; }
+#inference .chain-node { min-height: 0; padding: 14px 16px; min-width: 0; border: 1px solid #d4dce1 !important; border-left: 3px solid #bac8d1 !important; border-radius: 3px; background: #fff; }
+#inference .chain-node.ok { border-left-color: #246449 !important; color: #192f42; }
+#inference .chain-node.bad { border-left-color: #a33232 !important; background: #f9ebe8; color: #a33232; }
+#inference .chain-node:not(:last-child):after { content: none; }
+#inference .chain-node h3 { font-size: 14px; line-height: 22px; margin: 5px 0; }
+#inference .chain-node .stage-state { font-size: 12px; line-height: 20px; font-weight: 600; margin: 6px 0; }
+#inference .chain-node.ok .stage-state { color: #246449; }
+#inference .stage-identity { font-size: 13px; line-height: 22px; overflow-wrap: anywhere; }
+#inference .chain-node:last-child { grid-column: 1 / -1; }
+#inference .chain-node details { padding: 5px 0 0; margin-top: 8px; }
+#inference .chain-node summary { min-height: 30px; font-size: 13px; }
+#inference .chain-node pre { max-height: 240px; }
+#inference .forensic-panel p { color: #526575; margin: 12px 0 0; }
+@media (max-width: 1100px) {
+  :is(#inference, #ledger) .record-identity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #inference #provenance-chain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 719px) {
+  :is(#inference, #ledger) .record-identity-grid, #inference #provenance-chain { grid-template-columns: minmax(0, 1fr); }
+  :is(#inference, #ledger) .assessment-banner { padding: 16px; }
+  :is(#inference, #ledger) .assessment-banner h2 { font-size: 23px; line-height: 31px; }
+  :is(#inference, #ledger) .action-row { flex-wrap: wrap; }
+}
+#ledger .ledger-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding: 12px 0; border-block: 1px solid #d4dce1; }
+#ledger #ledger-chain { display: flex; flex-direction: column; max-width: none; padding: 0; gap: 0; }
+#ledger .ledger-window-note { margin: 0 0 12px; color: #526575; font-size: 13px; }
+#ledger .ledger-link { display: grid; grid-template-columns: 108px minmax(0, 1fr); gap: 20px; padding: 16px 20px; margin: 0 0 12px; border: 1px solid #d4dce1; border-left: 3px solid #bac8d1; border-radius: 3px; background: #fff; color: #192f42; }
+#ledger .ledger-link:not(:last-child):after { left: 72px; bottom: -13px; height: 12px; background: #bac8d1; }
+#ledger .ledger-position { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+#ledger .sequence { font-size: 24px; line-height: 32px; overflow-wrap: anywhere; }
+#ledger .ledger-position small { font-size: 12px; line-height: 19px; color: #526575; }
+#ledger .ledger-link-body { min-width: 0; }
+#ledger .ledger-link-body > strong { font-size: 14px; line-height: 22px; }
+#ledger .ledger-link p { margin: 5px 0 10px; font-size: 13px; line-height: 21px; color: #526575; }
+#ledger .ledger-hashes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; margin: 10px 0; }
+#ledger .ledger-link.ok { border-left-color: #246449; }
+#ledger .ledger-link.ok strong { color: #246449; }
+#ledger .ledger-link.bad { border-left-color: #a33232; background: #f9ebe8; }
+#ledger .ledger-link.bad strong { color: #a33232; }
+#ledger .ledger-link.chain-untrusted { border-left-color: #875714; background: #faf7f0; }
+#ledger .ledger-link.chain-untrusted strong { color: #875714; }
+#ledger .ledger-link details { border-top: 1px solid #d4dce1; padding-top: 6px; }
+#ledger .first-failure { font-size: 17px; }
+#ledger .ledger-toolbar { flex-wrap: wrap; }
+@media (max-width: 719px) {
+  #ledger .ledger-link { grid-template-columns: 76px minmax(0, 1fr); padding: 14px; gap: 12px; }
+  #ledger .ledger-hashes { grid-template-columns: minmax(0, 1fr); }
+  #ledger .ledger-link:not(:last-child):after { left: 50px; }
+}

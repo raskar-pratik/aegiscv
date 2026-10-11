@@ -1,0 +1,62 @@
+{
+  "implementation_scope": "Phases 2.5 and 3: generic presentation and Overview only",
+  "checks": {
+    "existing_ids_forms_navigation_and_protected_screen_internals": "PASS",
+    "overview_filters_warning_and_record_label": "PASS",
+    "application_javascript_and_workstation_css_only_approved_class_renames": "PASS",
+    "legacy_generic_class_collisions_removed": "PASS",
+    "frozen_baseline_files_unchanged": "PASS",
+    "vendor_file_integrity": "PASS",
+    "flask_render_csp_and_local_asset_routes": "PASS",
+    "local_assets_served": 19,
+    "external_asset_static_check": "PASS",
+    "plot_svg_scoped": "PASS"
+  },
+  "duplicate_ids": [],
+  "source_term_occurrences": {
+    "dashboard/static/vendor/tabler/css/tabler.min.css": {
+      "http://": 23,
+      "https://": 2
+    },
+    "dashboard/static/vendor/tabler/icons/brain.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/chart-line.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/database.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/file-report.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/fingerprint.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/history.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/layout-dashboard.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/player-play.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/shield-check.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/users.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/js/tabler.min.js": {
+      "http://": 1,
+      "https://": 4
+    }
+  },
+  "visual_validation": "PENDING \u2014 NO BROWSER AVAILABLE",
+  "browser_regression": "NOT RUN",
+  "screenshots": "NOT AVAILABLE",
+  "responsive_behavior": "NOT VERIFIED",
+  "runtime_external_requests": "NOT MEASURED",
+  "tabler_ui_freeze": "NO"
+}

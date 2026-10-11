@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT))
 BASELINE = 'e86a86c0968db1afe9de33eb9ad4844d3fdac2af'
 APPROVED_OVERVIEW = '20ee6ad'
 APPROVED_INVESTIGATIONS = 'e51c88d'
+APPROVED_MODEL = '78aaf96'
 
 
 class Assets(HTMLParser):
@@ -55,6 +56,20 @@ def markup_without_presentation(source):
     return re.sub(r'>\s+<', '><', source).strip()
 
 
+def protected_phase6(source):
+    start = source.index('// Presentation context is separate') if '// Presentation context is separate' in source else source.index('renderProvenance=function')
+    source = source[:start] + source[source.index('function renderCoverage', start):]
+    start = source.index("for(const [id,path] of [['verify-record'")
+    source = source[:start] + source[source.index('renderProvenance(null);show', start):]
+    return source
+
+
+def restore_generation_feedback(source):
+    source = source.replace("if(id==='inference-form')renderProvenance(null,null,{phase:'pending',action:'create'});", '')
+    source = source.replace("if(id==='inference-form')renderProvenance(null,null,{phase:'error',action:'create',message:'Inference creation or follow-up loading failed. No current verification is established. '+err.message});", '')
+    return source
+
+
 def protected_workstation(source):
     """Exclude the approved investigation and model renderers and their private helpers."""
     start = source.index('function investigationEvidence(') if 'function investigationEvidence(' in source else source.index('function linkedFindings(')
@@ -64,7 +79,7 @@ def protected_workstation(source):
     source = source[:start] + source[end:]
     start = source.index('function renderDataset(')
     source = source[:start] + source[source.index('renderProvenance=function', start):]
-    return source
+    return protected_phase6(source)
 
 
 class FragmentStructure(HTMLParser):
@@ -103,7 +118,7 @@ class FragmentStructure(HTMLParser):
 def main():
     from app.main import create_app
 
-    result = {'implementation_scope': 'Phase 5: Model Integrity only; approved earlier phases preserved', 'checks': {}}
+    result = {'implementation_scope': 'Phases 5.5 / 6: documentation, Inference Provenance and Audit Ledger only', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
     before, after = old(str(template.relative_to(ROOT))), template.read_text()
@@ -117,7 +132,7 @@ def main():
     assert len(new_dom.ids) == len(set(new_dom.ids))
     assert new_counts['overview-coverage'] == 1
     result['duplicate_ids'] = []
-    assert old_dom.forms == new_dom.forms
+    assert sorted(old_dom.forms, key=str) == sorted(new_dom.forms, key=str)
     # Existing accessible aliases remain stable. Data integrity receives an
     # explicit alias preserving the prior case-sensitive browser-test name.
     for page, alias in old_dom.navigation.items():
@@ -128,7 +143,7 @@ def main():
     old_sections, new_sections = sections(before), sections(after)
     assert old_sections.keys() == new_sections.keys()
     for name, content in old_sections.items():
-        if name not in {'overview', 'datasets', 'contributors-page', 'models'}:
+        if name not in {'overview', 'datasets', 'contributors-page', 'models', 'inference', 'ledger'}:
             assert markup_without_presentation(content) == markup_without_presentation(new_sections[name]), name
     approved_html = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':dashboard/templates/index.html'], cwd=ROOT).decode()
     approved_sections = sections(approved_html)
@@ -144,26 +159,27 @@ def main():
     checks['overview_filters_warning_and_record_label'] = 'PASS'
 
     for path in ['dashboard/static/app.js', 'dashboard/static/workstation.css']:
-        assert restore_legacy_classes((ROOT / path).read_text()) == old(path), path
+        assert restore_legacy_classes(restore_generation_feedback((ROOT / path).read_text())) == old(path), path
     workstation = (ROOT / 'dashboard/static/workstation.js').read_text()
     assert protected_workstation(workstation) == protected_workstation(old('dashboard/static/workstation.js'))
     for path in ['dashboard/static/overview.css', 'dashboard/static/primitives.css', 'dashboard/static/shell.css']:
         approved = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':' + path], cwd=ROOT)
         assert (ROOT / path).read_bytes() == approved, path
-    approved_workstation = subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':dashboard/static/workstation.js'], cwd=ROOT).decode()
-    def outside_model(source):
-        return source[:source.index('function renderModel(')] + source[source.index('renderProvenance=function'):]
-    normalized = workstation.replace('${priority.length} shown / ${fs.filter(f=>Number(f.risk_score)>20).length} eligible / ${fs.length} returned', '${priority.length} shown')
-    assert outside_model(normalized) == outside_model(approved_workstation), 'Non-model renderer changed'
-    approved_template = subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':dashboard/templates/index.html'], cwd=ROOT).decode()
+    approved_workstation = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/workstation.js'], cwd=ROOT).decode()
+    assert protected_phase6(workstation) == protected_phase6(approved_workstation), 'Protected renderer changed'
+    approved_template = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/templates/index.html'], cwd=ROOT).decode()
     for name, content in sections(approved_template).items():
-        if name != 'models':
+        if name not in {'inference', 'ledger'}:
             assert new_sections[name] == content, name
-    for path in ['dashboard/static/investigations.css', 'dashboard/static/app.js']:
-        assert (ROOT / path).read_bytes() == subprocess.check_output(['git', 'show', APPROVED_INVESTIGATIONS + ':' + path], cwd=ROOT)
+    for path in ['dashboard/static/investigations.css', 'dashboard/static/model-integrity.css']:
+        assert (ROOT / path).read_bytes() == subprocess.check_output(['git', 'show', APPROVED_MODEL + ':' + path], cwd=ROOT)
+    assert restore_generation_feedback((ROOT / 'dashboard/static/app.js').read_text()) == subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/app.js'], cwd=ROOT).decode()
+    # All form markup is preserved exactly, regardless of the surrounding layout order.
+    forms = lambda source: sorted(re.findall(r'<form\b.*?</form>', source, re.S))
+    assert forms(after) == forms(approved_template)
     for selector in ['trigger-preview', 'mask-preview']:
         assert 'id="' + selector + '"' in workstation
-    checks['phase_4_frozen_and_model_selectors_preserved'] = 'PASS'
+    checks['phases_3_to_5_frozen_and_form_contract_preserved'] = 'PASS'
     checks['approved_overview_generic_styles_and_protected_renderers_unchanged'] = 'PASS'
     shell = (ROOT / 'dashboard/static/shell.css').read_text()
     assert not re.search(r'#workspace\s+\.(row|card|badge)\b', shell)
@@ -220,6 +236,10 @@ def main():
     model_executed = json.loads(subprocess.check_output(['node', 'scripts/check_model_ui.js'], cwd=ROOT))
     checks['model_renderer_semantics_and_preview_pixels'] = model_executed['status']
     executed['fragments'].update(model_executed['fragments'])
+    from ui_verification_fixtures import fixtures
+    verification = json.loads(subprocess.check_output(['node', 'scripts/check_verification_ui.js'], input=json.dumps(fixtures()).encode(), cwd=ROOT))
+    checks['inference_ledger_renderer_and_action_contract'] = verification['status']
+    executed['fragments'].update(verification['fragments'])
     for name, fragment in executed['fragments'].items():
         parsed = FragmentStructure()
         parsed.feed(fragment)

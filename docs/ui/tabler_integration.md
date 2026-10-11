@@ -1,10 +1,10 @@
 # Tabler integration — controlled presentation refinement
 
-Integration date: 2026-10-07. Scope: local dependencies and application shell only.
+Initial integration date: 2026-10-07. Original Phase 1–2 scope: local dependencies and application shell only.
 
 Final source validation resumed on 2026-10-08 after restoring the temporary Python environment.
 
-Current status (2026-10-11): Phase 5 Model Integrity is implemented and stopped for review. Phases 3.5 / 4 were approved and checkpointed at e51c88d. The former duplicate coverage ID is fixed. Visual validation remains PENDING; browser regression NOT RUN. Earlier phase sections below are historical records, not current unresolved work.
+Current status (2026-10-11): Phases 3, 3.5, 4 and 5 are implemented and approved. Phase 5 is checkpointed at 78aaf96. The duplicate coverage ID was resolved in Phase 3.5: overview-coverage is the metric and coverage remains the page. Phases 5.5 and 6 are implemented and stopped for review: documentation reconciled, Inference Provenance and Audit Ledger refined. Static validation passed; visual validation remains pending. Visual validation remains PENDING; browser regression NOT RUN. Earlier phase sections below are historical records, not current unresolved work.
 
 ## Dependency pin and sources
 
@@ -76,9 +76,9 @@ Desktop uses a compact fixed navy rail. Below 720px the rail becomes a top navig
 6. Run the full suite, shell contract checks, Flask rendering/local asset checks and static external-reference scan.
 7. When a browser is available, run the real browser regression, block external requests, capture baseline/after screenshots and validate requested viewport sizes. Do not mark the UI frozen from source checks alone.
 
-## Validation status
+## Historical Phase 1–2 validation status
 
-Known baseline limitation: `coverage` is already duplicated between the overview metric and the Coverage page. The shell does not add or remove either occurrence because these IDs and page internals are explicitly frozen for this phase. The source contract checks preserve the baseline ID counts and prohibit new duplicates; they do not certify the baseline HTML as free of duplicate IDs. Resolving the existing collision requires a separately scoped coordinated selector change.
+Historical baseline limitation (resolved in Phase 3.5): `coverage` is already duplicated between the overview metric and the Coverage page. The shell does not add or remove either occurrence because these IDs and page internals are explicitly frozen for this phase. The source contract checks preserve the baseline ID counts and prohibit new duplicates; they do not certify the baseline HTML as free of duplicate IDs. Resolving the existing collision requires a separately scoped coordinated selector change.
 
 Implementation and visual validation are separate. The user explicitly waived the pre-implementation browser baseline for this environment, not browser validation itself. Final phase results are recorded in `phase_1_2_validation.json` after execution.
 
@@ -153,7 +153,7 @@ New local stylesheet `dashboard/static/overview.css` scopes its rules to `#overv
 
 No Contributors, Data Integrity, Model Integrity, Inference, Ledger, Distribution, Coverage or Demonstration investigation internals were redesigned. Outside Overview, changes are limited to approved shared primitive classes/treatment, legacy class renames and the explicit record label. `workstation.js` is byte-identical to the original baseline. `app.js` differs only in the approved class names, so display, navigation, verification, polling and data behavior are unchanged.
 
-## Current validation and stop point
+## Historical Phase 3 validation and stop point
 
 Phases 2.5 / 3 Overview: **IMPLEMENTATION COMPLETE — STOPPED FOR REVIEW**.
 
@@ -247,7 +247,7 @@ RUNTIME EXTERNAL REQUESTS: **NOT MEASURED**.
 TABLER UI FREEZE: **NO**.
 
 
-## Current stage — Phase 5 Model Integrity (2026-10-11)
+## Approved Phase 5 Model Integrity (2026-10-11)
 
 Implementation complete; STOP for review. Tabler Core remains locally pinned at 1.6.1. No backend, API, detector, threshold, calibration, risk fusion, policy, cryptography, model loading, dependency or experiment change.
 
@@ -291,3 +291,57 @@ Phase 3.5 renamed only the Overview metric to overview-coverage; coverage naviga
 - 21 local assets served; no new runtime external asset references. Existing vendor URL text is license/documentation/SVG namespace content.
 
 **VISUAL VALIDATION: PENDING — NO BROWSER AVAILABLE.** Responsive visual validation PENDING. Browser regression NOT RUN. Screenshots NOT AVAILABLE. Runtime external request count NOT MEASURED. Canvas checks use stubs and do not establish actual browser rendering; clipboard permission behavior and viewport layout remain unverified. No changes to Inference, Ledger, Distribution, Coverage, Reports or Demo. TABLER UI FREEZE: NO.
+
+
+## Phase 5.5 — documentation reconciliation (2026-10-11)
+
+Inspected the current working document and Git history: cc7bada (Phases 1–2), 20ee6ad (Phase 3), e51c88d (Phases 3.5/4), 78aaf96 (Phase 5). The current repository already recorded Phases 3–5 and the duplicate-ID fix; older review copies and ambiguous “current” headings could suggest otherwise. Historical headers are now explicit and a current implementation summary appears at the top. Earlier test logs and measured results are preserved unchanged. No visual verification is claimed.
+
+
+## Current implementation — Phase 6 (2026-10-11)
+
+**Implementation complete; stopped after Inference Provenance and Audit Ledger. Static validation passed. Visual validation pending.** No Distribution, Coverage, Reports, Demonstration Console or final UI freeze work is included.
+
+### Rendering ownership and scope
+
+`phase_6_audit.md` records the DOM/schema audit completed before application edits. `app.js` retains fetch, token handling, form serialization, generation callbacks and API ownership. Its only change is narrowly scoped pending/error presentation feedback for inference creation inside the existing form handler. `workstation.js` retains provenance/ledger rendering and verification actions. No third rendering owner. All form markup, names, required fields, action IDs and endpoints are preserved. show, display, refresh, Model Integrity, Data Integrity, Contributors and other screen renderers remain byte-identical to approved Phase 5 outside the authorized verification regions.
+
+### Inference Provenance
+
+The current assessment precedes signed record identity and a compact seven-stage chain: input, preprocessing, model, configuration, output, signature, record verification. Record ID, kind, sequence, timestamp, record hash and nonce use actual record fields. Available payload hashes and technical values remain accessible through exact-value copy controls and native disclosures. Raw record JSON remains labeled and can be copied unchanged.
+
+Present values are not treated as verified. A successful overall record check labels payload identities “BOUND BY VERIFIED RECORD”; the signature stage says “SIGNATURE CHECK PASSED.” This does not imply independent verification of each stage or external artifact identity. The visible interpretation boundary states that a valid signature does not establish a benign model, attack-free input, correct output, trustworthy dataset or safe prediction.
+
+Backend TAMPERED displays its actual first-failure reason. SIGNATURE_INVALID is described as signature or record-structure failure, never automatically intentional tampering. The backend does not return expected/observed failure pairs or a REJECT field, so none is fabricated. Pending/request/JSON errors are separate frontend presentation context, not invented backend states. Editing a record invalidates displayed verification and stale in-flight responses are ignored.
+
+Verification and acceptance remain separate requests. VALID from verification is not acceptance. VALID from acceptance shows replay-check success and persisted replay state. REPLAY from the acceptance endpoint is shown separately: the unchanged backend first verifies signature/content, then rejects on replay policy. No automatic acceptance is introduced.
+
+### Audit Ledger
+
+The primary assessment exposes actual verifier status, reason and first reported traversal position. Stored sequence values are shown separately because untrusted sequence metadata can differ from the verifier's 1-based position. Earlier entries are “PASSED BEFORE FAILURE”; the first reported entry is “FIRST INVALID LINK”; later entries are “CHAIN NOT TRUSTED,” with an explicit warning that they are not independently classified as tampered. A checkpoint failure beyond the returned history is a boundary failure, without an invented row.
+
+Dense rows show actual sequence, kind, timestamp, record hash and previous hash, with full record disclosures. The existing recent/failure-centered window is retained and explicitly labeled as a subset; full returned history remains available. Empty returned history is distinct from unavailable history. A fetched-history change invalidates prior verification; a successful result whose count/head differs from the displayed history is not presented as verification of that snapshot. This is a presentation consistency check, not frontend cryptography.
+
+The altered-copy workflow still changes only `records[max(0, length-3)].record_hash` to `altered` in a deep copy, and submits the same existing endpoint/payload. It does not change stored data. Pending ledger actions cannot overlap, and refresh preserves pending controls. Execution errors retain history and remove stale verification. Suffix-deletion/checkpoint limitations remain visible; no external anchoring or full completeness is claimed.
+
+### Tabler, custom components and accessibility
+
+Local Tabler 1.6.1 supplies card/header/body structure and existing button/form primitives. AegisCV owns chain states, forensic identity rows, failure emphasis, replay distinction and palette. `inference-ledger.css` is scoped to #inference/#ledger; shared styles are unchanged. New classes include forensic-panel, forensic-value, record-identity-grid, forensic-section-heading, forensic-boundary, stage-state, ledger-summary, ledger-position, ledger-hashes and chain-untrusted.
+
+Preserved keyboard interaction, native disclosures, focus outlines, labels, reduced-motion rules and escaped values. Assessment regions are live and atomic, with aria-busy during actions. Copy controls have descriptive names and retain exact values. Layout targets 1366×768, 1440×1000 and 1920×1080; narrow layouts stack identity grids and stages, with wrapped hashes. No visual/responsive verification is claimed.
+
+### Regression evidence
+
+- After Inference: 50/50 PASS, 11.189 seconds (`phase_6_inference_tests.txt`).
+- After Ledger: 50/50 PASS, 11.013 seconds (`phase_6_ledger_tests.txt`).
+- Final full test gate: see `phase_6_final_tests.txt` and `phase_6_validation.json`.
+- `check_ui_shell.py` passes original frozen-file comparisons, prior-screen preservation, unchanged form contracts, IDs, CSP, local routes and vendor integrity.
+- New `ui_verification_fixtures.py` generates actual responses using the unchanged backend in temporary storage; it does not modify backend source or production data.
+- `check_verification_ui.js` covers unchecked/valid/modified/invalid-signature/replay/missing/error states; empty/valid/broken/sequence/checkpoint ledgers; escaping; exact payloads; no automatic acceptance; altered-copy isolation; stale-response suppression; history retention; pending actions and generation feedback. Existing investigation/model renderer checks also pass.
+- 22 local assets served; no new external runtime references. Template, Flask HTML and generated fragments have no duplicate IDs. Node syntax and git diff --check pass.
+
+### Known unverified behavior and boundaries
+
+**VISUAL VALIDATION: PENDING. RESPONSIVE VALIDATION: PENDING. BROWSER REGRESSION: NOT RUN. SCREENSHOTS: NOT AVAILABLE. RUNTIME EXTERNAL REQUESTS: NOT MEASURED.** Actual viewport density, native disclosure appearance, clipboard permission behavior and focus rendering require a browser.
+
+The API provides an overall result, not per-field verification responses. SIGNATURE_INVALID conflates signature and structure errors. Ordinary ledger verification still uses the existing separate fetch and POST `{}` requests; the UI checks returned count/head for successful results, but this is not a new atomic snapshot protocol. No backend protocol, verification, signing, hashing, binding, replay, checkpoint, storage, security, ML or policy behavior changed. **TABLER UI FREEZE: NO.**

@@ -1,0 +1,95 @@
+{
+  "implementation_scope": "Phases 5.5 / 6: documentation, Inference Provenance and Audit Ledger only",
+  "checks": {
+    "existing_ids_forms_navigation_and_protected_screen_internals": "PASS",
+    "overview_filters_warning_and_record_label": "PASS",
+    "phases_3_to_5_frozen_and_form_contract_preserved": "PASS",
+    "approved_overview_generic_styles_and_protected_renderers_unchanged": "PASS",
+    "legacy_generic_class_collisions_removed": "PASS",
+    "frozen_baseline_files_unchanged": "PASS",
+    "vendor_file_integrity": "PASS",
+    "flask_render_csp_and_local_asset_routes": "PASS",
+    "local_assets_served": 22,
+    "external_asset_static_check": "PASS",
+    "plot_svg_scoped": "PASS",
+    "model_renderer_semantics_and_preview_pixels": "PASS",
+    "inference_ledger_renderer_and_action_contract": "PASS",
+    "executed_renderer_selection_order_values_missing_data_and_escaping": "PASS",
+    "generated_html_structure_meter_labels_no_inline_styles_or_duplicate_ids": "PASS"
+  },
+  "duplicate_ids": [],
+  "source_term_occurrences": {
+    "dashboard/static/vendor/tabler/css/tabler.min.css": {
+      "http://": 23,
+      "https://": 2
+    },
+    "dashboard/static/vendor/tabler/icons/brain.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/chart-line.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/database.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/file-report.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/fingerprint.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/history.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/layout-dashboard.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/player-play.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/shield-check.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/icons/users.svg": {
+      "http://": 1
+    },
+    "dashboard/static/vendor/tabler/js/tabler.min.js": {
+      "http://": 1,
+      "https://": 4
+    }
+  },
+  "visual_validation": "PENDING \u2014 NO BROWSER AVAILABLE",
+  "browser_regression": "NOT RUN",
+  "screenshots": "NOT AVAILABLE",
+  "responsive_behavior": "NOT VERIFIED",
+  "runtime_external_requests": "NOT MEASURED",
+  "tabler_ui_freeze": "NO",
+  "implementation_status": "COMPLETE \u2014 STOPPED FOR REVIEW",
+  "documentation_reconciled": true,
+  "approved_phase_5_checkpoint": "78aaf96",
+  "full_test_gates": {
+    "inference": {
+      "tests": 50,
+      "seconds": 11.189,
+      "result": "PASS"
+    },
+    "ledger": {
+      "tests": 50,
+      "seconds": 11.013,
+      "result": "PASS"
+    },
+    "final": {
+      "tests": 50,
+      "seconds": 12.457,
+      "result": "PASS"
+    }
+  },
+  "backend_files_modified": [],
+  "api_contract_changes": false,
+  "cryptographic_semantics_preserved": true,
+  "replay_semantics_preserved": true,
+  "hash_chain_limitations_preserved": true,
+  "responsive_validation": "PENDING \u2014 NO BROWSER AVAILABLE",
+  "javascript_syntax": "PASS",
+  "git_diff_check": "PASS"
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="aegis-token" content="{{ token }}"><title>AegisCV · Integrity Assurance</title>
+  <meta name="aegis-token" content="{{ token }}"><title>Veyra · Integrity Assurance</title>
   <link rel="stylesheet" href="/static/vendor/tabler/css/tabler.min.css">
   <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/workstation.css"><link rel="stylesheet" href="/static/shell.css"><link rel="stylesheet" href="/static/primitives.css"><link rel="stylesheet" href="/static/overview.css"><link rel="stylesheet" href="/static/investigations.css"><link rel="stylesheet" href="/static/model-integrity.css"><link rel="stylesheet" href="/static/inference-ledger.css"><script defer src="/static/vendor/tabler/js/tabler.min.js"></script><script defer src="/static/app.js"></script><script defer src="/static/workstation.js"></script>
 </head>
@@ -10,7 +10,7 @@
   <a class="skip-link" href="#workspace">Skip to workspace</a>
   <aside class="rail navbar navbar-vertical navbar-expand-md aegis-sidebar" aria-label="Workspace sidebar">
     <div class="shell-brand-row">
-      <div class="brand navbar-brand">AEGISCV<span class="brand-sub">Integrity Assurance</span></div>
+      <div class="brand navbar-brand"><img src="/static/logo.png" alt="Veyra" class="brand-logo" width="32" height="32">VEYRA<span class="brand-sub">Integrity Assurance</span></div>
       <button class="navbar-toggler shell-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#shell-navigation" aria-controls="shell-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
     </div>
     <div id="shell-navigation" class="collapse navbar-collapse">
@@ -118,7 +118,7 @@
     <section id="reports" class="page hidden"><div class="page-heading"><span class="kicker">OUTPUT / 06</span><h1>Assurance reports</h1><p>Open a decision-contract report or print the evidence packet.</p></div><div id="report-list"></div></section>
     <section id="coverage" class="page hidden"><div class="page-heading"><span class="kicker">BOUNDARIES / 07</span><h1>Coverage &amp; limitations</h1><p>Coverage is explicit so unavailable white-box checks never look like passes.</p></div><div class="offline-card"><span class="status-dot"></span><div><b>Offline processing active</b><p>No cloud services, telemetry, or external assets are required.</p></div></div><div id="coverage-list"></div></section>
     <section id="demo-page" class="page hidden"><div class="page-heading"><span class="kicker">DEMONSTRATION MODE</span><h1>Assurance Demonstration Console</h1><p>Execute the reproducible local assurance suite and inspect the evidence produced across each integrity scenario.</p></div><div class="demo-console-head"><div><h2>Eight investigation paths. One local test suite.</h2><p>Run the existing seeded suite, then inspect each observed result. Scientific validation fixtures are reported separately from live demo results.</p></div><button id="demo-secondary" class="btn btn-primary">Run reproducible demonstration</button></div><div id="scenario-console" class="demo-scenarios"></div><details><summary>Technical demonstration results</summary><pre id="demo-page-results">No run yet.</pre></details></section>
-    <footer>AegisCV v0.1 · Local-only integrity assurance · Composite scores are not calibrated probabilities</footer>
+    <footer>Veyra v0.1 · Local-only integrity assurance · Composite scores are not calibrated probabilities</footer>
   </main>
 </body>
 </html>

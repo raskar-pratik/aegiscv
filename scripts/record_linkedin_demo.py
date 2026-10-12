@@ -129,7 +129,7 @@ def main():
             page.evaluate('window.scrollTo(0, 0)')
             hold('Altered-copy demonstration — stored ledger remains unchanged', 10)
             go('overview')
-            hold('AegisCV — synthetic demonstration, not general detector accuracy', 6)
+            hold('Veyra — synthetic demonstration, not general detector accuracy', 6)
             recording.close()
             recording = None
             raw = output / 'aegiscv-demo.webm'

@@ -1,5 +1,7 @@
 # AegisCV presentation migration audit
 
+> **Historical Record Note (2026-10-12):** This document records the pre-migration presentation audit conducted on 2026-10-07 for AegisCV. The project has since been rebranded to Veyra.
+
 Date: 2026-10-07
 
 Status at original audit: preparation complete; Tabler integration had not started. Browser baseline remained blocked. This document preserves the pre-migration source audit, not a visual validation report.

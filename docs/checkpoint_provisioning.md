@@ -1,6 +1,6 @@
 # Offline trusted encoder provisioning
 
-Expected local path: `local_state/imports/checkpoints/resnet18.pth`. No checkpoint is supplied or downloaded by AegisCV. Provide an authentic ResNet18 state dictionary compatible with torchvision's standard 1000-class architecture. Obtain provenance and an expected SHA-256 through your approved independent provisioning process; a locally calculated checksum alone does not establish authenticity or pretraining.
+Expected local path: `local_state/imports/checkpoints/resnet18.pth`. No checkpoint is supplied or downloaded by Veyra. Provide an authentic ResNet18 state dictionary compatible with torchvision's standard 1000-class architecture. Obtain provenance and an expected SHA-256 through your approved independent provisioning process; a locally calculated checksum alone does not establish authenticity or pretraining.
 
 ```powershell
 Get-FileHash -Algorithm SHA256 local_state/imports/checkpoints/resnet18.pth

@@ -1,5 +1,7 @@
 # Tabler integration — controlled presentation refinement
 
+> **Historical Record Note (2026-10-12):** This document records the Tabler integration phases completed between 2026-10-07 and 2026-10-11 for AegisCV. The project has since been rebranded to Veyra.
+
 Initial integration date: 2026-10-07. Original Phase 1–2 scope: local dependencies and application shell only.
 
 Final source validation resumed on 2026-10-08 after restoring the temporary Python environment.

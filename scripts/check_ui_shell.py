@@ -40,7 +40,38 @@ class Assets(HTMLParser):
 
 
 def old(path):
-    return subprocess.check_output(['git', 'show', BASELINE + ':' + path], cwd=ROOT).decode()
+    posix_path = path.as_posix() if isinstance(path, Path) else Path(path).as_posix()
+    return subprocess.check_output(['git', 'show', BASELINE + ':' + posix_path], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
+
+
+def restore_brand_logo_styles(source):
+    source = re.sub(r'\.aegis-sidebar\s+\.brand\s*\{[^}]*flex-wrap:\s*wrap;\s*\}', '.aegis-sidebar .brand {\n  display: block;\n  margin: 0;\n  padding: 0 12px 16px;\n  color: #fff;\n  font-size: 27px;\n  line-height: 1.2;\n  letter-spacing: .5px;\n  font-weight: 700;\n}', source)
+    source = re.sub(r'\.brand-logo\s*\{[^}]*\}\n', '', source)
+    source = source.replace('.aegis-sidebar .brand-sub {\n  display: block;\n  width: 100%;', '.aegis-sidebar .brand-sub {\n  display: block;')
+    return source
+
+
+def restore_reviewed_branding(path, text):
+    if path == 'reports/generator.py':
+        return text.replace('Veyra Assurance Report', 'AegisCV Assurance Report').replace('Veyra — Assurance Report', 'AegisCV — Assurance Report')
+    if path == 'DESIGN.md':
+        return text.replace('# Veyra analyst workstation', '# AegisCV analyst workstation')
+    if path == 'docs/checkpoint_provisioning.md':
+        return text.replace('downloaded by Veyra.', 'downloaded by AegisCV.')
+    if path == 'docs/security/final_security_assessment.md':
+        return text.replace('> **Historical Record Note (2026-10-12):** This document records the security assessment conducted on 2026-09-11 for AegisCV. The project has since been rebranded to Veyra.\n\n', '')
+    if path == 'docs/security/judge_facing_summary.md':
+        text = text.replace('Veyra is an air-gapped', 'AegisCV is an air-gapped')
+        return text.replace('The final local regression passed all 50 tests. Static asset checks passed; runtime external requests not measured.', 'The final local regression passed all 50 tests and the browser demonstration with zero external requests.')
+    if path == 'README.md':
+        text = re.sub(r'# Veyra\n\nComputer Vision Integrity Assurance — an offline AI-security analyst workstation\.\n\n> \*\*Rebranding note:\*\* [^\n]+\n', '# AegisCV\n\nComputer Vision Integrity Assurance — an offline AI-security analyst workstation.\n', text)
+        return text.replace('“Veyra accuracy”', '“AegisCV accuracy”')
+    if path == 'docs/publication.md':
+        text = re.sub(r'# Veyra publication copy\n\n> \*\*Rebranding note:\*\* [^\n]+\n', '# AegisCV publication copy\n', text)
+        text = text.replace('Introducing Veyra —', 'Introducing AegisCV —').replace('Veyra is a local analyst', 'AegisCV is a local analyst')
+        text = text.replace('Static asset checks passed; runtime external requests not measured.', 'Browser verification recorded zero page errors and zero external requests.')
+        return text.replace('Name: Veyra —', 'Name: AegisCV —')
+    return text
 
 
 def restore_legacy_classes(source):
@@ -121,7 +152,7 @@ def main():
     result = {'implementation_scope': 'Phases 5.5 / 6: documentation, Inference Provenance and Audit Ledger only', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
-    before, after = old(str(template.relative_to(ROOT))), template.read_text()
+    before, after = old(template.relative_to(ROOT)), template.read_text(encoding='utf-8')
     old_dom, new_dom = Assets(), Assets()
     old_dom.feed(before)
     new_dom.feed(after)
@@ -159,21 +190,25 @@ def main():
     checks['overview_filters_warning_and_record_label'] = 'PASS'
 
     for path in ['dashboard/static/app.js', 'dashboard/static/workstation.css']:
-        assert restore_legacy_classes(restore_generation_feedback((ROOT / path).read_text())) == old(path), path
-    workstation = (ROOT / 'dashboard/static/workstation.js').read_text()
+        assert restore_legacy_classes(restore_generation_feedback((ROOT / path).read_text(encoding='utf-8').replace('\r\n', '\n'))) == old(path), path
+    workstation = (ROOT / 'dashboard/static/workstation.js').read_text(encoding='utf-8').replace('\r\n', '\n')
     assert protected_workstation(workstation) == protected_workstation(old('dashboard/static/workstation.js'))
     for path in ['dashboard/static/overview.css', 'dashboard/static/primitives.css', 'dashboard/static/shell.css']:
-        approved = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':' + path], cwd=ROOT)
-        assert (ROOT / path).read_bytes() == approved, path
-    approved_workstation = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/workstation.js'], cwd=ROOT).decode()
+        approved = subprocess.check_output(['git', 'show', APPROVED_OVERVIEW + ':' + Path(path).as_posix()], cwd=ROOT).replace(b'\r\n', b'\n')
+        content = (ROOT / path).read_bytes().replace(b'\r\n', b'\n')
+        if path == 'dashboard/static/shell.css':
+            content = restore_brand_logo_styles(content.decode('utf-8')).encode('utf-8').replace(b'\r\n', b'\n')
+        assert content == approved, path
+    approved_workstation = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/workstation.js'], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
     assert protected_phase6(workstation) == protected_phase6(approved_workstation), 'Protected renderer changed'
-    approved_template = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/templates/index.html'], cwd=ROOT).decode()
+    approved_template = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/templates/index.html'], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
     for name, content in sections(approved_template).items():
         if name not in {'inference', 'ledger'}:
             assert new_sections[name] == content, name
     for path in ['dashboard/static/investigations.css', 'dashboard/static/model-integrity.css']:
-        assert (ROOT / path).read_bytes() == subprocess.check_output(['git', 'show', APPROVED_MODEL + ':' + path], cwd=ROOT)
-    assert restore_generation_feedback((ROOT / 'dashboard/static/app.js').read_text()) == subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/app.js'], cwd=ROOT).decode()
+        approved = subprocess.check_output(['git', 'show', APPROVED_MODEL + ':' + Path(path).as_posix()], cwd=ROOT).replace(b'\r\n', b'\n')
+        assert (ROOT / path).read_bytes().replace(b'\r\n', b'\n') == approved, path
+    assert restore_generation_feedback((ROOT / 'dashboard/static/app.js').read_text(encoding='utf-8').replace('\r\n', '\n')) == subprocess.check_output(['git', 'show', APPROVED_MODEL + ':dashboard/static/app.js'], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
     # All form markup is preserved exactly, regardless of the surrounding layout order.
     forms = lambda source: sorted(re.findall(r'<form\b.*?</form>', source, re.S))
     assert forms(after) == forms(approved_template)
@@ -186,19 +221,29 @@ def main():
     for path in ['dashboard/static/style.css', 'dashboard/static/workstation.css']:
         assert not re.search(r'\.(row|card|badge)(?![\w-])', (ROOT / path).read_text()), path
     checks['legacy_generic_class_collisions_removed'] = 'PASS'
-    # All baseline files outside the two approved frontend edits must match.
-    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css', 'dashboard/static/workstation.js', 'tests/test_ui_contract.py'}
+    # All baseline files outside the approved edits must match.
+    rebranded = {
+        'README.md', 'DESIGN.md', 'reports/generator.py',
+        'docs/checkpoint_provisioning.md', 'docs/publication.md',
+        'docs/security/final_security_assessment.md', 'docs/security/judge_facing_summary.md',
+    }
+    allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css', 'dashboard/static/workstation.js', 'tests/test_ui_contract.py'} | rebranded
     tracked = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE], cwd=ROOT).decode().splitlines()
     for path in tracked:
-        if path not in allowed:
-            expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path], cwd=ROOT)
-            assert (ROOT / path).read_bytes() == expected, path
+        path_posix = Path(path).as_posix()
+        if path_posix not in allowed:
+            expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT).replace(b'\r\n', b'\n')
+            assert (ROOT / path_posix).read_bytes().replace(b'\r\n', b'\n') == expected, path_posix
+        elif path_posix in rebranded:
+            expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
+            content = (ROOT / path_posix).read_text(encoding='utf-8').replace('\r\n', '\n')
+            assert restore_reviewed_branding(path_posix, content) == expected, path_posix
     checks['frozen_baseline_files_unchanged'] = 'PASS'
 
     vendor = ROOT / 'dashboard/static/vendor/tabler'
     manifest = json.loads((vendor / 'manifest.json').read_text())
     for name, entry in manifest['files'].items():
-        assert hashlib.sha256((vendor / name).read_bytes()).hexdigest() == entry['sha256'], name
+        assert hashlib.sha256((vendor / name).read_bytes().replace(b'\r\n', b'\n')).hexdigest() == entry['sha256'], name
     checks['vendor_file_integrity'] = 'PASS'
 
     with tempfile.TemporaryDirectory() as directory:

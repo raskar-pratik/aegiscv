@@ -1,4 +1,4 @@
-# AegisCV analyst workstation
+# Veyra analyst workstation
 
 The running offline Flask interface is the design authority. Primary users: security assurance analysts, ML security engineers, defence and critical-infrastructure evaluators, and technical decision-makers. Mode: Operate. Preserve every detector, threshold, metric, cryptographic control and decision contract. Evaluation provenance is documented separately from the product identity.
 

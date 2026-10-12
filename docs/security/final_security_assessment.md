@@ -1,5 +1,7 @@
 # AegisCV final security assessment
 
+> **Historical Record Note (2026-10-12):** This document records the security assessment conducted on 2026-09-11 for AegisCV. The project has since been rebranded to Veyra.
+
 **Assessment date:** 2026-09-11  
 **Scope:** local AegisCV source tree and the operator-owned loopback service at `http://127.0.0.1:26228`.  
 **Authorization:** explicitly authorized by the project owner; non-destructive validation only.

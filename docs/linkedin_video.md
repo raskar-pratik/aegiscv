@@ -1,4 +1,4 @@
-# Record a real AegisCV LinkedIn walkthrough
+# Record a real Veyra LinkedIn walkthrough
 
 Status: recording helper prepared and syntax-checked; NOT browser-run in the authoring environment. No video has been produced here. Existing browser/visual-validation limitations remain unchanged.
 
@@ -19,7 +19,7 @@ Output: `local_state/linkedin-video/<timestamp>/aegiscv-demo.webm`, plus recordi
 
 ## Suggested edit
 
-- Add a 2-second opening title: **AegisCV | Computer Vision Integrity Assurance**.
+- Add a 2-second opening title: **Veyra | Computer Vision Integrity Assurance**.
 - Keep a visible label: **Seeded synthetic demonstration**.
 - Cut preparation/loading and long scroll transitions.
 - End with: **Integrity evidence, explicit limitations, analyst review.**
@@ -27,7 +27,7 @@ Output: `local_state/linkedin-video/<timestamp>/aegiscv-demo.webm`, plus recordi
 
 ## Voiceover
 
-“AegisCV is a local workstation for investigating computer-vision pipeline integrity. This walkthrough uses seeded synthetic data.
+“Veyra is a local workstation for investigating computer-vision pipeline integrity. This walkthrough uses seeded synthetic data.
 
 The overview puts the assurance decision first, then links it to the underlying evidence. Contributor investigations help trace suspicious findings without treating association as proof of authorship.
 
@@ -39,11 +39,11 @@ Acceptance separately enforces replay policy. Trying to accept this record again
 
 The audit ledger verifies signed history. The altered-copy demonstration exposes the first invalid link and explains why later links cannot be trusted. Stored ledger records are unchanged.
 
-AegisCV combines integrity evidence with explicit limits—not a claim that every attack can be detected.”
+Veyra combines integrity evidence with explicit limits—not a claim that every attack can be detected.”
 
 ## Suggested LinkedIn post
 
-Built AegisCV, a local computer-vision integrity assurance workstation.
+Built Veyra, a local computer-vision integrity assurance workstation.
 
 This demo walks through contributor evidence, trusted model fingerprint comparison, signed inference verification, replay protection and audit-ledger checks.
 

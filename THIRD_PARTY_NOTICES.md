@@ -1,6 +1,6 @@
 # Third-party notices
 
-AegisCV retains its existing project licensing. The following local UI dependencies are distributed under the MIT license.
+Veyra retains its existing project licensing. The following local UI dependencies are distributed under the MIT license.
 
 | Component | Version | Source | Full license |
 | --- | --- | --- | --- |

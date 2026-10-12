@@ -1,6 +1,8 @@
-# AegisCV
+# Veyra
 
 Computer Vision Integrity Assurance — an offline AI-security analyst workstation.
+
+> **Rebranding note:** Veyra was previously named AegisCV. Historical audit records, frozen experiment results, benchmark identifiers, and environment variable names (e.g. `AEGISCV_STATE`, `AEGISCV_ENCODER`) retain the original naming for compatibility and traceability.
 
 A local analyst application for inspecting image datasets, model identities, inference lineage and audit history. It produces evidence, heuristic risk, confidence, severity, recommended action and explicit coverage gaps. No cloud APIs, downloaded weights, CDN assets or runtime network services are used.
 
@@ -97,7 +99,7 @@ The server is a loopback-only hackathon application, not a multi-user production
 
 Run `python -m experiments.final_validation` using the installed offline dependencies. This produces `experiments/results/final_validation/VALIDATION_REPORT.md`, detector-specific JSON/CSV metrics, split/asset hashes, frozen calibration, attack configurations, failure examples, model robustness evidence, and runtime/environment records. The procedural ten-class benchmark has 200 training, 200 reference, 200 calibration and 300 held-out images. Only label disagreement and OOD thresholds are calibrated for this generated benchmark; application defaults remain unchanged. Use `core.thresholds.apply_profile` to validate an encoder-bound profile before explicitly applying it.
 
-The original six-class backdoor experiment is preserved. Additional locally trained tiny models exercise 1/5/10/20% poisoned training, multiple seeds, targets and patch geometries with fixed inversion settings. Results can include missed attacks and clean-model false positives; no overall “AegisCV accuracy” is reported.
+The original six-class backdoor experiment is preserved. Additional locally trained tiny models exercise 1/5/10/20% poisoned training, multiple seeds, targets and patch geometries with fixed inversion settings. Results can include missed attacks and clean-model false positives; no overall “Veyra accuracy” is reported.
 
 For a trusted local semantic checkpoint, follow `docs/checkpoint_provisioning.md`. `AEGISCV_ENCODER`, `AEGISCV_ENCODER_WEIGHTS` and optional `AEGISCV_ENCODER_SHA256` configure offline loading. The semantic ablation requires a checksum pin and records operator-supplied provenance limitations. No model or dataset is downloaded.
 

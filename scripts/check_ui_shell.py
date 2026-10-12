@@ -229,11 +229,16 @@ def main():
     }
     allowed = {'dashboard/templates/index.html', 'dashboard/static/style.css', 'dashboard/static/app.js', 'dashboard/static/workstation.css', 'dashboard/static/workstation.js', 'tests/test_ui_contract.py'} | rebranded
     tracked = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE], cwd=ROOT).decode().splitlines()
+    text_suffixes = {'.py', '.html', '.js', '.ps1', '.json', '.md', '.css', '.csv', '.txt', '.svg', '.sh'}
     for path in tracked:
         path_posix = Path(path).as_posix()
         if path_posix not in allowed:
-            expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT).replace(b'\r\n', b'\n')
-            assert (ROOT / path_posix).read_bytes().replace(b'\r\n', b'\n') == expected, path_posix
+            expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT)
+            actual = (ROOT / path_posix).read_bytes()
+            if Path(path_posix).suffix.lower() in text_suffixes or Path(path_posix).name == '.gitignore':
+                expected = expected.replace(b'\r\n', b'\n')
+                actual = actual.replace(b'\r\n', b'\n')
+            assert actual == expected, path_posix
         elif path_posix in rebranded:
             expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
             content = (ROOT / path_posix).read_text(encoding='utf-8').replace('\r\n', '\n')
@@ -243,7 +248,10 @@ def main():
     vendor = ROOT / 'dashboard/static/vendor/tabler'
     manifest = json.loads((vendor / 'manifest.json').read_text())
     for name, entry in manifest['files'].items():
-        assert hashlib.sha256((vendor / name).read_bytes().replace(b'\r\n', b'\n')).hexdigest() == entry['sha256'], name
+        data = (vendor / name).read_bytes()
+        if Path(name).suffix.lower() in text_suffixes:
+            data = data.replace(b'\r\n', b'\n')
+        assert hashlib.sha256(data).hexdigest() == entry['sha256'], name
     checks['vendor_file_integrity'] = 'PASS'
 
     with tempfile.TemporaryDirectory() as directory:

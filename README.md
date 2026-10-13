@@ -1,120 +1,214 @@
-# Veyra
+<p align="center">
+  <img src="dashboard/static/logo.png" alt="Veyra emblem" width="112">
+</p>
+<h1 align="center">Veyra</h1>
+<p align="center"><strong>Computer Vision Integrity Assurance</strong></p>
+<p align="center">Inspect the data. Verify the model. Trace the inference.</p>
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#investigation-workspace">Workspace</a> ·
+  <a href="#evidence-and-limits">Evidence &amp; limits</a> ·
+  <a href="#documentation">Documentation</a>
+</p>
 
-Computer Vision Integrity Assurance — an offline AI-security analyst workstation.
+---
 
-> **Rebranding note:** Veyra was previously named AegisCV. Historical audit records, frozen experiment results, benchmark identifiers, and environment variable names (e.g. `AEGISCV_STATE`, `AEGISCV_ENCODER`) retain the original naming for compatibility and traceability.
+**Veyra is a local AI-security workstation for investigating the integrity of computer-vision pipelines.** It brings dataset findings, model fingerprints, signed inference records and audit history into one evidence-focused interface—so an analyst can see what triggered a decision, inspect its supporting evidence and identify checks that could not run.
 
-A local analyst application for inspecting image datasets, model identities, inference lineage and audit history. It produces evidence, heuristic risk, confidence, severity, recommended action and explicit coverage gaps. No cloud APIs, downloaded weights, CDN assets or runtime network services are used.
+Built with **Python · Flask · NumPy · PyTorch · Ed25519 · SQLite · locally vendored Tabler**.
 
-## Install dependencies
+> **Evidence before confidence.** Cryptographic failures establish integrity violations. Heuristic anomalies require analyst review. Composite scores and confidence are heuristic, not calibrated probabilities.
 
-For an internet-connected development machine, install dependencies before running:
+## Investigation workspace
 
-```powershell
+| Area | What you can investigate |
+| --- | --- |
+| **Assurance overview** | Final disposition, decisive asset, policy reason, maximum asset risk, composite pipeline risk and coverage. |
+| **Data integrity** | Image and annotation validation, dataset manifests, exact/near duplicates, label disagreement and reference-based outliers. |
+| **Contributor intelligence** | Source-associated findings, affected samples and evidence families—with explicit attribution limits. |
+| **Model integrity** | Trusted-reference byte hashes, behavioral probes, access-aware checks and experimental trigger reconstruction. |
+| **Inference provenance** | Signed bindings between input, model, preprocessing, configuration and output; verification and separate replay-protected acceptance. |
+| **Audit ledger** | Signed hash-chain history, first-invalid-link analysis and an altered-copy demonstration that leaves stored history unchanged. |
+| **Distribution, coverage & reports** | Feature-shift measurements, unavailable checks, persisted assessments, JSON exports and printable HTML reports. |
+
+The interface puts **decisions first, evidence second, metrics third**. A decisive cryptographic or contributor finding remains visible even when the composite pipeline score is lower.
+
+<details>
+<summary><strong>View the workstation shell</strong></summary>
+
+![Veyra desktop brand and workstation shell](docs/screenshots/desktop_brand_header.png)
+
+*Repository screenshot captured for branding review; it does not establish full workflow or responsive validation.*
+
+</details>
+
+## Quick start
+
+Use a Python environment compatible with the selected dependency versions. Provision packages before disconnected operation. Model-dependent demonstrations require a working PyTorch installation.
+
+### 1. Get the project
+
+```bash
+git clone https://github.com/raskar-pratik/veyra.git
+cd veyra
 python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt -r requirements-models.txt
 ```
 
-For an air-gapped machine, use the offline installation instructions below. The application does not fetch models at runtime.
-
-## Start here
-
-From this directory, with the installed Python environment:
+Activate the environment:
 
 ```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+```bash
+# macOS / Linux
+source .venv/bin/activate
+```
+
+### 2. Install and run
+
+```bash
+python -m pip install -r requirements.txt -r requirements-models.txt
 python run.py
 ```
 
-Open http://127.0.0.1:26228 and click **Run reproducible demonstration**. The demo creates its own synthetic clean/attacked images and local TorchScript models, executes real scans, signs an inference, and verifies tampered copies and replay attempts. Reports persist across restarts.
+Open **[http://127.0.0.1:26228](http://127.0.0.1:26228)**.
 
-```powershell
-python -m unittest discover -s tests -v
+The application binds to loopback. It is a local analyst tool, not a hosted multi-user service. Model files and pretrained weights are not fetched automatically.
+
+### 3. Explore a real synthetic demonstration
+
+Click **Run reproducible demonstration**. Veyra creates synthetic clean and attacked image datasets and local TorchScript models, executes scans, signs an inference record, and exercises tampering and replay scenarios.
+
+Then follow the evidence:
+
+1. Read the **Overview** disposition and its reason.
+2. Inspect the linked **Data**, **Contributor** and **Model** evidence.
+3. Verify an **Inference** record; distinguish signature verification from acceptance and replay policy.
+4. Verify the **Audit Ledger** and inspect the altered-copy failure.
+5. Review coverage gaps and export the assessment.
+
+**Synthetic results demonstrate these fixtures, not general attack-detection accuracy.** Reports persist across restarts in normal application state.
+
+For a standalone run:
+
+```bash
 python -m demo.runner --output demo/results-new
 ```
 
-The standalone demo output directory must be new. Seeded image bytes and model behavior are reproducible; UUIDs, signing keys, timestamps and TorchScript container bytes can differ between executions.
+Use a new output directory. Seeded image bytes and model behavior are reproducible; UUIDs, keys, timestamps and TorchScript container bytes can differ between runs.
 
-## Implemented MVP
+## Bring your own data and models
 
-- Folder/classification, COCO and YOLO ingestion; validated image/annotation handling; SHA-256 manifest including annotations and contributor metadata.
-- Exact duplicate groups and dHash candidates with calibrated pixel/texture confirmation and explicit confirmed edges.
-- Embedding neighbor label disagreement; OOD relative to a supplied reference; contributor risk and evidence correlation.
-- PyTorch safe state dictionaries with local architecture factories, TorchScript runtime and optional ONNX Runtime adapter. Access-aware unavailable states.
-- Model byte fingerprint, fixed behavioral probe battery, substitution comparison and bounded classification trigger inversion with MAD statistics.
-- Inference execution binding input, model, preprocessing, configuration and output hashes; Ed25519 signatures.
-- Transactional SQLite hash-chain ledger; persistent nonce/sequence/freshness replay checks; independent verification and trusted checkpoint support.
-- Distribution feature comparison, heuristic risk fusion, local background scans, dashboard, JSON and printable HTML reports.
-- Seeded attack simulator and executable synthetic precision/recall/F1/false-positive measurements.
+Place inputs under `local_state/imports/` and enter **relative paths** in the workstation. The browser API confines inputs to this subtree; it does not provide archive extraction or file-upload endpoints.
 
-## Offline installation
+| Input | Supported layout or requirement |
+| --- | --- |
+| Classification folders | `dataset/class_name/image.png`; root images may be unlabeled. |
+| COCO annotations | `dataset/annotations.json` with referenced images inside that dataset directory. |
+| YOLO annotations | `dataset/images/…` and matching `dataset/labels/…txt`, or sibling image/text files. Class IDs are preserved. |
+| Contributor metadata | Optional `contributors.json` mapping relative image paths to source names. |
+| Clean reference | A separately supplied, trusted dataset in the same annotation format. |
+| Models | Local TorchScript, safe PyTorch state dictionaries with architecture factories, and an optional ONNX Runtime adapter. |
 
-Core dependencies are listed in `requirements.txt`; optional model runtimes are in `requirements-models.txt`. Prepare wheels matching the target Python version and OS on your provisioning machine, transfer them through your approved process, and install without accessing a package index:
+Register a model in **Model Integrity**, acknowledge trust for executable local artifacts, and use its returned ID in a scan or inference form. The default probe/input convention is **RGB, 32×32, NCHW, float32 scaled by 1/255**. Other conventions require adapter integration; incompatible outputs are reported as failures.
+
+Set `AEGISCV_STATE` before startup to choose another state directory. For local semantic checkpoints, see the [checkpoint provisioning guide](docs/checkpoint_provisioning.md). The existing `AEGISCV_ENCODER`, `AEGISCV_ENCODER_WEIGHTS` and `AEGISCV_ENCODER_SHA256` configuration names remain supported.
+
+## Offline operation
+
+The dashboard uses local CSS, JavaScript, icons and logo assets, including **Tabler 1.6.1**. No cloud API is required for the investigation workflow. Optional pretrained weights must be supplied locally by the operator.
+
+For a disconnected machine, prepare a wheelhouse matching its operating system and Python version, transfer it through your approved process, then install:
 
 ```powershell
 python -m pip install --no-index --find-links X:\wheelhouse -r requirements.txt
 python -m pip install --no-index --find-links X:\wheelhouse -r requirements-models.txt
 ```
 
-Alternatively use `scripts/setup_offline.ps1 -Wheelhouse X:\wheelhouse`. Nothing in this repository fetches a model or package automatically. The current environment has NumPy, Pillow, Flask, cryptography and CPU PyTorch; ONNX Runtime is absent. Python 3.14 emits TorchScript compatibility warnings despite passing exercised tests; use a supported, validated Python/PyTorch combination for deployment.
+The repository also includes [`scripts/setup_offline.ps1`](scripts/setup_offline.ps1).
 
-## Own datasets and models
+Offline design and static asset checks do not prove system-wide network isolation. Browser network observations apply only to the workflows and session actually measured.
 
-Place inputs inside `local_state/imports/` and enter relative paths in **New scan**. Set `AEGISCV_STATE` to select a different local state directory before starting. The browser API confines all input paths to its `imports/` subtree. There is no archive extraction or file-upload endpoint.
+## Evidence and limits
 
-- Folder: `dataset/class_name/image.png`; root images can be unlabeled.
-- COCO: `dataset/annotations.json` and referenced images within the same dataset directory.
-- YOLO: `dataset/images/...` plus matching `dataset/labels/...txt`, or sibling image/text files. Class IDs are preserved.
-- Contributors: optional `contributors.json` mapping relative image paths to contributor/source names.
-- Reference: a separate trusted clean dataset in the same annotation format.
-- Models: register in **Models**, explicitly acknowledge trust for executable local artifacts, then paste the returned model ID into the scan/inference form. The default probe/input convention is RGB, 32×32, NCHW, float32 scaled by 1/255. Other conventions require an adapter integration; incompatible outputs become visible failed findings.
+| Evidence | What it establishes—and what it does not |
+| --- | --- |
+| **Trusted-reference hash mismatch** | The observed artifact differs from the trusted reference. It does not identify who changed it or their intent. |
+| **Valid signed inference record** | Protected content bindings and signature verify. It does not prove that the prediction is correct or the model is benign. |
+| **Replay-protected acceptance** | The record passed the configured acceptance checks. Signature verification alone does not establish freshness. |
+| **Valid ledger chain** | Available history passes its checks. Independent public-key pinning and trusted checkpoints are needed for meaningful external verification and truncation detection. |
+| **Anomaly or contributor finding** | Evidence for investigation, not automatic proof of an attack or authorship. |
+| **Experimental backdoor-like evidence** | Reconstruction anomalies may indicate suspicious model behavior but do not cryptographically confirm a backdoor. Recommended action: review. |
 
-The Python API accepts `LocalModelEncoder` for supplied feature models and a `factory` for safe PyTorch state dictionaries. See `docs/architecture.md`.
+Additional boundaries:
 
-## Scientific and operational limits
+- **No overall “Veyra accuracy” claim.** Synthetic precision, recall and false-positive results are specific to the recorded experiments.
+- **Missing access stays visible.** Black-box models do not imply completed white-box checks; unavailable checks reduce coverage.
+- **Semantic analysis has limits.** Without operator-supplied usable weights, a handcrafted encoder remains available and reports `FALLBACK`. Semantic performance gains remain unmeasured until representative evaluation is supplied. The default OOD threshold of 0.20 is an uncalibrated visual-feature heuristic.
+- **Annotation checks are not object-level semantic verification.** Whole-image, singly labeled analysis remains distinct from COCO/YOLO geometry and consistency checks.
+- **Known misses and false positives are retained.** Recorded handcrafted-fixture spectral recall is limited; backdoor experiments include missed attacks and clean-model false positives. See [hardening](docs/hardening.md) and [detector behavior](docs/detectors.md).
+- **`ACCEPT` is bounded by the checks executed.** It does not establish the absence of unknown attacks.
+- **Signing keys are a trust boundary.** Signatures cannot protect against an attacker who controls the signer and its keys.
 
-An optional ResNet18 penultimate encoder loads an operator-supplied local state dictionary only. Configure `Config(encoder_weights='local-resnet18.pt')` in Python or `config.encoder_weights` as an import-relative path in the scan API. No weights are bundled or downloaded. Without usable weights the handcrafted encoder remains available, and `encoder_capability` explicitly reports FALLBACK. Embeddings are cached by image SHA-256 plus encoder weights/preprocessing/configuration identity. Semantic performance gains remain unmeasured until a trusted pretrained checkpoint and representative evaluation data are supplied. The OOD default of 0.20 remains an uncalibrated visual-feature heuristic.
+## Validation and reproducibility
 
-COCO/YOLO annotation checks now cover geometry, duplicate/conflicting annotations, box counts, class frequencies and contributor evidence. Semantic label anomaly analysis remains whole-image and singly labeled. Spectral signatures and optional penultimate activation clustering provide additional heuristic evidence. Spectral recall on the current handcrafted image fixtures is limited: 33% for label flips and 25% for triggers in the recorded experiment.
+Run the checks in your installed environment:
 
-Trigger inversion now uses multiple initializations, adaptive mask regularization, non-target sources and held-out reconstruction success. The new six-class validation fixture demonstrates a real backdoor with measured clean accuracy/ASR and recovered mask/pattern evidence. This does **not** establish general backdoor detection reliability. The original thresholded three-class model remains a limited-search case; complementary corner-patch behavioral evidence and byte/probe identities remain available. See `docs/hardening.md` for the diagnosis, measured results and limitations.
-
-## ML security hardening experiments
-
-```powershell
-python -m experiments.hardening
-# Optional: repeat with your own locally provisioned pretrained checkpoint
-python -m experiments.hardening --weights local-resnet18.pt --output experiments/results/semantic-evaluation
+```bash
+python -m unittest discover -s tests -v
+python scripts/check_ui_shell.py
+node --check dashboard/static/app.js
+node --check dashboard/static/workstation.js
 ```
 
-Results are written as JSON, CSV and Markdown under `experiments/results/hardening/`. Undefined metrics remain null/N/A. Recovered masks, patterns, model artifacts and measured clean accuracy/ASR are under `backdoor_validation/`. The existing one-click demo also executes this validation fixture and includes its measured summary in the audit/demo results.
+The established regression baseline contains **50 tests**. Static gates check contracts and local assets; they are not substitutes for real browser testing.
 
-Distribution reports now expose centroid displacement, covariance difference, RBF MMD, class-frequency TV and optional prediction-confidence change. Each metric has its own threshold and lists whether it triggered. Correlation rules retain underlying finding IDs; matching dataset/model targets requires an explicit `class_names` mapping. Optional activation analysis is enabled with `activation_analysis: true` on model scans; inaccessible penultimate features are reported as UNAVAILABLE.
+| Experiment | Command | Purpose |
+| --- | --- | --- |
+| Hardening | `python -m experiments.hardening` | Detector diagnostics and backdoor reconstruction evidence. |
+| Final validation | `python -m experiments.final_validation` | Procedural benchmark splits, calibration records, detector metrics and failure examples. |
+| Stabilization | `python -m experiments.stabilization` | Duplicate diagnosis, acquisition statistics and held-out transformed-copy measurements. |
 
-A risk score is not an attack probability. Synthetic experiment metrics are not benchmark/generalization claims. `ACCEPT` means the executed checks found no configured issue; it does not establish absence of unknown attacks. Missing tests lower confidence and require review.
+The procedural ten-class benchmark contains 200 training, 200 reference, 200 calibration and 300 held-out images. Only label disagreement and OOD thresholds are calibrated for this generated benchmark; application defaults remain unchanged. Encoder-bound profiles must be validated before explicit application.
 
-The server is a loopback-only hackathon application, not a multi-user production service. Local signing-key access is a trust boundary; signatures cannot protect against an attacker controlling the signer and its keys. Independent public-key pinning and ledger checkpoints are required for meaningful external verification and truncation detection.
+Experiment outputs live under `experiments/results/`. Undefined metrics remain null/N/A. Do not overwrite frozen evidence to make a result look better.
 
-## Benchmarking and scientific validation
+## Record a walkthrough
 
-Run `python -m experiments.final_validation` using the installed offline dependencies. This produces `experiments/results/final_validation/VALIDATION_REPORT.md`, detector-specific JSON/CSV metrics, split/asset hashes, frozen calibration, attack configurations, failure examples, model robustness evidence, and runtime/environment records. The procedural ten-class benchmark has 200 training, 200 reference, 200 calibration and 300 held-out images. Only label disagreement and OOD thresholds are calibrated for this generated benchmark; application defaults remain unchanged. Use `core.thresholds.apply_profile` to validate an encoder-bound profile before explicitly applying it.
+The [LinkedIn recording guide](docs/linkedin_video.md) covers the demonstration sequence and its interpretation boundaries. With the project dependencies, Playwright and Chrome installed:
 
-The original six-class backdoor experiment is preserved. Additional locally trained tiny models exercise 1/5/10/20% poisoned training, multiple seeds, targets and patch geometries with fixed inversion settings. Results can include missed attacks and clean-model false positives; no overall “Veyra accuracy” is reported.
+```bash
+python -m pip install playwright
+python scripts/record_linkedin_demo.py --channel chrome
+```
 
-For a trusted local semantic checkpoint, follow `docs/checkpoint_provisioning.md`. `AEGISCV_ENCODER`, `AEGISCV_ENCODER_WEIGHTS` and optional `AEGISCV_ENCODER_SHA256` configure offline loading. The semantic ablation requires a checksum pin and records operator-supplied provenance limitations. No model or dataset is downloaded.
+The helper uses isolated synthetic demo state. Review the exported video and telemetry before publishing; a successful recording is evidence of the exercised workflows, not complete application validation.
 
-## Reliability stabilization
+## Architecture
 
-Run `python -m experiments.stabilization` for calibration-only duplicate diagnosis, frozen acquisition statistics, the complete regression matrix, and held-out transformed-copy measurements. Results are under `experiments/results/stabilization`; the prior `final_validation` results remain the before snapshot. The source of current detector and risk policy is `docs/detectors.md`. The dashboard and architecture are unchanged.
+| Directory | Responsibility |
+| --- | --- |
+| `app/` | REST routes, background orchestration and SQLite persistence |
+| `adapters/` | Dataset and model integrations |
+| `core/` | Findings, configuration, risk and coverage contracts |
+| `detectors/` | Independent data, model and distribution checks |
+| `provenance/` | Signed records, replay policy and ledger verification |
+| `dashboard/` | Local HTML, CSS, JavaScript and vendored assets |
+| `reports/` | JSON and printable HTML reports |
+| `attack_simulator/`, `demo/` | Seeded attack fixtures and reproducible walkthroughs |
+| `experiments/`, `tests/` | Measured evaluations and regression coverage |
 
-With the local dashboard running, `python scripts/verify_freeze.py` executes all tests and the browser regression, checks the measured freeze criteria, and writes an explicit YES/NO freeze record. No download is performed when an optional runtime is absent. Scores use a new fixed denominator and are not directly comparable as attack probabilities. Retained failures include backdoor misses/false positives and ambiguous contributor attribution for duplicate originals.
+## Documentation
 
-## Judge-facing decision contract
+- **Understand:** [Architecture](docs/architecture.md) · [Detectors](docs/detectors.md) · [Attack coverage](docs/attack_coverage.md)
+- **Interpret:** [Decision policy](docs/decision_policy.md) · [Assurance schema](docs/assurance_schema.md) · [Hardening](docs/hardening.md)
+- **Integrate:** [API](docs/api.md) · [Checkpoint provisioning](docs/checkpoint_provisioning.md)
+- **Verify:** [Security](docs/security.md) · [Verification](docs/verification.md) · [Audit](docs/audit.md)
+- **Present:** [Demo guide](docs/demo.md) · [Recording guide](docs/linkedin_video.md) · [UI integration](docs/ui/tabler_integration.md)
+- **Dependencies:** [Third-party notices](THIRD_PARTY_NOTICES.md)
 
-The scanner preserves composite pipeline risk and adds a separate decision contract: maximum asset risk, highest-risk asset and reason, confidence/coverage, final disposition and a structured disposition trigger. This prevents a low diluted composite score from masking a decisive contributor or cryptographic violation. See `docs/decision_policy.md` and `docs/assurance_schema.md`. Existing dashboard visuals and detector metrics are unchanged.
+---
 
-## Architecture and project structure
-
-`app/` contains REST routes, background orchestration and SQLite persistence. `adapters/` contains dataset/model integration. `detectors/` contains independent data, model and drift modules. `core/` defines configuration, findings, risk and coverage. `provenance/` handles signatures, records and verification. `dashboard/` provides local HTML/CSS/JS. `reports/`, `attack_simulator/`, `demo/`, `tests/`, `scripts/`, and `docs/` contain the supporting workflow.
-
-Documentation: `docs/architecture.md`, `docs/detectors.md`, `docs/security.md`, `docs/attack_coverage.md`, `docs/demo.md`, `docs/api.md`, `docs/audit.md`.
+**Previously AegisCV.** Veyra retains the original internal identifiers, environment variables, historical audits and frozen benchmark names for compatibility and traceability.

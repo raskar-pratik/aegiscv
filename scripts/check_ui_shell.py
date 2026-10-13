@@ -63,9 +63,6 @@ def restore_reviewed_branding(path, text):
     if path == 'docs/security/judge_facing_summary.md':
         text = text.replace('Veyra is an air-gapped', 'AegisCV is an air-gapped')
         return text.replace('The final local regression passed all 50 tests. Static asset checks passed; runtime external requests not measured.', 'The final local regression passed all 50 tests and the browser demonstration with zero external requests.')
-    if path == 'README.md':
-        text = re.sub(r'# Veyra\n\nComputer Vision Integrity Assurance — an offline AI-security analyst workstation\.\n\n> \*\*Rebranding note:\*\* [^\n]+\n', '# AegisCV\n\nComputer Vision Integrity Assurance — an offline AI-security analyst workstation.\n', text)
-        return text.replace('“Veyra accuracy”', '“AegisCV accuracy”')
     if path == 'docs/publication.md':
         text = re.sub(r'# Veyra publication copy\n\n> \*\*Rebranding note:\*\* [^\n]+\n', '# AegisCV publication copy\n', text)
         text = text.replace('Introducing Veyra —', 'Introducing AegisCV —').replace('Veyra is a local analyst', 'AegisCV is a local analyst')
@@ -222,6 +219,8 @@ def main():
     for path in ['dashboard/static/style.css', 'dashboard/static/workstation.css']:
         assert not re.search(r'\.(row|card|badge)(?![\w-])', (ROOT / path).read_text()), path
     checks['legacy_generic_class_collisions_removed'] = 'PASS'
+    # The separately reviewed README refresh is pinned exactly; other freezes remain unchanged.
+    approved_readme_sha256 = '53fb14408e185cd2ca92a785e42d2b21003ad035247f19ad268069ac3afd3845'
     # All baseline files outside the approved edits must match.
     rebranded = {
         'README.md', 'DESIGN.md', 'reports/generator.py',
@@ -243,7 +242,10 @@ def main():
         elif path_posix in rebranded:
             expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
             content = (ROOT / path_posix).read_text(encoding='utf-8').replace('\r\n', '\n')
-            assert restore_reviewed_branding(path_posix, content) == expected, path_posix
+            if path_posix == 'README.md':
+                assert hashlib.sha256(content.encode('utf-8')).hexdigest() == approved_readme_sha256, path_posix
+            else:
+                assert restore_reviewed_branding(path_posix, content) == expected, path_posix
     checks['frozen_baseline_files_unchanged'] = 'PASS'
 
     vendor = ROOT / 'dashboard/static/vendor/tabler'

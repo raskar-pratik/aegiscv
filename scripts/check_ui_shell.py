@@ -70,6 +70,7 @@ def restore_reviewed_branding(path, text):
         text = re.sub(r'# Veyra publication copy\n\n> \*\*Rebranding note:\*\* [^\n]+\n', '# AegisCV publication copy\n', text)
         text = text.replace('Introducing Veyra —', 'Introducing AegisCV —').replace('Veyra is a local analyst', 'AegisCV is a local analyst')
         text = text.replace('Static asset checks passed; runtime external requests not measured.', 'Browser verification recorded zero page errors and zero external requests.')
+        text = text.replace('https://github.com/raskar-pratik/veyra', 'https://github.com/raskar-pratik/aegiscv')
         return text.replace('Name: Veyra —', 'Name: AegisCV —')
     return text
 

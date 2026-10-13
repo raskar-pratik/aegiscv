@@ -540,7 +540,7 @@ Here is a 78-second walkthrough of the real application running on local synthet
 
 No external requests were observed by Playwright during the recorded workflows. Cryptographic integrity and empirical anomalies are separated with explicit limitations kept visible.
 
-Check out the project: https://github.com/raskar-pratik/aegiscv
+Check out the project: https://github.com/raskar-pratik/veyra
 
 #AISecurity #ComputerVision #MachineLearning #CyberSecurity #DataIntegrity #Python #BuildInPublic
 """

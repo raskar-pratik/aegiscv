@@ -32,7 +32,7 @@ The limits matter too: validation uses controlled synthetic fixtures, risk score
 
 I would welcome feedback on the investigation workflow and how to evaluate it against broader datasets and model families.
 
-Repository: https://github.com/raskar-pratik/aegiscv
+Repository: https://github.com/raskar-pratik/veyra
 
 #ComputerVision #AISecurity #CyberSecurity #Python #MachineLearning
 
@@ -44,7 +44,7 @@ Description: Built an offline analyst workstation for investigating dataset inte
 
 Skills: Python, Flask, Computer Vision, Machine Learning, Application Security, Cryptography, SQLite.
 
-Project URL: https://github.com/raskar-pratik/aegiscv
+Project URL: https://github.com/raskar-pratik/veyra
 
 ## Publication boundaries
 

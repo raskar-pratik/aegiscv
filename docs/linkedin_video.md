@@ -49,6 +49,6 @@ This demo walks through contributor evidence, trusted model fingerprint comparis
 
 The walkthrough uses seeded synthetic data. Cryptographic integrity checks and experimental anomaly evidence are presented separately, with limitations kept visible.
 
-Repository: https://github.com/raskar-pratik/aegiscv/tree/ui/tabler-refinement
+Repository: https://github.com/raskar-pratik/veyra
 
 #AISecurity #ComputerVision #Python #CyberSecurity #BuildInPublic

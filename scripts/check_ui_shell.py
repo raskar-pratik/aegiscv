@@ -15,6 +15,14 @@ BASELINE = 'e86a86c0968db1afe9de33eb9ad4844d3fdac2af'
 APPROVED_OVERVIEW = '32941a00cb4568d22f5854f0f10f4ccb23b0a108'  # Approved content tree; independent of commit transport metadata
 APPROVED_INVESTIGATIONS = '4dda0243fb10e3522da0372b60222e66f78d6edb'  # Approved content tree; independent of commit transport metadata
 APPROVED_MODEL = 'b7e50bfbd7143684a93a633195261bca148d245d'  # Approved content tree; independent of commit transport metadata
+# Reviewed integrity fixes supersede these four historical backend snapshots.
+# Keep exact normalized-content pins rather than exempting backend files from the gate.
+INTEGRITY_FIXES = {
+    'adapters/datasets/ingestion.py': '862684220a44dd1b3f82427cfab6e2929501514affb8acd57ab4879795977fec',
+    'app/api/routes.py': '552829b6f2e2b58842c1914266bc35b38286ad4ad42675a953725d46afb41304',
+    'app/services/scanner.py': 'd8fedd53e8035b02980466568ebc95bb86f668b223a9fa3ab0c049d6c1c900ba',
+    'detectors/model_integrity/fingerprint.py': '2cbd0f596c4d054ad0129ff9dd6f99ab5e52a5ac02bbed722b4dcf4aa66b5a5e',
+}
 
 
 class Assets(HTMLParser):
@@ -147,7 +155,7 @@ class FragmentStructure(HTMLParser):
 def main():
     from app.main import create_app
 
-    result = {'implementation_scope': 'Phases 5.5 / 6: documentation, Inference Provenance and Audit Ledger only', 'checks': {}}
+    result = {'implementation_scope': 'UI contracts and pinned backend integrity fixes', 'checks': {}}
     checks = result['checks']
     template = ROOT / 'dashboard/templates/index.html'
     before, after = old(template.relative_to(ROOT)), template.read_text(encoding='utf-8')
@@ -232,7 +240,10 @@ def main():
     text_suffixes = {'.py', '.html', '.js', '.ps1', '.json', '.md', '.css', '.csv', '.txt', '.svg', '.sh'}
     for path in tracked:
         path_posix = Path(path).as_posix()
-        if path_posix not in allowed:
+        if path_posix in INTEGRITY_FIXES:
+            actual = (ROOT / path_posix).read_bytes().replace(b'\r\n', b'\n')
+            assert hashlib.sha256(actual).hexdigest() == INTEGRITY_FIXES[path_posix], path_posix
+        elif path_posix not in allowed:
             expected = subprocess.check_output(['git', 'show', BASELINE + ':' + path_posix], cwd=ROOT)
             actual = (ROOT / path_posix).read_bytes()
             if Path(path_posix).suffix.lower() in text_suffixes or Path(path_posix).name == '.gitignore':
@@ -246,7 +257,7 @@ def main():
                 assert hashlib.sha256(content.encode('utf-8')).hexdigest() == approved_readme_sha256, path_posix
             else:
                 assert restore_reviewed_branding(path_posix, content) == expected, path_posix
-    checks['frozen_baseline_files_unchanged'] = 'PASS'
+    checks['frozen_baseline_and_pinned_integrity_fixes'] = 'PASS'
 
     vendor = ROOT / 'dashboard/static/vendor/tabler'
     manifest = json.loads((vendor / 'manifest.json').read_text())

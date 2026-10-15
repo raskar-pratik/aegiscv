@@ -81,7 +81,7 @@ def scan_dataset(root, format='folder', config=None, reference=None, model=None,
             adapter=ModelAdapter(model['path'],model.get('format','torchscript'),trusted=model.get('trusted',False))
             probes=np.random.default_rng(config.seed).random((6,3,32,32),dtype=np.float32)
             probes[0]=1; probes[1]=0
-            model_result=inspect_model(adapter,expected=model.get('expected_hash'),probes=probes,reference=model.get('reference_behavior'))
+            model_result=inspect_model(adapter,expected=model.get('expected_hash'),probes=probes,reference=model.get('reference_behavior'),registered=model.get('sha256'))
             findings.extend(model_result['findings'])
             if reference and adapter.runtime is not None:
                 try:
@@ -147,6 +147,7 @@ def scan_dataset(root, format='folder', config=None, reference=None, model=None,
             report['audit_append']={'status':'FAILED','reason':str(exc)}
             findings.append(Finding('audit_append','INFERENCE_INTEGRITY','AUDIT_WRITE','ledger',0,0,str(exc),{},status='FAILED',asset_type='LEDGER').to_dict())
             report['assurance']=fuse(findings,config)
+            report.update(contract(findings,report['assurance'],contributor_rows,ledger_check))
     elif ledger:
         report['audit_append']={'status':'FAILED','reason':'Invalid historical chain; report preserved without appending to compromised ledger'}
     return report

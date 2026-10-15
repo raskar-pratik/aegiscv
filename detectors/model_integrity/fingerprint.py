@@ -6,10 +6,17 @@ from core.schemas import Finding
 from provenance.hashing import digest
 
 
-def inspect_model(adapter, expected=None, probes=None, reference=None):
+def inspect_model(adapter, expected=None, probes=None, reference=None, registered=None):
     metadata={'sha256':adapter.identity,'size':adapter.path.stat().st_size,'format':adapter.format,'access':adapter.access,'scanner_version':VERSION,'timestamp':datetime.now(timezone.utc).isoformat(),'runtime_available':adapter.runtime is not None,'reason':adapter.reason,'architecture':str(type(adapter.runtime).__name__) if adapter.runtime else None,'parameter_count':sum(p.numel() for p in adapter.get_parameters()) if adapter.supports_gradients() else None}
-    changed=expected is not None and expected!=adapter.identity
-    findings=[Finding('model_hash','MODEL_INTEGRITY','MODEL_SUBSTITUTION',adapter.identity,100 if changed else 0,1,'Model differs from trusted digest' if changed else 'Model bytes fingerprinted'+('; no trusted baseline supplied' if expected is None else '; trusted digest matches'),{'expected':expected,'actual':adapter.identity},asset_type='MODEL').to_dict()]
+    if isinstance(expected,str): expected=expected.strip().lower() or None
+    substituted=registered is not None and registered!=adapter.identity
+    changed=substituted or (expected is not None and expected!=adapter.identity)
+    if substituted: reason='Registered model was substituted'
+    elif changed: reason='Model differs from trusted digest'
+    else:
+        reason='Model bytes fingerprinted'+('; registered digest matches' if registered is not None else '')
+        reason+='; no trusted baseline supplied' if expected is None else '; trusted digest matches'
+    findings=[Finding('model_hash','MODEL_INTEGRITY','MODEL_SUBSTITUTION',adapter.identity,100 if changed else 0,1,reason,{'expected':expected,'registered':registered,'actual':adapter.identity},asset_type='MODEL').to_dict()]
     behavior=None
     if adapter.runtime is not None and probes is not None:
         try:

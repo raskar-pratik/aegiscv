@@ -71,7 +71,13 @@ def scans():
         entries=ext('store').registry('model',data['model_id'])
         if not entries: raise ValueError('Unknown model ID')
         model_data=entries[0]
-        model_data['expected_hash']=data.get('expected_hash')
+        expected=data.get('expected_hash')
+        if expected is not None:
+            if not isinstance(expected,str): raise ValueError('Expected model SHA-256 must be a string')
+            expected=expected.strip().lower() or None
+            if expected is not None and (len(expected)!=64 or any(c not in '0123456789abcdef' for c in expected)):
+                raise ValueError('Expected model SHA-256 must contain 64 hexadecimal characters')
+        model_data['expected_hash']=expected
         model_data['reconstruct']=data.get('reconstruct') is True
         model_data['activation_analysis']=data.get('activation_analysis') is True
         model_data['reference_behavior']=data.get('reference_behavior')
@@ -139,11 +145,18 @@ def inference():
 @api.post('/inference/verify')
 def inference_verify():
     data=body()
-    return verify_record(data['record'],ext('ledger').public,data.get('bindings'))
+    return verify_record(inference_record(data),ext('ledger').public,data.get('bindings'))
+
+
+def inference_record(data):
+    record=data['record']
+    if not isinstance(record,dict) or record.get('kind')!='inference':
+        raise ValueError('An inference record is required')
+    return record
 
 
 @api.post('/inference/accept')
-def inference_accept(): return ext('ledger').accept(body()['record'])
+def inference_accept(): return ext('ledger').accept(inference_record(body()))
 
 
 @api.get('/asset')

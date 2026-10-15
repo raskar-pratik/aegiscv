@@ -41,9 +41,11 @@ def ingest(root: str | Path, format: str = 'folder', config: Config | None = Non
         data = json.loads(annotation.read_text())
         annotation_hashes['annotations.json'] = digest_file(annotation)
         cats = {c['id']:str(c['name']) for c in data['categories']}
-        images = {i['id']:i['file_name'] for i in data['images']}
+        images = {i['id']:confined(root,i['file_name']).relative_to(root).as_posix() for i in data['images']}
         if len(images) != len(data['images']):
             raise ValueError('Duplicate COCO image IDs')
+        if len(set(images.values())) != len(images):
+            raise ValueError('Duplicate COCO image paths')
         for name in images.values():
             confined(root,name)
             labels[name], boxes[name],objects[name] = [], [],[]
